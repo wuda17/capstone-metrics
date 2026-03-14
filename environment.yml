@@ -1,0 +1,22 @@
+name: capstone
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - matplotlib
+  # - torch
+  - ffmpeg
+
+  - pip:
+      - openai-whisper
+      - praat-parselmouth
+      - opensmile
+      - audiofile
+      - pyaudio
+      - webrtcvad
+      - watchdog
+      - streamlit
+      - pandas

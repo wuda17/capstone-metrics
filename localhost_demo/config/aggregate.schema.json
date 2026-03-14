@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LocalhostDemoAggregate",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generated_at",
+    "counts",
+    "baseline",
+    "windows",
+    "deviations",
+    "latest_transcripts"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "counts": { "type": "object" },
+    "baseline": { "type": "object" },
+    "windows": { "type": "object" },
+    "deviations": { "type": "object" },
+    "latest_transcripts": { "type": "array" }
+  }
+}

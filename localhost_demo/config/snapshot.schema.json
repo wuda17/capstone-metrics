@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LocalhostDemoSnapshot",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "snapshot_id",
+    "event",
+    "source_file",
+    "processed_at",
+    "transcript",
+    "metrics",
+    "acoustic",
+    "validation"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "snapshot_id": { "type": "string" },
+    "event": {
+      "type": "object",
+      "required": ["event_id", "audio_path", "created_at", "day", "source", "received_at"],
+      "properties": {
+        "event_id": { "type": "string" },
+        "audio_path": { "type": "string" },
+        "created_at": { "type": "string" },
+        "day": { "type": "string" },
+        "source": { "type": "string" },
+        "received_at": { "type": "string" },
+        "file_size_bytes": { "type": ["number", "null"] }
+      }
+    },
+    "source_file": { "type": "string" },
+    "processed_at": { "type": "string" },
+    "transcript": {
+      "type": "object",
+      "required": ["text", "words"],
+      "properties": {
+        "text": { "type": "string" },
+        "words": { "type": "array" }
+      }
+    },
+    "metrics": { "type": "object" },
+    "acoustic": { "type": "object" },
+    "validation": { "type": "object" },
+    "calculators": { "type": ["object", "null"] }
+  }
+}

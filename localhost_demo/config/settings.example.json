@@ -1,0 +1,10 @@
+{
+  "incoming_dir": "localhost_demo/data/incoming",
+  "snapshots_dir": "localhost_demo/data/snapshots",
+  "events_log": "localhost_demo/data/events/new_audio_events.jsonl",
+  "aggregate_current": "localhost_demo/data/aggregates/current.json",
+  "aggregate_history": "localhost_demo/data/aggregates/history.jsonl",
+  "whisper_model": "base",
+  "delete_source_audio": true,
+  "aggregation_interval_sec": 5
+}

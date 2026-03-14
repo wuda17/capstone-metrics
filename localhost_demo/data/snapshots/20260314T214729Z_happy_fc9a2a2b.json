@@ -1,0 +1,255 @@
+{
+  "schema_version": "2.0.0",
+  "snapshot_id": "fc9a2a2b-64a7-4955-9ddb-59a41971a6f8",
+  "event": {
+    "audio_path": "/Users/Omega/dev/capstone/localhost_demo/data/incoming/happy.wav",
+    "created_at": "2026-03-14T17:47:25.720266",
+    "day": "2026-03-14",
+    "source": "watchdog",
+    "event_id": "f07e90c7-a23d-46c7-baa6-8a8be01a2dce",
+    "received_at": "2026-03-14T21:47:26Z",
+    "file_size_bytes": 1433042
+  },
+  "source_file": "happy.wav",
+  "processed_at": "2026-03-14T21:47:29Z",
+  "transcript": {
+    "speaker": "user",
+    "timestamp": "2026-03-14T17:47:29.685026",
+    "text": "Hello, hello. Oh my god, I'm so happy today. I'm so happy",
+    "words": [
+      {
+        "word": "Hello,",
+        "start": 0.0,
+        "end": 0.78,
+        "conf": 0.8542371392250061
+      },
+      {
+        "word": "hello.",
+        "start": 1.06,
+        "end": 1.82,
+        "conf": 0.8879952430725098
+      },
+      {
+        "word": "Oh",
+        "start": 2.6,
+        "end": 3.3,
+        "conf": 0.9617828130722046
+      },
+      {
+        "word": "my",
+        "start": 3.3,
+        "end": 3.42,
+        "conf": 0.8894169330596924
+      },
+      {
+        "word": "god,",
+        "start": 3.42,
+        "end": 3.62,
+        "conf": 0.7361922264099121
+      },
+      {
+        "word": "I'm",
+        "start": 3.72,
+        "end": 4.04,
+        "conf": 0.9774326384067535
+      },
+      {
+        "word": "so",
+        "start": 4.04,
+        "end": 4.28,
+        "conf": 0.9985296726226807
+      },
+      {
+        "word": "happy",
+        "start": 4.28,
+        "end": 4.8,
+        "conf": 0.9984294772148132
+      },
+      {
+        "word": "today.",
+        "start": 4.8,
+        "end": 5.18,
+        "conf": 0.9909231066703796
+      },
+      {
+        "word": "I'm",
+        "start": 5.6,
+        "end": 6.0,
+        "conf": 0.9440315365791321
+      },
+      {
+        "word": "so",
+        "start": 6.0,
+        "end": 6.26,
+        "conf": 0.9979568719863892
+      },
+      {
+        "word": "happy",
+        "start": 6.26,
+        "end": 6.78,
+        "conf": 0.9988204836845398
+      }
+    ]
+  },
+  "metrics": {
+    "word_count": 12,
+    "duration_sec": 7.463,
+    "speech_rate_wpm": 96.5,
+    "articulation_rate_wpm": 122.379,
+    "phonation_to_time_ratio": 0.6967,
+    "pause_count": 4,
+    "pause_rate_per_min": 32.157,
+    "total_pause_time_sec": 1.58,
+    "mean_pause_duration_sec": 0.395,
+    "median_pause_duration_sec": 0.35,
+    "long_pauses": 0,
+    "medium_pauses": 1,
+    "short_pauses": 3,
+    "pauses": [
+      {
+        "after_word": "Hello,",
+        "before_word": "hello.",
+        "start": 0.78,
+        "end": 1.06,
+        "duration": 0.28,
+        "pause_type": "short"
+      },
+      {
+        "after_word": "hello.",
+        "before_word": "Oh",
+        "start": 1.82,
+        "end": 2.6,
+        "duration": 0.78,
+        "pause_type": "medium"
+      },
+      {
+        "after_word": "god,",
+        "before_word": "I'm",
+        "start": 3.62,
+        "end": 3.72,
+        "duration": 0.1,
+        "pause_type": "short"
+      },
+      {
+        "after_word": "today.",
+        "before_word": "I'm",
+        "start": 5.18,
+        "end": 5.6,
+        "duration": 0.42,
+        "pause_type": "short"
+      }
+    ],
+    "type_token_ratio": 0.6666666666666666,
+    "self_focus_ratio": 0.08333333333333333,
+    "filler_word_count": 0,
+    "sentiment_polarity": 0.0
+  },
+  "acoustic": {
+    "f0_mean_hz": 124.31344348390385,
+    "f0_std_hz": 27.276023827806018,
+    "f0_range_hz": 138.2777,
+    "jitter_local": 0.02974585873577733,
+    "shimmer_local_db": 0.9146935950904478,
+    "hnr_db": 10.810351985240894,
+    "cpp": 0.382344514131546,
+    "spectral_cepstral": {
+      "mfcc_1_mean": -322.99859619140625,
+      "mfcc_2_mean": 109.4731216430664,
+      "mfcc_3_mean": -1.228151559829712,
+      "mfcc_4_mean": 44.89685821533203,
+      "spectral_flux_mean": 1.891237735748291,
+      "spectral_centroid_mean": 1433.6656158636429,
+      "spectral_slope_mean": 0.014523607678711414,
+      "formant_f1_mean_hz": null,
+      "formant_f2_mean_hz": null,
+      "formant_f3_mean_hz": null,
+      "vowel_space_area": null
+    }
+  },
+  "validation": {
+    "duration_sec": 7.463375,
+    "sample_rate": 16000,
+    "rms": 0.10705135762691498,
+    "peak": 1.0,
+    "warnings": [
+      "Possible clipping detected (peak=1.0000)"
+    ]
+  },
+  "calculators": {
+    "linguistic": {
+      "word_count": 12,
+      "duration_sec": 7.463,
+      "speech_rate_wpm": 96.5,
+      "articulation_rate_wpm": 122.379,
+      "phonation_to_time_ratio": 0.6967,
+      "pause_count": 4,
+      "pause_rate_per_min": 32.157,
+      "total_pause_time_sec": 1.58,
+      "mean_pause_duration_sec": 0.395,
+      "median_pause_duration_sec": 0.35,
+      "long_pauses": 0,
+      "medium_pauses": 1,
+      "short_pauses": 3,
+      "pauses": [
+        {
+          "after_word": "Hello,",
+          "before_word": "hello.",
+          "start": 0.78,
+          "end": 1.06,
+          "duration": 0.28,
+          "pause_type": "short"
+        },
+        {
+          "after_word": "hello.",
+          "before_word": "Oh",
+          "start": 1.82,
+          "end": 2.6,
+          "duration": 0.78,
+          "pause_type": "medium"
+        },
+        {
+          "after_word": "god,",
+          "before_word": "I'm",
+          "start": 3.62,
+          "end": 3.72,
+          "duration": 0.1,
+          "pause_type": "short"
+        },
+        {
+          "after_word": "today.",
+          "before_word": "I'm",
+          "start": 5.18,
+          "end": 5.6,
+          "duration": 0.42,
+          "pause_type": "short"
+        }
+      ],
+      "type_token_ratio": 0.6666666666666666,
+      "self_focus_ratio": 0.08333333333333333,
+      "filler_word_count": 0,
+      "sentiment_polarity": 0.0
+    },
+    "acoustic": {
+      "f0_mean_hz": 124.31344348390385,
+      "f0_std_hz": 27.276023827806018,
+      "f0_range_hz": 138.2777,
+      "jitter_local": 0.02974585873577733,
+      "shimmer_local_db": 0.9146935950904478,
+      "hnr_db": 10.810351985240894,
+      "cpp": 0.382344514131546,
+      "spectral_cepstral": {
+        "mfcc_1_mean": -322.99859619140625,
+        "mfcc_2_mean": 109.4731216430664,
+        "mfcc_3_mean": -1.228151559829712,
+        "mfcc_4_mean": 44.89685821533203,
+        "spectral_flux_mean": 1.891237735748291,
+        "spectral_centroid_mean": 1433.6656158636429,
+        "spectral_slope_mean": 0.014523607678711414,
+        "formant_f1_mean_hz": null,
+        "formant_f2_mean_hz": null,
+        "formant_f3_mean_hz": null,
+        "vowel_space_area": null
+      }
+    }
+  }
+}
