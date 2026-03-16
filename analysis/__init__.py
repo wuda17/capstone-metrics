@@ -23,19 +23,15 @@ from .audio_utils import (
 # Temporal & fluency metrics
 from .temporal import (
     Pause,
-    SessionMetrics,
-    UtteranceMetrics,
     Word,
     calculate_pauses,
     classify_pause,
-    compute_utterance_metrics,
     extract_temporal_metrics,
     normalize_words,
     percent_silence_duration,
     phonation_to_time_ratio,
     response_latency,
     speech_rate,
-    words_to_payload,
 )
 
 # Lexical & semantic metrics
@@ -53,49 +49,18 @@ from .prosody_voice import extract_prosody_voice_metrics
 from .spectral import extract_spectral_metrics
 from .acoustic import extract_acoustic_metrics
 
-try:
-    from .transcription import Transcriber, log_transcription
-except ModuleNotFoundError:  # pragma: no cover - optional dependency
-    Transcriber = None  # type: ignore[assignment]
 
-    def log_transcription(*args, **kwargs):  # type: ignore[no-redef]
-        raise RuntimeError("Transcription features require 'openai-whisper'.")
+from .transcription import Transcriber, log_transcription
 
+from .api import (
+    compute_acoustic_metrics,
+    compute_linguistic_metrics,
+    prepare_audio,
+    transcribe_audio,
+    validate_prepared_audio,
+)
 
-try:
-    from .api import (
-        compute_acoustic_metrics,
-        compute_linguistic_metrics,
-        prepare_audio,
-        transcribe_audio,
-        validate_prepared_audio,
-    )
-except ModuleNotFoundError:  # pragma: no cover - optional dependency
-
-    def prepare_audio(*args, **kwargs):  # type: ignore[no-redef]
-        raise RuntimeError("Audio/transcription dependencies are not installed.")
-
-    def validate_prepared_audio(*args, **kwargs):  # type: ignore[no-redef]
-        raise RuntimeError("Audio/transcription dependencies are not installed.")
-
-    def transcribe_audio(*args, **kwargs):  # type: ignore[no-redef]
-        raise RuntimeError("Transcription features require 'openai-whisper'.")
-
-    def compute_linguistic_metrics(*args, **kwargs):  # type: ignore[no-redef]
-        raise RuntimeError("Audio/transcription dependencies are not installed.")
-
-    def compute_acoustic_metrics(*args, **kwargs):  # type: ignore[no-redef]
-        raise RuntimeError("Acoustic dependencies are not installed.")
-
-
-try:
-    from .pipeline import DefaultAnalysisBackend, build_default_analysis_backend
-except ModuleNotFoundError:  # pragma: no cover - optional dependency
-    DefaultAnalysisBackend = None  # type: ignore[assignment]
-
-    def build_default_analysis_backend(*args, **kwargs):  # type: ignore[no-redef]
-        raise RuntimeError("Default analysis backend dependencies are not installed.")
-
+from .pipeline import DefaultAnalysisBackend, build_default_analysis_backend
 
 __all__ = [
     # Preferred function-first API
@@ -113,8 +78,6 @@ __all__ = [
     # Data structures
     "Word",
     "Pause",
-    "UtteranceMetrics",
-    "SessionMetrics",
     # Transcription helpers
     "Transcriber",
     "log_transcription",
@@ -150,7 +113,4 @@ __all__ = [
     "extract_acoustic_metrics",
     "validate_audio",
     "STANDARD_SAMPLE_RATE",
-    # Functional marker helpers
-    "compute_utterance_metrics",
-    "words_to_payload",
 ]

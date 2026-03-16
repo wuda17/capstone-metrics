@@ -52,15 +52,12 @@ def compute_linguistic_metrics(
     words: list[WordTiming],
     duration_sec: float,
 ) -> dict[str, Any]:
-    """Compute lexical + temporal metrics from transcript text + timings."""
+    """Compute linguistic outputs grouped by source module."""
     temporal = extract_temporal_metrics(words, duration_sec=duration_sec, min_pause=0.1)
     lexical = extract_lexical_semantic_metrics(text)
     return {
-        **temporal,
-        "type_token_ratio": lexical.get("type_token_ratio", 0.0),
-        "self_focus_ratio": lexical.get("self_focus_ratio", 0.0),
-        "filler_word_count": lexical.get("filler_word_count", 0),
-        "sentiment_polarity": lexical.get("sentiment_polarity", 0.0),
+        "temporal": temporal,
+        "lexical": lexical,
     }
 
 

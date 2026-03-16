@@ -20,8 +20,7 @@ import time
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Protocol
-from uuid import uuid4
+from typing import Any
 
 from analysis.interfaces import AnalysisBackend
 from analysis.pipeline import build_default_analysis_backend
@@ -30,28 +29,21 @@ from .contracts import NewAudioEvent, SnapshotRecord, append_jsonl, write_json
 
 
 SUPPORTED_EXT = {".wav"}
-SCHEMA_VERSION = "2.0.0"
 
-LINGUISTIC_KEYS = {
-    "word_count",
-    "duration_sec",
-    "speech_rate_wpm",
-    "articulation_rate_wpm",
-    "phonation_to_time_ratio",
-    "pause_count",
-    "pause_rate_per_min",
-    "total_pause_time_sec",
-    "mean_pause_duration_sec",
-    "median_pause_duration_sec",
-    "long_pauses",
-    "medium_pauses",
-    "short_pauses",
-    "pauses",
-    "type_token_ratio",
-    "self_focus_ratio",
-    "filler_word_count",
-    "sentiment_polarity",
-}
+
+def _extract_usage_metrics(word_count: Any, duration_sec: Any) -> dict[str, Any]:
+    try:
+        normalized_word_count = max(0, int(word_count))
+    except (TypeError, ValueError):
+        normalized_word_count = 0
+    try:
+        normalized_duration_sec = max(0.0, float(duration_sec))
+    except (TypeError, ValueError):
+        normalized_duration_sec = 0.0
+    return {
+        "word_count": normalized_word_count,
+        "vocal_minutes": round(normalized_duration_sec / 60.0, 3),
+    }
 
 
 @dataclass
@@ -64,50 +56,6 @@ class PipelineContext:
     sample_rate: int
     validation: dict[str, Any]
     transcription: dict[str, Any]
-
-
-class MetricCalculator(Protocol):
-    """Calculator interface for plug-and-play metric extraction."""
-
-    name: str
-
-    def compute(self, context: PipelineContext) -> dict[str, Any]:
-        ...
-
-
-class LinguisticMetricsCalculator:
-    """Compute lexical + temporal metrics from transcription payload."""
-
-    name = "linguistic"
-
-    def __init__(self, analysis_backend: AnalysisBackend):
-        self._analysis_backend = analysis_backend
-
-    def compute(self, context: PipelineContext) -> dict[str, Any]:
-        payload = context.transcription or {}
-        payload_metrics = payload.get("metrics", {})
-        if isinstance(payload_metrics, dict):
-            filtered = {k: payload_metrics.get(k) for k in LINGUISTIC_KEYS}
-            if filtered.get("word_count") is not None:
-                return filtered
-
-        return self._analysis_backend.compute_linguistic_metrics(
-            payload.get("text", ""),
-            payload.get("words", []),
-            duration_sec=float(context.validation.get("duration_sec", 0.0)),
-        )
-
-
-class AcousticMetricsCalculator:
-    """Compute acoustic metrics from source audio using shared extractor."""
-
-    name = "acoustic"
-
-    def __init__(self, analysis_backend: AnalysisBackend):
-        self._analysis_backend = analysis_backend
-
-    def compute(self, context: PipelineContext) -> dict[str, Any]:
-        return self._analysis_backend.compute_acoustic_metrics(context.audio_path)
 
 
 class NewAudioHandler:
@@ -139,7 +87,6 @@ class MetricsProcessor:
         events_log: Path,
         whisper_model: str,
         delete_source: bool = True,
-        calculators: list[MetricCalculator] | None = None,
         analysis_backend: AnalysisBackend | None = None,
     ):
         self.snapshots_dir = snapshots_dir
@@ -151,7 +98,6 @@ class MetricsProcessor:
         self.analysis_backend = analysis_backend or build_default_analysis_backend(
             whisper_model=whisper_model
         )
-        self.calculators = calculators or self._build_default_calculators()
 
     def enqueue_audio(self, audio_path: Path, source: str) -> None:
         # Wait for file writes to settle before any heavy processing.
@@ -182,7 +128,9 @@ class MetricsProcessor:
             try:
                 self._process_event(event)
             except Exception as exc:  # defensive logging for long-running service
-                print(f"[MetricsService] Failed to process event {event.event_id}: {exc}")
+                print(
+                    f"[MetricsService] Failed to process event {event.event_id}: {exc}"
+                )
             finally:
                 self.queue.task_done()
 
@@ -208,20 +156,20 @@ class MetricsProcessor:
             except OSError as exc:
                 print(f"[MetricsService] Warning: could not delete {audio_path}: {exc}")
 
-    def _build_default_calculators(self) -> list[MetricCalculator]:
-        return [
-            LinguisticMetricsCalculator(self.analysis_backend),
-            AcousticMetricsCalculator(self.analysis_backend),
-        ]
-
-    def _build_context(self, event: NewAudioEvent, audio_path: Path) -> PipelineContext | None:
+    def _build_context(
+        self, event: NewAudioEvent, audio_path: Path
+    ) -> PipelineContext | None:
         audio, sample_rate = self.analysis_backend.prepare_audio(audio_path)
         validation = self.analysis_backend.validate_prepared_audio(audio, sample_rate)
         if not validation["valid"]:
-            print(f"[MetricsService] Invalid audio {audio_path.name}: {validation['errors']}")
+            print(
+                f"[MetricsService] Invalid audio {audio_path.name}: {validation['errors']}"
+            )
             return None
 
-        transcription = self.analysis_backend.transcribe_audio(audio_path, speaker="user")
+        transcription = self.analysis_backend.transcribe_audio(
+            audio_path, speaker="user"
+        )
         return PipelineContext(
             event=event,
             audio_path=audio_path,
@@ -231,14 +179,38 @@ class MetricsProcessor:
             transcription=transcription,
         )
 
+    def _compute_linguistic_metrics(self, context: PipelineContext) -> dict[str, Any]:
+        payload = context.transcription or {}
+        return self.analysis_backend.compute_linguistic_metrics(
+            transcript_text=payload.get("text", ""),
+            words=payload.get("words", []),
+            duration_sec=float(context.validation.get("duration_sec", 0.0)),
+        )
+
+    def _compute_acoustic_metrics(self, context: PipelineContext) -> dict[str, Any]:
+        return self.analysis_backend.compute_acoustic_metrics(
+            audio_path=context.audio_path
+        )
+
     def _run_calculators(self, context: PipelineContext) -> dict[str, dict[str, Any]]:
         outputs: dict[str, dict[str, Any]] = {}
-        for calculator in self.calculators:
-            try:
-                outputs[calculator.name] = calculator.compute(context)
-            except Exception as exc:
-                print(f"[MetricsService] Calculator '{calculator.name}' failed: {exc}")
-                outputs[calculator.name] = {"error": str(exc)}
+        try:
+            outputs["linguistic"] = self._compute_linguistic_metrics(context)
+        except Exception as exc:
+            print(f"[MetricsService] Linguistic calculation failed: {exc}")
+            outputs["linguistic"] = {"error": str(exc)}
+
+        try:
+            outputs["acoustic"] = self._compute_acoustic_metrics(context)
+        except Exception as exc:
+            print(f"[MetricsService] Acoustic calculation failed: {exc}")
+            outputs["acoustic"] = {"error": str(exc)}
+
+        temporal = (outputs.get("linguistic") or {}).get("temporal", {})
+        outputs["usage"] = _extract_usage_metrics(
+            (temporal or {}).get("word_count"),
+            (temporal or {}).get("duration_sec"),
+        )
         return outputs
 
     def _build_snapshot(
@@ -246,37 +218,36 @@ class MetricsProcessor:
         context: PipelineContext,
         calculator_outputs: dict[str, dict[str, Any]],
     ) -> SnapshotRecord:
-        snapshot_id = str(uuid4())
-        processed_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+        linguistic = calculator_outputs.get("linguistic", {})
+        acoustic = calculator_outputs.get("acoustic", {})
         return SnapshotRecord(
-            schema_version=SCHEMA_VERSION,
-            snapshot_id=snapshot_id,
-            event=context.event.to_dict(),
+            event={
+                "time": context.event.created_at,
+                "day": context.event.day,
+            },
             source_file=context.audio_path.name,
-            processed_at=processed_at,
-            transcript={
-                "speaker": context.transcription.get("speaker", "user"),
-                "timestamp": context.transcription.get("timestamp"),
-                "text": context.transcription.get("text", ""),
-                "words": context.transcription.get("words", []),
+            transcript=context.transcription.get("text", ""),
+            metrics={
+                "temporal": (linguistic or {}).get("temporal", {}),
+                "lexical": (linguistic or {}).get("lexical", {}),
+                "prosody": (acoustic or {}).get("prosody", {}),
+                "spectral": (acoustic or {}).get("spectral", {}),
+                "usage": calculator_outputs.get("usage", {}),
             },
-            metrics=calculator_outputs.get("linguistic", {}),
-            acoustic=calculator_outputs.get("acoustic", {}),
-            validation={
-                "duration_sec": context.validation["duration_sec"],
-                "sample_rate": context.validation["sample_rate"],
-                "rms": context.validation["rms"],
-                "peak": context.validation["peak"],
-                "warnings": context.validation["warnings"],
-            },
-            calculators=calculator_outputs,
         )
 
     def _persist_snapshot(self, audio_path: Path, snapshot: SnapshotRecord) -> Path:
-        filename = (
-            f"{snapshot.processed_at.replace(':', '').replace('-', '')}_"
-            f"{audio_path.stem}_{snapshot.snapshot_id[:8]}.json"
+        event_time = (snapshot.event or {}).get(
+            "time", datetime.utcnow().isoformat(timespec="seconds")
         )
+        safe_time = (
+            str(event_time)
+            .replace(":", "")
+            .replace("-", "")
+            .replace("+", "_")
+            .replace("Z", "")
+        )
+        filename = f"{safe_time}_{audio_path.stem}_{int(time.time() * 1000)}.json"
         output_path = self.snapshots_dir / filename
         write_json(output_path, snapshot.to_dict())
         return output_path
@@ -370,7 +341,11 @@ def main() -> None:
             self.wrapped.on_created(event)
 
     observer = observer_cls()
-    observer.schedule(WatchdogHandler(NewAudioHandler(processor)), path=str(incoming_dir), recursive=False)
+    observer.schedule(
+        WatchdogHandler(NewAudioHandler(processor)),
+        path=str(incoming_dir),
+        recursive=False,
+    )
     observer.start()
 
     print(f"[MetricsService] Watching {incoming_dir}")

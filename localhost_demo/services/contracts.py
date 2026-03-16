@@ -41,16 +41,10 @@ class SnapshotRecord:
     Persisted metrics snapshot consumed by aggregator/dashboard.
     """
 
-    schema_version: str
-    snapshot_id: str
     event: dict[str, Any]
     source_file: str
-    processed_at: str
-    transcript: dict[str, Any]
+    transcript: str
     metrics: dict[str, Any]
-    acoustic: dict[str, Any]
-    validation: dict[str, Any]
-    calculators: dict[str, Any] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

@@ -16,14 +16,14 @@ from .contracts import append_jsonl, write_json
 
 
 METRIC_PATHS = {
-    "speech_rate_wpm": ("metrics", "speech_rate_wpm"),
-    "articulation_rate_wpm": ("metrics", "articulation_rate_wpm"),
-    "phonation_to_time_ratio": ("metrics", "phonation_to_time_ratio"),
-    "type_token_ratio": ("metrics", "type_token_ratio"),
-    "mean_pause_duration_sec": ("metrics", "mean_pause_duration_sec"),
-    "f0_mean_hz": ("acoustic", "f0_mean_hz"),
-    "jitter_local": ("acoustic", "jitter_local"),
-    "shimmer_local_db": ("acoustic", "shimmer_local_db"),
+    "speech_rate_wpm": ("metrics", "temporal", "speech_rate_wpm"),
+    "articulation_rate_wpm": ("metrics", "temporal", "articulation_rate_wpm"),
+    "phonation_to_time_ratio": ("metrics", "temporal", "phonation_to_time_ratio"),
+    "type_token_ratio": ("metrics", "lexical", "type_token_ratio"),
+    "mean_pause_duration_sec": ("metrics", "temporal", "mean_pause_duration_sec"),
+    "f0_mean_hz": ("metrics", "prosody", "f0_mean_hz"),
+    "jitter_local": ("metrics", "prosody", "jitter_local"),
+    "shimmer_local_db": ("metrics", "prosody", "shimmer_local_db"),
 }
 
 
@@ -102,15 +102,38 @@ def _extract_metric(snapshot: dict[str, Any], metric_name: str) -> float | None:
         return None
 
 
+def _event_time(snapshot: dict[str, Any]) -> str:
+    value = (snapshot.get("event") or {}).get("time")
+    return value if isinstance(value, str) else ""
+
+
+def _snapshot_timestamp(snapshot: dict[str, Any], fallback: datetime) -> datetime:
+    try:
+        return _parse_iso(_event_time(snapshot))
+    except ValueError:
+        return fallback
+
+
+def _snapshot_word_count(snapshot: dict[str, Any]) -> int | None:
+    temporal = ((snapshot.get("metrics") or {}).get("temporal") or {})
+    if not isinstance(temporal, dict):
+        return None
+    value = temporal.get("word_count")
+    if value is None:
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
 def _window_metrics(
     snapshots: list[dict[str, Any]],
     now: datetime,
     window_sec: int,
 ) -> dict[str, float | None]:
     cutoff = now - timedelta(seconds=window_sec)
-    recent = [
-        s for s in snapshots if _parse_iso(s.get("processed_at", now.isoformat())) >= cutoff
-    ]
+    recent = [s for s in snapshots if _snapshot_timestamp(s, now) >= cutoff]
     out: dict[str, float | None] = {}
     for metric in METRIC_PATHS:
         vals = [v for v in (_extract_metric(s, metric) for s in recent) if v is not None]
@@ -140,18 +163,18 @@ def _latest_transcripts(
 ) -> list[dict[str, Any]]:
     ordered = sorted(
         snapshots,
-        key=lambda s: s.get("processed_at", ""),
+        key=_event_time,
         reverse=True,
     )
     recent: list[dict[str, Any]] = []
     for s in ordered[:limit]:
         recent.append(
             {
-                "snapshot_id": s.get("snapshot_id"),
-                "processed_at": s.get("processed_at"),
+                "event_time": _event_time(s),
+                "day": ((s.get("event") or {}).get("day")),
                 "source_file": s.get("source_file"),
-                "text": (s.get("transcript") or {}).get("text", ""),
-                "word_count": ((s.get("metrics") or {}).get("word_count")),
+                "text": s.get("transcript") if isinstance(s.get("transcript"), str) else "",
+                "word_count": _snapshot_word_count(s),
             }
         )
     return recent
@@ -205,7 +228,10 @@ def main() -> None:
     try:
         while True:
             snapshots = _read_snapshots(snapshots_dir)
-            aggregate = compute_aggregate(snapshots, args.max_transcript_items)
+            aggregate = compute_aggregate(
+                snapshots,
+                args.max_transcript_items,
+            )
             write_json(current_output, aggregate)
             append_jsonl(history_output, aggregate)
             time.sleep(args.interval_sec)

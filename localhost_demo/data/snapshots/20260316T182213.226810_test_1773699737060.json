@@ -1,0 +1,76 @@
+{
+  "event": {
+    "time": "2026-03-16T18:22:13.226810",
+    "day": "2026-03-16"
+  },
+  "source_file": "test.wav",
+  "transcript": "Hey, so today I went to the store and got some milk and after that I went to the store and got some warm milk. Then I went to the store and then got some warm milk.",
+  "metrics": {
+    "temporal": {
+      "word_count": 37,
+      "duration_sec": 14.376,
+      "speech_rate_wpm": 154.4,
+      "articulation_rate_wpm": 167.471,
+      "phonation_to_time_ratio": 0.7791,
+      "pause_count": 2,
+      "pause_rate_per_min": 8.347,
+      "total_pause_time_sec": 1.12,
+      "pause_ratio": 0.0779,
+      "mean_pause_duration_sec": 0.56,
+      "median_pause_duration_sec": 0.56,
+      "long_pauses": 0,
+      "medium_pauses": 1,
+      "short_pauses": 1,
+      "pauses": [
+        {
+          "after_word": "Hey,",
+          "before_word": "so",
+          "start": 1.86,
+          "end": 2.2,
+          "duration": 0.34,
+          "pause_type": "short"
+        },
+        {
+          "after_word": "milk.",
+          "before_word": "Then",
+          "start": 9.84,
+          "end": 10.62,
+          "duration": 0.78,
+          "pause_type": "medium"
+        }
+      ]
+    },
+    "lexical": {
+      "type_token_ratio": 0.43243243243243246,
+      "self_focus_ratio": 0.08108108108108109,
+      "filler_word_count": 0,
+      "sentiment_polarity": 0.0
+    },
+    "prosody": {
+      "f0_mean_hz": 125.70092472325533,
+      "f0_std_hz": 53.4218451019723,
+      "f0_range_hz": 471.2824,
+      "jitter_local": 0.02594657412333477,
+      "shimmer_local_db": 1.035966784852938,
+      "hnr_db": 14.18959344854925,
+      "cpp": 0.14757677912712097
+    },
+    "spectral": {
+      "mfcc_1_mean": -501.9450988769531,
+      "mfcc_2_mean": 81.00875091552734,
+      "mfcc_3_mean": 23.445255279541016,
+      "mfcc_4_mean": 22.208602905273438,
+      "spectral_flux_mean": 1.7684903144836426,
+      "spectral_centroid_mean": 1449.2961824255406,
+      "spectral_slope_mean": 0.023293720558285713,
+      "formant_f1_mean_hz": null,
+      "formant_f2_mean_hz": null,
+      "formant_f3_mean_hz": null,
+      "vowel_space_area": null
+    },
+    "usage": {
+      "word_count": 37,
+      "vocal_minutes": 0.24
+    }
+  }
+}

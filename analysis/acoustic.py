@@ -29,6 +29,6 @@ def extract_acoustic_metrics(
             spectral = {}
 
     return {
-        **prosody,
+        "prosody": prosody,
         "spectral": spectral,
     }

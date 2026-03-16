@@ -1,18 +1,17 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from .audio_utils import (
-    build_opensmile_extractor,
-    load_and_standardize,
-    validate_audio,
-)
-from .acoustic import extract_acoustic_metrics
 from .interfaces import AnalysisBackend, WordTiming
-from .lexical_semantic import extract_lexical_semantic_metrics
-from .temporal import extract_temporal_metrics
+from .api import (
+    compute_acoustic_metrics,
+    compute_linguistic_metrics,
+    prepare_audio,
+    transcribe_audio,
+    validate_prepared_audio,
+)
+from .audio_utils import build_opensmile_extractor
 
 
 class DefaultAnalysisBackend:
@@ -21,47 +20,41 @@ class DefaultAnalysisBackend:
     def __init__(self, whisper_model: str = "base"):
         from .transcription import Transcriber
 
+        self.whisper_model = whisper_model
         self.transcriber = Transcriber(model_size=whisper_model)
         self.opensmile_extractor = build_opensmile_extractor()
 
     def prepare_audio(self, audio_path: str | Path) -> tuple[Any, int]:
-        return load_and_standardize(audio_path)
+        return prepare_audio(audio_path)
 
     def validate_prepared_audio(self, audio: Any, sample_rate: int) -> dict[str, Any]:
-        return validate_audio(audio, sample_rate)
+        return validate_prepared_audio(audio, sample_rate)
 
     def transcribe_audio(
         self, audio_path: str | Path, speaker: str = "user"
     ) -> dict[str, Any]:
-        return self.transcriber.transcribe_payload(str(audio_path), speaker=speaker)
+        return transcribe_audio(
+            audio_path,
+            speaker=speaker,
+            transcriber=self.transcriber,
+            model_size=self.whisper_model,
+        )
 
     def compute_linguistic_metrics(
         self,
+        *,
         transcript_text: str,
         words: list[WordTiming],
         duration_sec: float,
     ) -> dict[str, Any]:
-        temporal = extract_temporal_metrics(
+        return compute_linguistic_metrics(
+            transcript_text,
             words,
-            duration_sec=duration_sec,
-            min_pause=0.1,
+            duration_sec,
         )
-        # Keep temporal metrics as the stable base, even if lexical extraction fails.
-        try:
-            lexical = extract_lexical_semantic_metrics(transcript_text)
-        except Exception:
-            lexical = {}
-        return {
-            **temporal,
-            # lexical keys with clear names, preserving legacy key
-            "type_token_ratio": lexical.get("type_token_ratio", 0.0),
-            "self_focus_ratio": lexical.get("self_focus_ratio", 0.0),
-            "filler_word_count": lexical.get("filler_word_count", 0),
-            "sentiment_polarity": lexical.get("sentiment_polarity", 0.0),
-        }
 
-    def compute_acoustic_metrics(self, audio_path: str | Path) -> dict[str, Any]:
-        return extract_acoustic_metrics(
+    def compute_acoustic_metrics(self, *, audio_path: str | Path) -> dict[str, Any]:
+        return compute_acoustic_metrics(
             audio_path,
             opensmile_extractor=self.opensmile_extractor,
         )

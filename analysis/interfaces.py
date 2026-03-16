@@ -22,23 +22,22 @@ class TranscriptionPayload(TypedDict):
 class AnalysisBackend(Protocol):
     """Interface consumed by `localhost_demo/services/metrics_service.py`."""
 
-    def prepare_audio(self, audio_path: str | Path) -> tuple[Any, int]:
-        ...
+    def prepare_audio(self, audio_path: str | Path) -> tuple[Any, int]: ...
 
-    def validate_prepared_audio(self, audio: Any, sample_rate: int) -> dict[str, Any]:
-        ...
+    def validate_prepared_audio(
+        self, audio: Any, sample_rate: int
+    ) -> dict[str, Any]: ...
 
-    def transcribe_audio(self, audio_path: str | Path, speaker: str = "user") -> TranscriptionPayload:
-        ...
+    def transcribe_audio(
+        self, audio_path: str | Path, speaker: str = "user"
+    ) -> TranscriptionPayload: ...
 
     def compute_linguistic_metrics(
         self,
+        *,
         transcript_text: str,
         words: list[WordTiming],
         duration_sec: float,
-    ) -> dict[str, Any]:
-        ...
+    ) -> dict[str, Any]: ...
 
-    def compute_acoustic_metrics(self, audio_path: str | Path) -> dict[str, Any]:
-        ...
-
+    def compute_acoustic_metrics(self, *, audio_path: str | Path) -> dict[str, Any]: ...

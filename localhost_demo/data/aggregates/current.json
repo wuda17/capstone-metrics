@@ -1,120 +1,85 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-03-14T21:49:38.480353Z",
+  "generated_at": "2026-03-16T22:17:38.494435Z",
   "counts": {
-    "snapshots_total": 6
+    "snapshots_total": 1
   },
   "baseline": {
-    "speech_rate_wpm": 91.85,
-    "articulation_rate_wpm": 104.3022,
-    "phonation_to_time_ratio": 0.74774,
-    "type_token_ratio": 0.767682,
-    "mean_pause_duration_sec": 0.345,
-    "f0_mean_hz": 103.797368,
-    "jitter_local": 0.02216,
-    "shimmer_local_db": 0.868538,
-    "sample_count": 6
+    "speech_rate_wpm": null,
+    "articulation_rate_wpm": null,
+    "phonation_to_time_ratio": null,
+    "type_token_ratio": null,
+    "mean_pause_duration_sec": null,
+    "f0_mean_hz": null,
+    "jitter_local": null,
+    "shimmer_local_db": null,
+    "sample_count": 1
   },
   "windows": {
     "last_60s": {
-      "speech_rate_wpm": 87.1,
-      "articulation_rate_wpm": 99.783,
-      "phonation_to_time_ratio": 0.7605,
-      "type_token_ratio": 0.818182,
-      "mean_pause_duration_sec": 0.32,
-      "f0_mean_hz": 93.53933,
-      "jitter_local": 0.018367,
-      "shimmer_local_db": 0.84546,
-      "sample_count": 1
+      "speech_rate_wpm": null,
+      "articulation_rate_wpm": null,
+      "phonation_to_time_ratio": null,
+      "type_token_ratio": null,
+      "mean_pause_duration_sec": null,
+      "f0_mean_hz": null,
+      "jitter_local": null,
+      "shimmer_local_db": null,
+      "sample_count": 0
     },
     "last_300s": {
-      "speech_rate_wpm": 88.98,
-      "articulation_rate_wpm": 104.3022,
-      "phonation_to_time_ratio": 0.74774,
-      "type_token_ratio": 0.787879,
-      "mean_pause_duration_sec": 0.335,
-      "f0_mean_hz": 99.694153,
-      "jitter_local": 0.020643,
-      "shimmer_local_db": 0.859307,
-      "sample_count": 5
+      "speech_rate_wpm": null,
+      "articulation_rate_wpm": null,
+      "phonation_to_time_ratio": null,
+      "type_token_ratio": null,
+      "mean_pause_duration_sec": null,
+      "f0_mean_hz": null,
+      "jitter_local": null,
+      "shimmer_local_db": null,
+      "sample_count": 0
     }
   },
   "deviations": {
     "speech_rate_wpm": {
-      "from_1m_window_pct": -5.171,
-      "from_5m_window_pct": -3.125
+      "from_1m_window_pct": null,
+      "from_5m_window_pct": null
     },
     "articulation_rate_wpm": {
-      "from_1m_window_pct": -4.333,
-      "from_5m_window_pct": 0.0
+      "from_1m_window_pct": null,
+      "from_5m_window_pct": null
     },
     "phonation_to_time_ratio": {
-      "from_1m_window_pct": 1.706,
-      "from_5m_window_pct": 0.0
+      "from_1m_window_pct": null,
+      "from_5m_window_pct": null
     },
     "type_token_ratio": {
-      "from_1m_window_pct": 6.578,
-      "from_5m_window_pct": 2.631
+      "from_1m_window_pct": null,
+      "from_5m_window_pct": null
     },
     "mean_pause_duration_sec": {
-      "from_1m_window_pct": -7.246,
-      "from_5m_window_pct": -2.899
+      "from_1m_window_pct": null,
+      "from_5m_window_pct": null
     },
     "f0_mean_hz": {
-      "from_1m_window_pct": -9.883,
-      "from_5m_window_pct": -3.953
+      "from_1m_window_pct": null,
+      "from_5m_window_pct": null
     },
     "jitter_local": {
-      "from_1m_window_pct": -17.116,
-      "from_5m_window_pct": -6.846
+      "from_1m_window_pct": null,
+      "from_5m_window_pct": null
     },
     "shimmer_local_db": {
-      "from_1m_window_pct": -2.657,
-      "from_5m_window_pct": -1.063
+      "from_1m_window_pct": null,
+      "from_5m_window_pct": null
     }
   },
   "latest_transcripts": [
     {
-      "snapshot_id": "279a62aa-9e28-4a58-ae1d-4eb4948b71a5",
-      "processed_at": "2026-03-14T21:48:48Z",
-      "source_file": "monotone.wav",
-      "text": "Hello, hello, hello. This is me speaking and being very depressed.",
-      "word_count": 11
-    },
-    {
-      "snapshot_id": "70256e94-668d-4523-bbb4-065fef2e8beb",
-      "processed_at": "2026-03-14T21:48:38Z",
-      "source_file": "monotone copy.wav",
-      "text": "Hello, hello, hello. This is me speaking and being very depressed.",
-      "word_count": 11
-    },
-    {
-      "snapshot_id": "dabc9655-87b9-402d-861d-128a5adf940f",
-      "processed_at": "2026-03-14T21:48:36Z",
-      "source_file": "monotone.wav",
-      "text": "Hello, hello, hello. This is me speaking and being very depressed.",
-      "word_count": 11
-    },
-    {
-      "snapshot_id": "fc9a2a2b-64a7-4955-9ddb-59a41971a6f8",
-      "processed_at": "2026-03-14T21:47:29Z",
-      "source_file": "happy.wav",
-      "text": "Hello, hello. Oh my god, I'm so happy today. I'm so happy",
-      "word_count": 12
-    },
-    {
-      "snapshot_id": "8d10876d-e342-4dc8-812c-2eab6a2a9798",
-      "processed_at": "2026-03-14T21:47:28Z",
-      "source_file": "monotone.wav",
-      "text": "Hello, hello, hello. This is me speaking and being very depressed.",
-      "word_count": 11
-    },
-    {
-      "snapshot_id": "97711e08-fa0b-4c17-8f06-443f39daade1",
-      "processed_at": "2026-03-14T20:20:00Z",
-      "source_file": "happy.wav",
-      "text": "Hello, hello. Oh my god, I'm so happy today. I'm so happy",
-      "word_count": 12
+      "event_time": "2026-03-16T17:51:25.586595",
+      "day": "2026-03-16",
+      "source_file": "test.wav",
+      "text": "Hey, so today I went to the store and got some milk and after that I went to the store and got some warm milk. Then I went to the store and then got some warm milk.",
+      "word_count": null
     }
   ]
 }

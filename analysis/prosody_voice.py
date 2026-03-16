@@ -5,6 +5,8 @@ from typing import Any
 
 from .audio_utils import temporary_standardized_wav
 
+# https://github.com/Shahabks/my-voice-analysis/blob/master/EXAMPLES.pdf
+
 
 def _to_float(value: Any) -> float | None:
     try:
@@ -48,9 +50,15 @@ def extract_prosody_voice_metrics(
         )
 
         f0_mean = _to_float(parselmouth.praat.call(pitch, "Get mean", 0, 0, "Hertz"))
-        f0_min = _to_float(parselmouth.praat.call(pitch, "Get minimum", 0, 0, "Hertz", "Parabolic"))
-        f0_max = _to_float(parselmouth.praat.call(pitch, "Get maximum", 0, 0, "Hertz", "Parabolic"))
-        f0_std = _to_float(parselmouth.praat.call(pitch, "Get standard deviation", 0, 0, "Hertz"))
+        f0_min = _to_float(
+            parselmouth.praat.call(pitch, "Get minimum", 0, 0, "Hertz", "Parabolic")
+        )
+        f0_max = _to_float(
+            parselmouth.praat.call(pitch, "Get maximum", 0, 0, "Hertz", "Parabolic")
+        )
+        f0_std = _to_float(
+            parselmouth.praat.call(pitch, "Get standard deviation", 0, 0, "Hertz")
+        )
         hnr_db = _to_float(parselmouth.praat.call(harmonicity, "Get mean", 0, 0))
 
         cpp = None
@@ -58,7 +66,9 @@ def extract_prosody_voice_metrics(
             try:
                 smile_df = opensmile_extractor.process_file(str(std_path))
                 row = smile_df.iloc[0].to_dict()
-                cpp = _to_float(row.get("spectralFlux_sma3_amean"))  # best-effort placeholder key
+                cpp = _to_float(
+                    row.get("spectralFlux_sma3_amean")
+                )  # best-effort placeholder key
             except Exception:
                 cpp = None
 
@@ -75,4 +85,3 @@ def extract_prosody_voice_metrics(
             "hnr_db": hnr_db,
             "cpp": cpp,
         }
-
