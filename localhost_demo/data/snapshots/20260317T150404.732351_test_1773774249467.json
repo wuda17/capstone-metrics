@@ -1,7 +1,7 @@
 {
   "event": {
-    "time": "2026-03-16T18:22:13.226810",
-    "day": "2026-03-16"
+    "time": "2026-03-17T15:04:04.732351",
+    "day": "2026-03-17"
   },
   "source_file": "test.wav",
   "transcript": "Hey, so today I went to the store and got some milk and after that I went to the store and got some warm milk. Then I went to the store and then got some warm milk.",
@@ -68,9 +68,6 @@
       "formant_f3_mean_hz": null,
       "vowel_space_area": null
     },
-    "usage": {
-      "word_count": 37,
-      "vocal_minutes": 0.24
-    }
+    "usage": {}
   }
 }

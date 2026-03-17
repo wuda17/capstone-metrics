@@ -2,22 +2,128 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "LocalhostDemoAggregate",
   "type": "object",
+  "additionalProperties": true,
   "required": [
-    "schema_version",
-    "generated_at",
-    "counts",
-    "baseline",
-    "windows",
-    "deviations",
-    "latest_transcripts"
+    "meta",
+    "metrics",
+    "transcripts",
+    "alerts"
   ],
+  "$defs": {
+    "metricValue": {
+      "type": ["number", "null"]
+    },
+    "metricMap": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/metricValue" }
+    },
+    "transcriptItem": {
+      "type": "object",
+      "required": ["event_time", "day", "source_file", "text", "word_count"],
+      "properties": {
+        "event_time": { "type": "string" },
+        "day": { "type": ["string", "null"] },
+        "source_file": { "type": ["string", "null"] },
+        "text": { "type": "string" },
+        "word_count": { "type": ["integer", "null"] }
+      },
+      "additionalProperties": true
+    },
+    "alertItem": {
+      "type": "object",
+      "required": ["status", "severity", "metric", "delta_pct", "trend", "message"],
+      "properties": {
+        "status": { "type": "string" },
+        "severity": { "type": "string" },
+        "metric": { "type": ["string", "null"] },
+        "delta_pct": { "type": ["number", "null"] },
+        "trend": { "type": "string" },
+        "message": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "timeSeriesPoint": {
+      "type": "object",
+      "required": ["segment_start", "segment_end", "sample_count", "values"],
+      "properties": {
+        "segment_start": { "type": "string" },
+        "segment_end": { "type": "string" },
+        "sample_count": { "type": "integer", "minimum": 0 },
+        "values": { "$ref": "#/$defs/metricMap" }
+      },
+      "additionalProperties": true
+    },
+    "metricsWindow": {
+      "type": "object",
+      "required": ["sample_count", "values"],
+      "properties": {
+        "sample_count": { "type": "integer", "minimum": 0 },
+        "values": { "$ref": "#/$defs/metricMap" },
+        "window_minutes": { "type": "integer", "minimum": 1 },
+        "method": { "type": "string" },
+        "percent": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      },
+      "additionalProperties": true
+    }
+  },
   "properties": {
-    "schema_version": { "type": "string" },
-    "generated_at": { "type": "string" },
-    "counts": { "type": "object" },
-    "baseline": { "type": "object" },
-    "windows": { "type": "object" },
-    "deviations": { "type": "object" },
-    "latest_transcripts": { "type": "array" }
+    "meta": {
+      "type": "object",
+      "required": ["schema_version", "generated_at", "segment_minutes", "snapshot_count"],
+      "properties": {
+        "schema_version": { "type": "string" },
+        "generated_at": { "type": "string" },
+        "segment_minutes": { "type": "integer", "minimum": 1 },
+        "snapshot_count": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": true
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["time_series", "baseline", "current"],
+      "properties": {
+        "time_series": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/timeSeriesPoint" }
+        },
+        "baseline": { "$ref": "#/$defs/metricsWindow" },
+        "current": { "$ref": "#/$defs/metricsWindow" }
+      },
+      "additionalProperties": true
+    },
+    "transcripts": {
+      "type": "object",
+      "required": ["items"],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/transcriptItem" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "alerts": {
+      "type": "object",
+      "required": ["items", "deviations"],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/alertItem" }
+        },
+        "deviations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "from_current_window_pct": { "type": ["number", "null"] },
+              "from_1m_window_pct": { "type": ["number", "null"] },
+              "from_5m_window_pct": { "type": ["number", "null"] }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
   }
 }

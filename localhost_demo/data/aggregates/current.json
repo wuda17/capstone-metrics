@@ -1,85 +1,113 @@
 {
-  "schema_version": "1.0.0",
-  "generated_at": "2026-03-16T22:17:38.494435Z",
-  "counts": {
-    "snapshots_total": 1
+  "meta": {
+    "schema_version": "2.0.0",
+    "generated_at": "2026-03-17T19:31:53.268667Z",
+    "segment_minutes": 1,
+    "snapshot_count": 1
   },
-  "baseline": {
-    "speech_rate_wpm": null,
-    "articulation_rate_wpm": null,
-    "phonation_to_time_ratio": null,
-    "type_token_ratio": null,
-    "mean_pause_duration_sec": null,
-    "f0_mean_hz": null,
-    "jitter_local": null,
-    "shimmer_local_db": null,
-    "sample_count": 1
-  },
-  "windows": {
-    "last_60s": {
-      "speech_rate_wpm": null,
-      "articulation_rate_wpm": null,
-      "phonation_to_time_ratio": null,
-      "type_token_ratio": null,
-      "mean_pause_duration_sec": null,
-      "f0_mean_hz": null,
-      "jitter_local": null,
-      "shimmer_local_db": null,
-      "sample_count": 0
+  "metrics": {
+    "time_series": [
+      {
+        "segment_start": "2026-03-17T15:04:00Z",
+        "segment_end": "2026-03-17T15:05:00Z",
+        "sample_count": 1,
+        "values": {
+          "speech_rate_wpm": 154.4,
+          "articulation_rate_wpm": 167.471,
+          "phonation_to_time_ratio": 0.7791,
+          "type_token_ratio": 0.432432,
+          "mean_pause_duration_sec": 0.56,
+          "f0_mean_hz": 125.700925,
+          "jitter_local": 0.025947,
+          "shimmer_local_db": 1.035967
+        }
+      }
+    ],
+    "baseline": {
+      "method": "earliest_percent",
+      "percent": 0.2,
+      "sample_count": 1,
+      "values": {
+        "speech_rate_wpm": 154.4,
+        "articulation_rate_wpm": 167.471,
+        "phonation_to_time_ratio": 0.7791,
+        "type_token_ratio": 0.432432,
+        "mean_pause_duration_sec": 0.56,
+        "f0_mean_hz": 125.700925,
+        "jitter_local": 0.025947,
+        "shimmer_local_db": 1.035967
+      }
     },
-    "last_300s": {
-      "speech_rate_wpm": null,
-      "articulation_rate_wpm": null,
-      "phonation_to_time_ratio": null,
-      "type_token_ratio": null,
-      "mean_pause_duration_sec": null,
-      "f0_mean_hz": null,
-      "jitter_local": null,
-      "shimmer_local_db": null,
-      "sample_count": 0
+    "current": {
+      "window_minutes": 1,
+      "sample_count": 0,
+      "values": {
+        "speech_rate_wpm": null,
+        "articulation_rate_wpm": null,
+        "phonation_to_time_ratio": null,
+        "type_token_ratio": null,
+        "mean_pause_duration_sec": null,
+        "f0_mean_hz": null,
+        "jitter_local": null,
+        "shimmer_local_db": null
+      }
     }
   },
-  "deviations": {
-    "speech_rate_wpm": {
-      "from_1m_window_pct": null,
-      "from_5m_window_pct": null
-    },
-    "articulation_rate_wpm": {
-      "from_1m_window_pct": null,
-      "from_5m_window_pct": null
-    },
-    "phonation_to_time_ratio": {
-      "from_1m_window_pct": null,
-      "from_5m_window_pct": null
-    },
-    "type_token_ratio": {
-      "from_1m_window_pct": null,
-      "from_5m_window_pct": null
-    },
-    "mean_pause_duration_sec": {
-      "from_1m_window_pct": null,
-      "from_5m_window_pct": null
-    },
-    "f0_mean_hz": {
-      "from_1m_window_pct": null,
-      "from_5m_window_pct": null
-    },
-    "jitter_local": {
-      "from_1m_window_pct": null,
-      "from_5m_window_pct": null
-    },
-    "shimmer_local_db": {
-      "from_1m_window_pct": null,
-      "from_5m_window_pct": null
-    }
+  "transcripts": {
+    "items": [
+      {
+        "event_time": "2026-03-17T15:04:04.732351",
+        "day": "2026-03-17",
+        "source_file": "test.wav",
+        "text": "Hey, so today I went to the store and got some milk and after that I went to the store and got some warm milk. Then I went to the store and then got some warm milk.",
+        "word_count": 37
+      }
+    ]
   },
-  "latest_transcripts": [
-    {
-      "event_time": "2026-03-16T17:51:25.586595",
-      "day": "2026-03-16",
-      "source_file": "test.wav",
-      "text": "Hey, so today I went to the store and got some milk and after that I went to the store and got some warm milk. Then I went to the store and then got some warm milk.",
-      "word_count": null
+  "alerts": {
+    "items": [
+      {
+        "status": "ok",
+        "severity": "none",
+        "metric": null,
+        "delta_pct": null,
+        "trend": "stable",
+        "message": "All tracked metrics are within baseline tolerance."
+      }
+    ],
+    "deviations": {
+      "speech_rate_wpm": {
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "articulation_rate_wpm": {
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "phonation_to_time_ratio": {
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "type_token_ratio": {
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "mean_pause_duration_sec": {
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "f0_mean_hz": {
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "jitter_local": {
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "shimmer_local_db": {
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      }
     }
-  ]
+  }
 }

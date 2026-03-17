@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -56,6 +57,24 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=20,
         help="Max recent transcript records to include",
+    )
+    parser.add_argument(
+        "--segment-minutes",
+        type=int,
+        default=1,
+        help="Time-series bucket size in minutes",
+    )
+    parser.add_argument(
+        "--current-window-minutes",
+        type=int,
+        default=0,
+        help="Current window size in minutes for baseline comparison",
+    )
+    parser.add_argument(
+        "--baseline-percent",
+        type=float,
+        default=0.2,
+        help="Earliest snapshot fraction used to compute baseline (0 to 1]",
     )
     return parser.parse_args()
 
@@ -114,6 +133,14 @@ def _snapshot_timestamp(snapshot: dict[str, Any], fallback: datetime) -> datetim
         return fallback
 
 
+def _metric_means(snapshots: list[dict[str, Any]]) -> dict[str, float | None]:
+    out: dict[str, float | None] = {}
+    for metric in METRIC_PATHS:
+        vals = [v for v in (_extract_metric(s, metric) for s in snapshots) if v is not None]
+        out[metric] = _mean(vals)
+    return out
+
+
 def _snapshot_word_count(snapshot: dict[str, Any]) -> int | None:
     temporal = ((snapshot.get("metrics") or {}).get("temporal") or {})
     if not isinstance(temporal, dict):
@@ -134,19 +161,13 @@ def _window_metrics(
 ) -> dict[str, float | None]:
     cutoff = now - timedelta(seconds=window_sec)
     recent = [s for s in snapshots if _snapshot_timestamp(s, now) >= cutoff]
-    out: dict[str, float | None] = {}
-    for metric in METRIC_PATHS:
-        vals = [v for v in (_extract_metric(s, metric) for s in recent) if v is not None]
-        out[metric] = _mean(vals)
+    out = _metric_means(recent)
     out["sample_count"] = len(recent)
     return out
 
 
 def _baseline_metrics(snapshots: list[dict[str, Any]]) -> dict[str, float | None]:
-    out: dict[str, float | None] = {}
-    for metric in METRIC_PATHS:
-        vals = [v for v in (_extract_metric(s, metric) for s in snapshots) if v is not None]
-        out[metric] = _mean(vals)
+    out = _metric_means(snapshots)
     out["sample_count"] = len(snapshots)
     return out
 
@@ -161,11 +182,8 @@ def _latest_transcripts(
     snapshots: list[dict[str, Any]],
     limit: int,
 ) -> list[dict[str, Any]]:
-    ordered = sorted(
-        snapshots,
-        key=_event_time,
-        reverse=True,
-    )
+    now = datetime.now(timezone.utc)
+    ordered = sorted(snapshots, key=lambda s: _snapshot_timestamp(s, now), reverse=True)
     recent: list[dict[str, Any]] = []
     for s in ordered[:limit]:
         recent.append(
@@ -180,33 +198,206 @@ def _latest_transcripts(
     return recent
 
 
+def _ordered_snapshots(snapshots: list[dict[str, Any]], now: datetime) -> list[dict[str, Any]]:
+    return sorted(snapshots, key=lambda s: _snapshot_timestamp(s, now))
+
+
+def _floor_to_segment(ts: datetime, segment_minutes: int) -> datetime:
+    segment_seconds = max(1, segment_minutes) * 60
+    epoch = int(ts.timestamp())
+    floored_epoch = (epoch // segment_seconds) * segment_seconds
+    return datetime.fromtimestamp(floored_epoch, tz=timezone.utc)
+
+
+def _time_series(
+    snapshots: list[dict[str, Any]],
+    now: datetime,
+    segment_minutes: int,
+) -> list[dict[str, Any]]:
+    buckets: dict[datetime, list[dict[str, Any]]] = {}
+    segment_delta = timedelta(minutes=max(1, segment_minutes))
+    for snapshot in snapshots:
+        ts = _snapshot_timestamp(snapshot, now)
+        bucket_start = _floor_to_segment(ts, segment_minutes)
+        buckets.setdefault(bucket_start, []).append(snapshot)
+
+    rows: list[dict[str, Any]] = []
+    for start in sorted(buckets):
+        bucket_snapshots = buckets[start]
+        rows.append(
+            {
+                "segment_start": start.isoformat().replace("+00:00", "Z"),
+                "segment_end": (start + segment_delta).isoformat().replace("+00:00", "Z"),
+                "sample_count": len(bucket_snapshots),
+                "values": _metric_means(bucket_snapshots),
+            }
+        )
+    return rows
+
+
+def _current_metrics(
+    snapshots: list[dict[str, Any]],
+    now: datetime,
+    current_window_minutes: int,
+) -> dict[str, Any]:
+    cutoff = now - timedelta(minutes=max(1, current_window_minutes))
+    recent = [s for s in snapshots if _snapshot_timestamp(s, now) >= cutoff]
+    return {
+        "window_minutes": max(1, current_window_minutes),
+        "sample_count": len(recent),
+        "values": _metric_means(recent),
+    }
+
+
+def _baseline_from_earliest_percent(
+    snapshots: list[dict[str, Any]],
+    now: datetime,
+    baseline_percent: float,
+) -> dict[str, Any]:
+    bounded_percent = min(1.0, max(0.01, baseline_percent))
+    ordered = _ordered_snapshots(snapshots, now)
+    if not ordered:
+        return {
+            "method": "earliest_percent",
+            "percent": round(bounded_percent, 3),
+            "sample_count": 0,
+            "values": _metric_means([]),
+        }
+    count = max(1, math.floor(len(ordered) * bounded_percent))
+    cohort = ordered[:count]
+    return {
+        "method": "earliest_percent",
+        "percent": round(bounded_percent, 3),
+        "sample_count": len(cohort),
+        "values": _metric_means(cohort),
+    }
+
+
+def _metric_trend(delta_abs: float | None) -> str:
+    if delta_abs is None:
+        return "unknown"
+    if delta_abs > 0:
+        return "up"
+    if delta_abs < 0:
+        return "down"
+    return "stable"
+
+
+def _drift_metrics(
+    baseline_values: dict[str, float | None],
+    current_values: dict[str, float | None],
+) -> dict[str, dict[str, float | None | str]]:
+    drift: dict[str, dict[str, float | None | str]] = {}
+    for metric in METRIC_PATHS:
+        baseline = baseline_values.get(metric)
+        current = current_values.get(metric)
+        delta_abs = (
+            round(current - baseline, 6)
+            if current is not None and baseline is not None
+            else None
+        )
+        delta_pct = _deviation_pct(current, baseline)
+        drift[metric] = {
+            "delta_abs": delta_abs,
+            "delta_pct": delta_pct,
+            "trend": _metric_trend(delta_abs),
+        }
+    return drift
+
+
+def _alerts_from_drift(drift: dict[str, dict[str, float | None | str]]) -> list[dict[str, Any]]:
+    alerts: list[dict[str, Any]] = []
+    for metric, item in drift.items():
+        delta_pct = item.get("delta_pct")
+        if not isinstance(delta_pct, (float, int)):
+            continue
+        magnitude = abs(float(delta_pct))
+        if magnitude < 20.0:
+            continue
+        severity = "high" if magnitude >= 40.0 else "medium"
+        alerts.append(
+            {
+                "status": "alert",
+                "severity": severity,
+                "metric": metric,
+                "delta_pct": round(float(delta_pct), 3),
+                "trend": item.get("trend"),
+                "message": (
+                    f"{metric} is {magnitude:.1f}% "
+                    f"{'above' if delta_pct > 0 else 'below'} baseline."
+                ),
+            }
+        )
+    alerts.sort(key=lambda a: abs(float(a["delta_pct"])), reverse=True)
+    if alerts:
+        return alerts
+    return [
+        {
+            "status": "ok",
+            "severity": "none",
+            "metric": None,
+            "delta_pct": None,
+            "trend": "stable",
+            "message": "All tracked metrics are within baseline tolerance.",
+        }
+    ]
+
+
 def compute_aggregate(
     snapshots: list[dict[str, Any]],
     max_transcript_items: int,
+    segment_minutes: int,
+    current_window_minutes: int,
+    baseline_percent: float,
 ) -> dict[str, Any]:
     now = datetime.now(timezone.utc)
-    baseline = _baseline_metrics(snapshots)
+    time_series = _time_series(snapshots, now, segment_minutes)
+    baseline_obj = _baseline_from_earliest_percent(snapshots, now, baseline_percent)
+    current_obj = _current_metrics(snapshots, now, current_window_minutes)
+    drift = _drift_metrics(
+        baseline_obj["values"],
+        current_obj["values"],
+    )
+    alerts = _alerts_from_drift(drift)
+
+    baseline = dict(baseline_obj["values"])
+    baseline["sample_count"] = baseline_obj["sample_count"]
+
     one_min = _window_metrics(snapshots, now, 60)
     five_min = _window_metrics(snapshots, now, 300)
 
     deviations = {}
     for metric in METRIC_PATHS:
         deviations[metric] = {
+            "from_current_window_pct": _deviation_pct(
+                current_obj["values"].get(metric),
+                baseline.get(metric),
+            ),
             "from_1m_window_pct": _deviation_pct(one_min.get(metric), baseline.get(metric)),
             "from_5m_window_pct": _deviation_pct(five_min.get(metric), baseline.get(metric)),
         }
 
+    transcripts = _latest_transcripts(snapshots, max_transcript_items)
+
     return {
-        "schema_version": "1.0.0",
-        "generated_at": now.isoformat().replace("+00:00", "Z"),
-        "counts": {"snapshots_total": len(snapshots)},
-        "baseline": baseline,
-        "windows": {
-            "last_60s": one_min,
-            "last_300s": five_min,
+        "meta": {
+            "schema_version": "2.0.0",
+            "generated_at": now.isoformat().replace("+00:00", "Z"),
+            "segment_minutes": max(1, segment_minutes),
+            "snapshot_count": len(snapshots),
         },
-        "deviations": deviations,
-        "latest_transcripts": _latest_transcripts(snapshots, max_transcript_items),
+        "metrics": {
+            "time_series": time_series,
+            "baseline": baseline_obj,
+            "current": current_obj,
+        },
+        "transcripts": {
+            "items": transcripts,
+        },
+        "alerts": {
+            "items": alerts,
+            "deviations": deviations,
+        },
     }
 
 
@@ -231,6 +422,9 @@ def main() -> None:
             aggregate = compute_aggregate(
                 snapshots,
                 args.max_transcript_items,
+                args.segment_minutes,
+                args.current_window_minutes if args.current_window_minutes > 0 else args.segment_minutes,
+                args.baseline_percent,
             )
             write_json(current_output, aggregate)
             append_jsonl(history_output, aggregate)

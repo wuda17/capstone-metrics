@@ -50,7 +50,7 @@ from .spectral import extract_spectral_metrics
 from .acoustic import extract_acoustic_metrics
 
 
-from .transcription import Transcriber, log_transcription
+from .transcription import Transcriber
 
 from .api import (
     compute_acoustic_metrics,
@@ -80,7 +80,6 @@ __all__ = [
     "Pause",
     # Transcription helpers
     "Transcriber",
-    "log_transcription",
     # Temporal & fluency
     "classify_pause",
     "normalize_words",

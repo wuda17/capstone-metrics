@@ -131,16 +131,3 @@ class Transcriber:
             Transcription payload dict, or None
         """
         return await asyncio.to_thread(self.transcribe, wav_path, speaker)
-
-
-def log_transcription(payload: dict[str, Any], prefix: str = "[Transcription]") -> None:
-    text = str(payload.get("text", "")).strip()
-    words = payload.get("words", [])
-    print(f"{prefix} {len(words)} words | text='{text[:80]}'")
-
-
-def log_cognitive_metrics(
-    payload: dict[str, Any], prefix: str = "[Transcription]"
-) -> None:
-    """Backward-compatible alias."""
-    log_transcription(payload, prefix=prefix)

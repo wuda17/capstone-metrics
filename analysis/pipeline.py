@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from .interfaces import AnalysisBackend, WordTiming
+from .interfaces import AnalysisBackend, TranscriptionPayload
 from .api import (
     compute_acoustic_metrics,
     compute_linguistic_metrics,
@@ -40,24 +40,30 @@ class DefaultAnalysisBackend:
             model_size=self.whisper_model,
         )
 
-    def compute_linguistic_metrics(
-        self,
-        *,
-        transcript_text: str,
-        words: list[WordTiming],
-        duration_sec: float,
-    ) -> dict[str, Any]:
-        return compute_linguistic_metrics(
-            transcript_text,
-            words,
-            duration_sec,
-        )
-
     def compute_acoustic_metrics(self, *, audio_path: str | Path) -> dict[str, Any]:
         return compute_acoustic_metrics(
             audio_path,
             opensmile_extractor=self.opensmile_extractor,
         )
+
+    def calculate(
+        self,
+        *,
+        audio_path: str | Path,
+        transcription: TranscriptionPayload,
+        duration_sec: float,
+    ) -> dict[str, dict[str, Any]]:
+        outputs: dict[str, dict[str, Any]] = {}
+
+        outputs["linguistic"] = compute_linguistic_metrics(
+            text=transcription["text"],
+            words=transcription["words"],
+            duration_sec=duration_sec,
+        )
+
+        outputs["acoustic"] = self.compute_acoustic_metrics(audio_path=audio_path)
+
+        return outputs
 
 
 def build_default_analysis_backend(whisper_model: str = "base") -> AnalysisBackend:

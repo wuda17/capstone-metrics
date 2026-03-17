@@ -41,3 +41,11 @@ class AnalysisBackend(Protocol):
     ) -> dict[str, Any]: ...
 
     def compute_acoustic_metrics(self, *, audio_path: str | Path) -> dict[str, Any]: ...
+
+    def calculate(
+        self,
+        *,
+        audio_path: str | Path,
+        transcription: TranscriptionPayload,
+        duration_sec: float,
+    ) -> dict[str, dict[str, Any]]: ...

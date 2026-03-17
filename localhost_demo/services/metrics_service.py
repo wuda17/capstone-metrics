@@ -31,21 +31,6 @@ from .contracts import NewAudioEvent, SnapshotRecord, append_jsonl, write_json
 SUPPORTED_EXT = {".wav"}
 
 
-def _extract_usage_metrics(word_count: Any, duration_sec: Any) -> dict[str, Any]:
-    try:
-        normalized_word_count = max(0, int(word_count))
-    except (TypeError, ValueError):
-        normalized_word_count = 0
-    try:
-        normalized_duration_sec = max(0.0, float(duration_sec))
-    except (TypeError, ValueError):
-        normalized_duration_sec = 0.0
-    return {
-        "word_count": normalized_word_count,
-        "vocal_minutes": round(normalized_duration_sec / 60.0, 3),
-    }
-
-
 @dataclass
 class PipelineContext:
     """Context shared across processing pipeline phases and calculators."""
@@ -179,39 +164,19 @@ class MetricsProcessor:
             transcription=transcription,
         )
 
-    def _compute_linguistic_metrics(self, context: PipelineContext) -> dict[str, Any]:
-        payload = context.transcription or {}
-        return self.analysis_backend.compute_linguistic_metrics(
-            transcript_text=payload.get("text", ""),
-            words=payload.get("words", []),
-            duration_sec=float(context.validation.get("duration_sec", 0.0)),
-        )
-
-    def _compute_acoustic_metrics(self, context: PipelineContext) -> dict[str, Any]:
-        return self.analysis_backend.compute_acoustic_metrics(
-            audio_path=context.audio_path
-        )
-
     def _run_calculators(self, context: PipelineContext) -> dict[str, dict[str, Any]]:
-        outputs: dict[str, dict[str, Any]] = {}
         try:
-            outputs["linguistic"] = self._compute_linguistic_metrics(context)
+            return self.analysis_backend.calculate(
+                audio_path=context.audio_path,
+                transcription=context.transcription,
+                duration_sec=context.validation["duration_sec"],
+            )
         except Exception as exc:
-            print(f"[MetricsService] Linguistic calculation failed: {exc}")
-            outputs["linguistic"] = {"error": str(exc)}
-
-        try:
-            outputs["acoustic"] = self._compute_acoustic_metrics(context)
-        except Exception as exc:
-            print(f"[MetricsService] Acoustic calculation failed: {exc}")
-            outputs["acoustic"] = {"error": str(exc)}
-
-        temporal = (outputs.get("linguistic") or {}).get("temporal", {})
-        outputs["usage"] = _extract_usage_metrics(
-            (temporal or {}).get("word_count"),
-            (temporal or {}).get("duration_sec"),
-        )
-        return outputs
+            print(f"[MetricsService] Calculator pipeline failed: {exc}")
+            return {
+                "linguistic": {"error": str(exc)},
+                "acoustic": {"error": str(exc)},
+            }
 
     def _build_snapshot(
         self,
@@ -232,7 +197,6 @@ class MetricsProcessor:
                 "lexical": (linguistic or {}).get("lexical", {}),
                 "prosody": (acoustic or {}).get("prosody", {}),
                 "spectral": (acoustic or {}).get("spectral", {}),
-                "usage": calculator_outputs.get("usage", {}),
             },
         )
 

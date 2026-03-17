@@ -21,13 +21,13 @@
     "transcript": { "type": "string" },
     "metrics": {
       "type": "object",
-      "required": ["temporal", "lexical", "prosody", "spectral", "usage"],
+      "required": ["temporal", "lexical", "prosody", "spectral"],
+      "additionalProperties": false,
       "properties": {
         "temporal": { "type": "object" },
         "lexical": { "type": "object" },
         "prosody": { "type": "object" },
-        "spectral": { "type": "object" },
-        "usage": { "type": "object" }
+        "spectral": { "type": "object" }
       }
     }
   }
