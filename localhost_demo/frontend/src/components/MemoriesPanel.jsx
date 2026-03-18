@@ -1,21 +1,23 @@
 import { useRef, useCallback, useState, useEffect, useMemo } from 'react'
+import { Brain, CalendarClock, ZoomIn, ZoomOut, Maximize2, RefreshCw, X } from 'lucide-react'
 import { useMemories } from '../hooks/useApi.js'
+import { ACCENT, SUCCESS, WARNING, DANGER, TEAL } from '../theme.js'
 import './MemoriesPanel.css'
 
 // ── constants ─────────────────────────────────────────────────────────────────
 
-const FACT_COLOR  = '#7c6af7'
+const FACT_COLOR  = ACCENT
 const TL_FILTERS  = ['all', 'event', 'mood']
 
 function moodColor(valence) {
   const v = valence ?? 0
-  if (v > 0.3)  return '#22c87e'
-  if (v < -0.3) return '#ef4545'
-  return '#f5a623'
+  if (v > 0.3)  return SUCCESS
+  if (v < -0.3) return DANGER
+  return WARNING
 }
 
 function tlColor(cluster) {
-  return cluster.type === 'mood' ? moodColor(cluster.valence) : '#14c8a8'
+  return cluster.type === 'mood' ? moodColor(cluster.valence) : TEAL
 }
 
 function fmtDate(iso) {
@@ -72,7 +74,7 @@ function makeNodeRenderer(selected) {
       const fontSize = Math.max(7, 9 / globalScale)
       ctx.globalAlpha = 1.0
       ctx.font = `${fontSize}px -apple-system, sans-serif`
-      ctx.fillStyle = '#e2e2ee'
+      ctx.fillStyle = '#f0e8e0'
       ctx.textAlign = 'center'
       const label = node.content.length > 32 ? node.content.slice(0, 32) + '…' : node.content
       ctx.fillText(label, node.x, node.y + size + fontSize + 2)
@@ -106,7 +108,7 @@ function SourceDrawer({ node, onClose }) {
           </span>
         )}
         <span className="drawer-date">{fmtFull(node.source_event_time)}</span>
-        <button className="drawer-close" onClick={onClose}>✕</button>
+        <button className="drawer-close" onClick={onClose}><X size={13} strokeWidth={2} /></button>
       </div>
 
       <div className="drawer-memory">
@@ -246,16 +248,16 @@ export default function MemoriesPanel() {
       {/* Header */}
       <div className="memories-header">
         <div>
-          <h2 className="panel-title">Memories</h2>
+          <h2 className="panel-title"><Brain size={18} strokeWidth={2} /> Memories</h2>
           <p className="panel-sub">
             Fact graph — what is known about Emily. &nbsp;·&nbsp; Events &amp; moods timeline — what happened and how she felt.
           </p>
         </div>
         <div className="graph-controls">
-          <button className="ctrl-btn" onClick={() => graphRef.current?.zoom(1.5, 300)} title="Zoom in">+</button>
-          <button className="ctrl-btn" onClick={() => graphRef.current?.zoom(0.67, 300)} title="Zoom out">−</button>
-          <button className="ctrl-btn" onClick={() => graphRef.current?.zoomToFit(400, 40)} title="Fit">⊡</button>
-          <button className="ctrl-btn" onClick={refresh} title="Refresh">↻</button>
+          <button className="ctrl-btn" onClick={() => graphRef.current?.zoom(1.5, 300)} title="Zoom in"><ZoomIn size={13} strokeWidth={2} /></button>
+          <button className="ctrl-btn" onClick={() => graphRef.current?.zoom(0.67, 300)} title="Zoom out"><ZoomOut size={13} strokeWidth={2} /></button>
+          <button className="ctrl-btn" onClick={() => graphRef.current?.zoomToFit(400, 40)} title="Fit"><Maximize2 size={13} strokeWidth={2} /></button>
+          <button className="ctrl-btn" onClick={refresh} title="Refresh"><RefreshCw size={13} strokeWidth={2} /></button>
         </div>
       </div>
 
@@ -279,7 +281,7 @@ export default function MemoriesPanel() {
               graphData={graphData}
               width={dims.w}
               height={dims.h}
-              backgroundColor="#09090f"
+              backgroundColor="#0d0908"
               nodeCanvasObject={nodeCanvasObject}
               nodeCanvasObjectMode={() => 'replace'}
               linkColor={linkColor}
@@ -302,7 +304,7 @@ export default function MemoriesPanel() {
       {/* Events & moods timeline */}
       <div className="timeline-section">
         <div className="timeline-header">
-          <span className="tl-title">Events &amp; Moods</span>
+          <span className="tl-title"><CalendarClock size={14} strokeWidth={2} /> Events &amp; Moods</span>
           <div className="filter-pills">
             {TL_FILTERS.map(f => {
               const color = f === 'event' ? '#14c8a8' : f === 'mood' ? '#f5a623' : 'var(--text-muted)'

@@ -1,16 +1,17 @@
+import { Home, Brain, HeartPulse } from 'lucide-react'
 import './TopNav.css'
 
 const TABS = [
-  { id: 'home',      label: 'Home'      },
-  { id: 'memories',  label: 'Memories'  },
-  { id: 'wellbeing', label: 'Wellbeing' },
+  { id: 'home',      label: 'Home',      Icon: Home      },
+  { id: 'memories',  label: 'Memories',  Icon: Brain     },
+  { id: 'wellbeing', label: 'Wellbeing', Icon: HeartPulse },
 ]
 
 function emotionMeta(emo) {
   if (emo == null) return { color: '#555', label: null }
-  if (emo > 0.1)   return { color: '#22c87e', label: 'Positive' }
-  if (emo < -0.1)  return { color: '#ef4545', label: 'Concerning' }
-  return              { color: '#f5a623', label: 'Neutral' }
+  if (emo > 0.1)   return { color: '#5cbd88', label: 'Positive' }
+  if (emo < -0.1)  return { color: '#c94040', label: 'Concerning' }
+  return              { color: '#e8a84a', label: 'Neutral' }
 }
 
 export default function TopNav({ page, onNavigate, current }) {
@@ -25,22 +26,31 @@ export default function TopNav({ page, onNavigate, current }) {
   return (
     <nav className="topnav">
 
-      {/* Logo */}
+      {/* Logo — company.png if available, text fallback */}
       <div className="topnav-logo">
-        <span className="topnav-logo-icon">◈</span>
-        <span className="topnav-logo-text">FerbAI</span>
+        <img
+          src="/brand/company.png"
+          alt="FerbAI"
+          className="topnav-logo-img"
+          onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'flex' }}
+        />
+        <div className="topnav-logo-fallback">
+          <span className="topnav-logo-icon">◈</span>
+          <span className="topnav-logo-text">FerbAI</span>
+        </div>
       </div>
 
-      {/* Segmented control — centered via flex */}
+      {/* Segmented control */}
       <div className="topnav-seg-wrap">
         <div className="topnav-seg">
-          {TABS.map(t => (
+          {TABS.map(({ id, label, Icon }) => (
             <button
-              key={t.id}
-              className={`topnav-seg-btn${page === t.id ? ' active' : ''}`}
-              onClick={() => onNavigate(t.id)}
+              key={id}
+              className={`topnav-seg-btn${page === id ? ' active' : ''}`}
+              onClick={() => onNavigate(id)}
             >
-              {t.label}
+              <Icon size={13} strokeWidth={2} />
+              {label}
             </button>
           ))}
         </div>

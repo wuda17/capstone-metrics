@@ -4,6 +4,8 @@ import {
   ResponsiveContainer, ReferenceLine, Legend,
   RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
 } from 'recharts'
+import { HeartPulse, AlertTriangle, TrendingUp, Radar as RadarIcon } from 'lucide-react'
+import { ACCENT, SECONDARY, TEAL, SUCCESS, WARNING, DANGER, MUTED } from '../theme.js'
 import './MetricsPanel.css'
 
 // ── helpers ──────────────────────────────────────────────────────────────────
@@ -91,12 +93,12 @@ function computeAcuity(current) {
 }
 
 const METRIC_OPTIONS = [
-  { key: 'speech_rate_wpm',         label: 'Speaking Speed (wpm)',   unit: 'wpm',   color: '#7c6af7' },
-  { key: 'mean_pause_duration_sec', label: 'Mean Pause (sec)',        unit: 's',     color: '#f5a623' },
-  { key: 'jitter_local',            label: 'Jitter (voice stability)', unit: '',     color: '#14c8a8' },
-  { key: 'type_token_ratio',        label: 'Vocabulary Diversity',    unit: '',      color: '#ef4545' },
-  { key: 'emotion_score',           label: 'Emotion Score',           unit: '',      color: '#22c87e' },
-  { key: 'f0_mean_hz',              label: 'Pitch (F0)',              unit: 'Hz',    color: '#c084fc' },
+  { key: 'speech_rate_wpm',         label: 'Speaking Speed (wpm)',    unit: 'wpm', color: ACCENT    },
+  { key: 'mean_pause_duration_sec', label: 'Mean Pause (sec)',         unit: 's',   color: WARNING   },
+  { key: 'jitter_local',            label: 'Jitter (voice stability)', unit: '',    color: TEAL      },
+  { key: 'type_token_ratio',        label: 'Vocabulary Diversity',     unit: '',    color: DANGER    },
+  { key: 'emotion_score',           label: 'Emotion Score',            unit: '',    color: SUCCESS   },
+  { key: 'f0_mean_hz',              label: 'Pitch (F0)',               unit: 'Hz',  color: SECONDARY },
 ]
 
 // ── sub-components ────────────────────────────────────────────────────────────
@@ -171,7 +173,7 @@ export default function MetricsPanel({ current, history }) {
   return (
     <div className="metrics-panel">
       <div className="panel-header">
-        <h2 className="panel-title">Wellbeing</h2>
+        <h2 className="panel-title"><HeartPulse size={18} strokeWidth={2} /> Wellbeing</h2>
         <p className="panel-sub">Speech and vocal pattern analysis for Emily</p>
       </div>
 
@@ -205,14 +207,14 @@ export default function MetricsPanel({ current, history }) {
 
       {/* Alert strip */}
       <div className="section">
-        <h3 className="section-title">Alerts</h3>
+        <h3 className="section-title"><AlertTriangle size={14} strokeWidth={2} /> Alerts</h3>
         <AlertCard alerts={alerts} />
       </div>
 
       {/* Time series */}
       <div className="section">
         <div className="section-header">
-          <h3 className="section-title">Trend Over Time</h3>
+          <h3 className="section-title"><TrendingUp size={14} strokeWidth={2} /> Trend Over Time</h3>
           <select
             className="metric-select"
             value={selectedMetric.key}
@@ -263,8 +265,8 @@ export default function MetricsPanel({ current, history }) {
 
       {/* Radar */}
       <div className="section">
-        <h3 className="section-title">Wellbeing Snapshot</h3>
-        <p className="section-sub">Gray = baseline (50) · Purple = current status · Outer = better</p>
+        <h3 className="section-title"><RadarIcon size={14} strokeWidth={2} /> Wellbeing Snapshot</h3>
+        <p className="section-sub">Gray = baseline (50) · Terracotta = current status · Outer = better</p>
         <div className="chart-wrap radar-wrap">
           <ResponsiveContainer width="100%" height={280}>
             <RadarChart data={radarData} outerRadius={100}>

@@ -17,7 +17,8 @@
   flex-shrink: 0;
 }
 
-.panel-title { font-size: 21px; font-weight: 700; letter-spacing: -0.3px; }
+.panel-title { font-size: 21px; font-weight: 700; letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px; }
+.panel-title svg { color: var(--accent); flex-shrink: 0; }
 .panel-sub   { font-size: 12px; color: var(--text-muted); margin-top: 4px; line-height: 1.5; max-width: 560px; }
 
 .graph-controls { display: flex; gap: 6px; flex-shrink: 0; }
@@ -218,6 +219,9 @@
 }
 
 .tl-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);

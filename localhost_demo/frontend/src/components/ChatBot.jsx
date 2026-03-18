@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { X, Send } from 'lucide-react'
 import { sendChatMessage } from '../hooks/useApi.js'
 import './ChatBot.css'
 
@@ -46,31 +47,69 @@ export default function ChatBot({ open, onToggle }) {
     <>
       {/* Persistent FAB */}
       <button className={`ferb-fab ${open ? 'open' : ''}`} onClick={onToggle} title="Ask FerbAI">
-        <span className="ferb-fab-icon">{open ? '✕' : '◈'}</span>
-        {!open && <span className="ferb-fab-label">Ferb</span>}
+        {open ? (
+          <X size={18} strokeWidth={2} className="ferb-fab-icon" />
+        ) : (
+          <>
+            <img
+              src="/brand/logo.png"
+              alt=""
+              className="ferb-fab-img"
+              onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
+            />
+            <span className="ferb-fab-icon ferb-fab-fallback">◈</span>
+            <span className="ferb-fab-label">Ferb</span>
+          </>
+        )}
       </button>
 
       {/* Chat panel */}
       {open && (
         <div className="chat-panel">
           <div className="chat-header">
-            <span className="chat-logo">◈</span>
+            <img
+              src="/brand/logo.png"
+              alt=""
+              className="chat-logo-img"
+              onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
+            />
+            <span className="chat-logo chat-logo-fallback">◈</span>
             <span className="chat-title">FerbAI</span>
             <span className="chat-subtitle">Ask me about Emily</span>
-            <button className="chat-close" onClick={onToggle}>✕</button>
+            <button className="chat-close" onClick={onToggle}>
+              <X size={14} strokeWidth={2} />
+            </button>
           </div>
 
           <div className="chat-messages">
             {messages.map((m, i) => (
               <div key={i} className={`chat-msg ${m.role}`}>
-                {m.role === 'assistant' && <span className="msg-avatar">◈</span>}
+                {m.role === 'assistant' && (
+                  <span className="msg-avatar">
+                    <img
+                      src="/brand/logo.png"
+                      alt=""
+                      className="msg-avatar-img"
+                      onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
+                    />
+                    <span className="msg-avatar-fallback">◈</span>
+                  </span>
+                )}
                 <div className="msg-bubble">{m.text}</div>
               </div>
             ))}
 
             {loading && (
               <div className="chat-msg assistant">
-                <span className="msg-avatar">◈</span>
+                <span className="msg-avatar">
+                  <img
+                    src="/brand/logo.png"
+                    alt=""
+                    className="msg-avatar-img"
+                    onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
+                  />
+                  <span className="msg-avatar-fallback">◈</span>
+                </span>
                 <div className="msg-bubble typing">
                   <span /><span /><span />
                 </div>
@@ -80,7 +119,7 @@ export default function ChatBot({ open, onToggle }) {
             <div ref={bottomRef} />
           </div>
 
-          {/* Suggestion chips (only when just one assistant message) */}
+          {/* Suggestion chips */}
           {messages.length === 1 && (
             <div className="suggestions">
               {SUGGESTIONS.map((s, i) => (
@@ -106,7 +145,7 @@ export default function ChatBot({ open, onToggle }) {
               onClick={() => send()}
               disabled={loading || !input.trim()}
             >
-              →
+              <Send size={14} strokeWidth={2} />
             </button>
           </div>
         </div>

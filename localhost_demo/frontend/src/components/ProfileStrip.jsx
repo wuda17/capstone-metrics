@@ -1,12 +1,14 @@
 import { useState, useMemo } from 'react'
 import { AreaChart, Area, ResponsiveContainer, Tooltip } from 'recharts'
+import { ChevronDown, ChevronUp, Sun, CalendarDays, CalendarRange, BarChart2, MessageSquare } from 'lucide-react'
 import { useSummary } from '../hooks/useApi.js'
+import { ACCENT } from '../theme.js'
 import './ProfileStrip.css'
 
 const PERIODS = [
-  { key: 'today', label: 'Today',      color: '#14c8a8' },
-  { key: 'week',  label: 'This Week',  color: '#7c6af7' },
-  { key: 'month', label: 'This Month', color: '#f5a623' },
+  { key: 'today', label: 'Today',      color: '#5ab8a0', Icon: Sun          },
+  { key: 'week',  label: 'This Week',  color: '#c8695a', Icon: CalendarDays  },
+  { key: 'month', label: 'This Month', color: '#c4a882', Icon: CalendarRange },
 ]
 
 export default function ProfileStrip({ current }) {
@@ -41,7 +43,10 @@ export default function ProfileStrip({ current }) {
       {/* Collapse toggle bar */}
       <div className="ps-toggle-bar" onClick={() => setCollapsed(c => !c)}>
         <span className="ps-toggle-label">Patient Overview</span>
-        <span className="ps-toggle-icon">{collapsed ? '▾' : '▴'}</span>
+        {collapsed
+          ? <ChevronDown size={13} strokeWidth={2} className="ps-toggle-icon" />
+          : <ChevronUp   size={13} strokeWidth={2} className="ps-toggle-icon" />
+        }
       </div>
 
       {/* Cards row — hidden when collapsed */}
@@ -49,9 +54,12 @@ export default function ProfileStrip({ current }) {
         <div className="profile-strip">
 
           {/* LLM summary cards */}
-          {PERIODS.map(p => (
-            <div key={p.key} className="ps-card ps-summary" style={{ '--c': p.color }}>
-              <div className="ps-label" style={{ color: p.color }}>{p.label}</div>
+          {PERIODS.map(({ key, label, color, Icon }) => (
+            <div key={key} className="ps-card ps-summary" style={{ '--c': color }}>
+              <div className="ps-label" style={{ color }}>
+                <Icon size={11} strokeWidth={2.5} />
+                {label}
+              </div>
               {sumLoading ? (
                 <div className="ps-skeleton-lines">
                   <div className="ps-skeleton" style={{ width: '90%' }} />
@@ -59,33 +67,36 @@ export default function ProfileStrip({ current }) {
                   <div className="ps-skeleton" style={{ width: '82%' }} />
                 </div>
               ) : (
-                <p className="ps-summary-text">{summaries?.[p.key] ?? '—'}</p>
+                <p className="ps-summary-text">{summaries?.[key] ?? '—'}</p>
               )}
             </div>
           ))}
 
           {/* Usage sparkline */}
           <div className="ps-card ps-chart">
-            <div className="ps-label">Activity</div>
+            <div className="ps-label">
+              <BarChart2 size={11} strokeWidth={2.5} />
+              Activity
+            </div>
             <ResponsiveContainer width="100%" height={50}>
               <AreaChart data={sparkData} margin={{ top: 4, right: 2, left: 2, bottom: 0 }}>
                 <defs>
                   <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%"  stopColor="#7c6af7" stopOpacity={0.25} />
-                    <stop offset="95%" stopColor="#7c6af7" stopOpacity={0}    />
+                    <stop offset="5%"  stopColor={ACCENT} stopOpacity={0.3} />
+                    <stop offset="95%" stopColor={ACCENT} stopOpacity={0}   />
                   </linearGradient>
                 </defs>
                 <Area
                   type="monotone"
                   dataKey="sessions"
-                  stroke="#7c6af7"
+                  stroke={ACCENT}
                   fill="url(#sparkFill)"
                   strokeWidth={1.5}
                   dot={false}
                   isAnimationActive={false}
                 />
                 <Tooltip
-                  contentStyle={{ background: '#13131f', border: '1px solid #2a2a3a', fontSize: 11, borderRadius: 6 }}
+                  contentStyle={{ background: '#1c1510', border: '1px solid #2e221c', fontSize: 11, borderRadius: 6 }}
                   formatter={v => [v, 'sessions']}
                   labelFormatter={l => l}
                 />
@@ -96,7 +107,10 @@ export default function ProfileStrip({ current }) {
 
           {/* Latest transcript */}
           <div className="ps-card ps-latest">
-            <div className="ps-label">Latest</div>
+            <div className="ps-label">
+              <MessageSquare size={11} strokeWidth={2.5} />
+              Latest
+            </div>
             {latestItem ? (
               <>
                 <p className="ps-latest-text">

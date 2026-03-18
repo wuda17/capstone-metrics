@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { ArrowUp } from 'lucide-react'
 import { sendChatMessage } from '../hooks/useApi.js'
 import './EntryPage.css'
 
@@ -49,7 +50,13 @@ export default function EntryPage() {
       <div className="home-body">
         {!hasMessages ? (
           <div className="home-empty">
-            <span className="home-logo">◈</span>
+            <img
+              src="/brand/logo.png"
+              alt="FerbAI"
+              className="home-logo-img"
+              onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'block' }}
+            />
+            <span className="home-logo home-logo-fallback">◈</span>
             <h1 className="home-heading">What would you like to know about Emily?</h1>
             <p className="home-sub">
               Ask anything about her recent conversations, mood patterns, or speech trends.
@@ -59,14 +66,32 @@ export default function EntryPage() {
           <div className="home-messages">
             {messages.map((m, i) => (
               <div key={i} className={`hm hm--${m.role}`}>
-                {m.role === 'assistant' && <span className="hm-avatar">◈</span>}
+                {m.role === 'assistant' && (
+                  <span className="hm-avatar">
+                    <img
+                      src="/brand/logo.png"
+                      alt=""
+                      className="hm-avatar-img"
+                      onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
+                    />
+                    <span className="hm-avatar-fallback">◈</span>
+                  </span>
+                )}
                 <div className="hm-bubble">{m.text}</div>
               </div>
             ))}
 
             {loading && (
               <div className="hm hm--assistant">
-                <span className="hm-avatar">◈</span>
+                <span className="hm-avatar">
+                  <img
+                    src="/brand/logo.png"
+                    alt=""
+                    className="hm-avatar-img"
+                    onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
+                  />
+                  <span className="hm-avatar-fallback">◈</span>
+                </span>
                 <div className="hm-bubble hm-typing">
                   <span /><span /><span />
                 </div>
@@ -104,7 +129,7 @@ export default function EntryPage() {
             onClick={() => send()}
             disabled={loading || !input.trim()}
           >
-            ↑
+            <ArrowUp size={16} strokeWidth={2.5} />
           </button>
         </div>
         <p className="home-input-hint">FerbAI may make mistakes. Always verify clinical decisions independently.</p>

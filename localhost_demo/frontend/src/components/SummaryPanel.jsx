@@ -1,3 +1,4 @@
+import { Sun, CalendarDays, CalendarRange, RefreshCw } from 'lucide-react'
 import { useSummary } from '../hooks/useApi.js'
 import './SummaryPanel.css'
 
@@ -6,22 +7,22 @@ const PERIODS = [
     key:   'today',
     label: 'Today',
     sub:   'Past 24 hours',
-    icon:  '◑',
-    color: '#14c8a8',
+    Icon:  Sun,
+    color: '#5ab8a0',
   },
   {
     key:   'week',
     label: 'This Week',
     sub:   'Past 7 days',
-    icon:  '◕',
-    color: '#7c6af7',
+    Icon:  CalendarDays,
+    color: '#c8695a',
   },
   {
     key:   'month',
     label: 'This Month',
     sub:   'Past 30 days',
-    icon:  '●',
-    color: '#f5a623',
+    Icon:  CalendarRange,
+    color: '#c4a882',
   },
 ]
 
@@ -31,7 +32,7 @@ function SummaryCard({ period, text, loading }) {
   return (
     <div className="summary-card">
       <div className="summary-card-header">
-        <span className="summary-icon" style={{ color: period.color }}>{period.icon}</span>
+        <period.Icon size={20} strokeWidth={1.75} style={{ color: period.color, flexShrink: 0 }} />
         <div>
           <div className="summary-period">{period.label}</div>
           <div className="summary-period-sub">{period.sub}</div>
@@ -67,7 +68,9 @@ export default function SummaryPanel() {
             AI-generated overviews of Emily's recent conversations — today, this week, and this month.
           </p>
         </div>
-        <button className="ctrl-btn" onClick={refresh} title="Regenerate summaries">↻</button>
+        <button className="ctrl-btn" onClick={refresh} title="Regenerate summaries">
+          <RefreshCw size={14} strokeWidth={2} />
+        </button>
       </div>
 
       <div className="summary-grid">
@@ -83,7 +86,7 @@ export default function SummaryPanel() {
 
       {!loading && data && (
         <p className="summary-hint">
-          Summaries are cached for 30 minutes — click ↻ to regenerate.
+          Summaries are cached for 30 minutes — click <RefreshCw size={11} strokeWidth={2} style={{ display: 'inline', verticalAlign: 'middle' }} /> to regenerate.
         </p>
       )}
     </div>

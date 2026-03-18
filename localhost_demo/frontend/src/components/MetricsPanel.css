@@ -7,8 +7,11 @@
 }
 
 .panel-header { display: flex; flex-direction: column; gap: 4px; }
-.panel-title { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+.panel-title { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px; }
+.panel-title svg { color: var(--accent); flex-shrink: 0; }
 .panel-sub { font-size: 13px; color: var(--text-muted); }
+.section-title { font-size: 14px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; }
+.section-title svg { color: var(--accent); flex-shrink: 0; }
 
 /* Stat row */
 .stat-row {
@@ -41,7 +44,6 @@
   justify-content: space-between;
 }
 
-.section-title { font-size: 14px; font-weight: 600; color: var(--text); }
 .section-sub { font-size: 11px; color: var(--text-muted); }
 
 .metric-select {
