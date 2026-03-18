@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import string
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -20,12 +21,20 @@ METRIC_PATHS = {
     "speech_rate_wpm": ("metrics", "temporal", "speech_rate_wpm"),
     "articulation_rate_wpm": ("metrics", "temporal", "articulation_rate_wpm"),
     "phonation_to_time_ratio": ("metrics", "temporal", "phonation_to_time_ratio"),
-    "type_token_ratio": ("metrics", "lexical", "type_token_ratio"),
     "mean_pause_duration_sec": ("metrics", "temporal", "mean_pause_duration_sec"),
     "f0_mean_hz": ("metrics", "prosody", "f0_mean_hz"),
     "jitter_local": ("metrics", "prosody", "jitter_local"),
     "shimmer_local_db": ("metrics", "prosody", "shimmer_local_db"),
 }
+
+LEXICAL_METRIC_NAMES = (
+    "emotion_score",
+    "self_pronoun_ratio",
+    "type_token_ratio",
+)
+
+TRACKED_METRICS = tuple(METRIC_PATHS.keys()) + LEXICAL_METRIC_NAMES
+SELF_PRONOUN_TERMS = {"i", "me", "my", "mine", "myself"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -75,6 +84,11 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=0.2,
         help="Earliest snapshot fraction used to compute baseline (0 to 1]",
+    )
+    parser.add_argument(
+        "--daily-cache",
+        default=str(root / "data" / "daily_lexical.json"),
+        help="Path to daily emotion-score cache JSON",
     )
     return parser.parse_args()
 
@@ -133,12 +147,128 @@ def _snapshot_timestamp(snapshot: dict[str, Any], fallback: datetime) -> datetim
         return fallback
 
 
-def _metric_means(snapshots: list[dict[str, Any]]) -> dict[str, float | None]:
+def _metric_means(
+    snapshots: list[dict[str, Any]],
+    daily_emotion_cache: dict[str, Any] | None = None,
+) -> dict[str, float | None]:
     out: dict[str, float | None] = {}
     for metric in METRIC_PATHS:
         vals = [v for v in (_extract_metric(s, metric) for s in snapshots) if v is not None]
         out[metric] = _mean(vals)
+    out.update(_conversation_lexical_metrics(snapshots, daily_emotion_cache))
     return out
+
+
+def _load_daily_cache(cache_path: Path) -> dict[str, Any]:
+    try:
+        return json.loads(cache_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
+def _save_daily_cache(cache_path: Path, cache: dict[str, Any]) -> None:
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    cache_path.write_text(json.dumps(cache, indent=2, sort_keys=True), encoding="utf-8")
+
+
+def _refresh_daily_emotion(
+    snapshots: list[dict[str, Any]],
+    cache_path: Path,
+) -> dict[str, Any]:
+    """Recompute HuggingFace emotion_score for any day whose snapshot count changed.
+
+    Groups snapshots by day, concatenates their transcripts, runs the
+    analysis.lexical_semantic.emotion_score model, and persists the result.
+    Returns the updated cache dict so compute_aggregate can inject the values.
+    """
+    cache = _load_daily_cache(cache_path)
+
+    by_day: dict[str, list[dict[str, Any]]] = {}
+    for snapshot in snapshots:
+        day = (snapshot.get("event") or {}).get("day", "")
+        if day:
+            by_day.setdefault(day, []).append(snapshot)
+
+    updated = False
+    for day, day_snaps in by_day.items():
+        count = len(day_snaps)
+        if (cache.get(day) or {}).get("snapshot_count") == count:
+            continue
+        texts = [
+            s.get("transcript", "")
+            for s in day_snaps
+            if isinstance(s.get("transcript"), str)
+        ]
+        corpus = " ".join(t for t in texts if t.strip())
+        try:
+            from analysis.lexical_semantic import emotion_score as _hf_emotion
+            score = float(_hf_emotion(corpus)) if corpus else 0.0
+        except Exception:
+            score = 0.0
+        cache[day] = {"emotion_score": round(score, 6), "snapshot_count": count}
+        updated = True
+
+    if updated:
+        _save_daily_cache(cache_path, cache)
+    return cache
+
+
+def _tokenize_text(text: str) -> list[str]:
+    clean = text.lower().translate(str.maketrans("", "", string.punctuation))
+    return [tok for tok in clean.split() if tok]
+
+
+def _type_token_ratio(text: str) -> float:
+    tokens = _tokenize_text(text)
+    if not tokens:
+        return 0.0
+    return len(set(tokens)) / len(tokens)
+
+
+def _self_pronoun_ratio(text: str) -> float:
+    tokens = _tokenize_text(text)
+    if not tokens:
+        return 0.0
+    count = sum(1 for token in tokens if token in SELF_PRONOUN_TERMS)
+    return count / len(tokens)
+
+
+def _conversation_lexical_metrics(
+    snapshots: list[dict[str, Any]],
+    daily_emotion_cache: dict[str, Any] | None = None,
+) -> dict[str, float]:
+    now = datetime.now(timezone.utc)
+    ordered = _ordered_snapshots(snapshots, now)
+    corpus_parts: list[str] = []
+    for item in ordered:
+        text = item.get("transcript")
+        if isinstance(text, str) and text.strip():
+            corpus_parts.append(text)
+    corpus = " ".join(corpus_parts)
+
+    # emotion_score: average the cached daily values for the days covered by
+    # these snapshots.  Falls back to 0.0 when no cache entry is available.
+    if daily_emotion_cache:
+        days = {
+            (s.get("event") or {}).get("day", "")
+            for s in snapshots
+            if (s.get("event") or {}).get("day")
+        }
+        day_scores = [
+            float(daily_emotion_cache[d]["emotion_score"])
+            for d in days
+            if d in daily_emotion_cache
+            and isinstance((daily_emotion_cache[d] or {}).get("emotion_score"), (int, float))
+        ]
+        emo = sum(day_scores) / len(day_scores) if day_scores else 0.0
+    else:
+        emo = 0.0
+
+    return {
+        "emotion_score": round(float(emo), 6),
+        "self_pronoun_ratio": float(_self_pronoun_ratio(corpus)),
+        "type_token_ratio": float(_type_token_ratio(corpus)),
+    }
 
 
 def _snapshot_word_count(snapshot: dict[str, Any]) -> int | None:
@@ -158,17 +288,12 @@ def _window_metrics(
     snapshots: list[dict[str, Any]],
     now: datetime,
     window_sec: int,
+    daily_emotion_cache: dict[str, Any] | None = None,
 ) -> dict[str, float | None]:
     cutoff = now - timedelta(seconds=window_sec)
     recent = [s for s in snapshots if _snapshot_timestamp(s, now) >= cutoff]
-    out = _metric_means(recent)
+    out = _metric_means(recent, daily_emotion_cache)
     out["sample_count"] = len(recent)
-    return out
-
-
-def _baseline_metrics(snapshots: list[dict[str, Any]]) -> dict[str, float | None]:
-    out = _metric_means(snapshots)
-    out["sample_count"] = len(snapshots)
     return out
 
 
@@ -213,6 +338,7 @@ def _time_series(
     snapshots: list[dict[str, Any]],
     now: datetime,
     segment_minutes: int,
+    daily_emotion_cache: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     buckets: dict[datetime, list[dict[str, Any]]] = {}
     segment_delta = timedelta(minutes=max(1, segment_minutes))
@@ -229,7 +355,7 @@ def _time_series(
                 "segment_start": start.isoformat().replace("+00:00", "Z"),
                 "segment_end": (start + segment_delta).isoformat().replace("+00:00", "Z"),
                 "sample_count": len(bucket_snapshots),
-                "values": _metric_means(bucket_snapshots),
+                "values": _metric_means(bucket_snapshots, daily_emotion_cache),
             }
         )
     return rows
@@ -239,13 +365,14 @@ def _current_metrics(
     snapshots: list[dict[str, Any]],
     now: datetime,
     current_window_minutes: int,
+    daily_emotion_cache: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     cutoff = now - timedelta(minutes=max(1, current_window_minutes))
     recent = [s for s in snapshots if _snapshot_timestamp(s, now) >= cutoff]
     return {
         "window_minutes": max(1, current_window_minutes),
         "sample_count": len(recent),
-        "values": _metric_means(recent),
+        "values": _metric_means(recent, daily_emotion_cache),
     }
 
 
@@ -253,6 +380,7 @@ def _baseline_from_earliest_percent(
     snapshots: list[dict[str, Any]],
     now: datetime,
     baseline_percent: float,
+    daily_emotion_cache: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     bounded_percent = min(1.0, max(0.01, baseline_percent))
     ordered = _ordered_snapshots(snapshots, now)
@@ -261,7 +389,7 @@ def _baseline_from_earliest_percent(
             "method": "earliest_percent",
             "percent": round(bounded_percent, 3),
             "sample_count": 0,
-            "values": _metric_means([]),
+            "values": _metric_means([], daily_emotion_cache),
         }
     count = max(1, math.floor(len(ordered) * bounded_percent))
     cohort = ordered[:count]
@@ -269,7 +397,7 @@ def _baseline_from_earliest_percent(
         "method": "earliest_percent",
         "percent": round(bounded_percent, 3),
         "sample_count": len(cohort),
-        "values": _metric_means(cohort),
+        "values": _metric_means(cohort, daily_emotion_cache),
     }
 
 
@@ -288,7 +416,7 @@ def _drift_metrics(
     current_values: dict[str, float | None],
 ) -> dict[str, dict[str, float | None | str]]:
     drift: dict[str, dict[str, float | None | str]] = {}
-    for metric in METRIC_PATHS:
+    for metric in TRACKED_METRICS:
         baseline = baseline_values.get(metric)
         current = current_values.get(metric)
         delta_abs = (
@@ -349,11 +477,12 @@ def compute_aggregate(
     segment_minutes: int,
     current_window_minutes: int,
     baseline_percent: float,
+    daily_emotion_cache: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     now = datetime.now(timezone.utc)
-    time_series = _time_series(snapshots, now, segment_minutes)
-    baseline_obj = _baseline_from_earliest_percent(snapshots, now, baseline_percent)
-    current_obj = _current_metrics(snapshots, now, current_window_minutes)
+    time_series = _time_series(snapshots, now, segment_minutes, daily_emotion_cache)
+    baseline_obj = _baseline_from_earliest_percent(snapshots, now, baseline_percent, daily_emotion_cache)
+    current_obj = _current_metrics(snapshots, now, current_window_minutes, daily_emotion_cache)
     drift = _drift_metrics(
         baseline_obj["values"],
         current_obj["values"],
@@ -363,11 +492,11 @@ def compute_aggregate(
     baseline = dict(baseline_obj["values"])
     baseline["sample_count"] = baseline_obj["sample_count"]
 
-    one_min = _window_metrics(snapshots, now, 60)
-    five_min = _window_metrics(snapshots, now, 300)
+    one_min = _window_metrics(snapshots, now, 60, daily_emotion_cache)
+    five_min = _window_metrics(snapshots, now, 300, daily_emotion_cache)
 
     deviations = {}
-    for metric in METRIC_PATHS:
+    for metric in TRACKED_METRICS:
         deviations[metric] = {
             "from_current_window_pct": _deviation_pct(
                 current_obj["values"].get(metric),
@@ -406,6 +535,7 @@ def main() -> None:
     snapshots_dir = Path(args.snapshots_dir)
     current_output = Path(args.current_output)
     history_output = Path(args.history_output)
+    daily_cache_path = Path(args.daily_cache)
 
     snapshots_dir.mkdir(parents=True, exist_ok=True)
     current_output.parent.mkdir(parents=True, exist_ok=True)
@@ -414,17 +544,20 @@ def main() -> None:
     print(f"[Aggregator] Reading snapshots from {snapshots_dir}")
     print(f"[Aggregator] Writing current aggregate to {current_output}")
     print(f"[Aggregator] Appending history to {history_output}")
+    print(f"[Aggregator] Daily emotion cache: {daily_cache_path}")
     print("[Aggregator] Press Ctrl+C to stop")
 
     try:
         while True:
             snapshots = _read_snapshots(snapshots_dir)
+            daily_emotion = _refresh_daily_emotion(snapshots, daily_cache_path)
             aggregate = compute_aggregate(
                 snapshots,
                 args.max_transcript_items,
                 args.segment_minutes,
                 args.current_window_minutes if args.current_window_minutes > 0 else args.segment_minutes,
                 args.baseline_percent,
+                daily_emotion_cache=daily_emotion,
             )
             write_json(current_output, aggregate)
             append_jsonl(history_output, aggregate)

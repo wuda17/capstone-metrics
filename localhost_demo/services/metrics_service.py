@@ -33,29 +33,12 @@ SUPPORTED_EXT = {".wav"}
 
 @dataclass
 class PipelineContext:
-    """Context shared across processing pipeline phases and calculators."""
+    """Context shared across processing pipeline phases."""
 
     event: NewAudioEvent
     audio_path: Path
-    audio: Any
-    sample_rate: int
     validation: dict[str, Any]
     transcription: dict[str, Any]
-
-
-class NewAudioHandler:
-    """Watchdog handler that converts filesystem events into audio events."""
-
-    def __init__(self, processor: "MetricsProcessor"):
-        self.processor = processor
-
-    def on_created(self, event: Any) -> None:
-        if event.is_directory:
-            return
-        path = Path(event.src_path)
-        if path.suffix.lower() not in SUPPORTED_EXT:
-            return
-        self.processor.enqueue_audio(path, source="watchdog")
 
 
 class MetricsProcessor:
@@ -158,8 +141,6 @@ class MetricsProcessor:
         return PipelineContext(
             event=event,
             audio_path=audio_path,
-            audio=audio,
-            sample_rate=sample_rate,
             validation=validation,
             transcription=transcription,
         )
@@ -274,9 +255,14 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    watchdog_classes = _load_watchdog_classes()
-    file_system_event_handler = watchdog_classes["FileSystemEventHandler"]
-    observer_cls = watchdog_classes["Observer"]
+
+    try:
+        from watchdog.events import FileSystemEventHandler
+        from watchdog.observers import Observer
+    except ModuleNotFoundError as exc:
+        raise RuntimeError(
+            "Missing dependency 'watchdog'. Install via environment.yml."
+        ) from exc
 
     incoming_dir = Path(args.incoming_dir)
     snapshots_dir = Path(args.snapshots_dir)
@@ -296,20 +282,16 @@ def main() -> None:
     worker_thread = threading.Thread(target=processor.run_worker_loop, daemon=True)
     worker_thread.start()
 
-    class WatchdogHandler(file_system_event_handler):  # type: ignore[misc,valid-type]
-        def __init__(self, wrapped: NewAudioHandler):
-            super().__init__()
-            self.wrapped = wrapped
-
+    class WatchdogHandler(FileSystemEventHandler):
         def on_created(self, event: Any) -> None:
-            self.wrapped.on_created(event)
+            if event.is_directory:
+                return
+            path = Path(event.src_path)
+            if path.suffix.lower() in SUPPORTED_EXT:
+                processor.enqueue_audio(path, source="watchdog")
 
-    observer = observer_cls()
-    observer.schedule(
-        WatchdogHandler(NewAudioHandler(processor)),
-        path=str(incoming_dir),
-        recursive=False,
-    )
+    observer = Observer()
+    observer.schedule(WatchdogHandler(), path=str(incoming_dir), recursive=False)
     observer.start()
 
     print(f"[MetricsService] Watching {incoming_dir}")
@@ -326,21 +308,6 @@ def main() -> None:
         observer.stop()
         observer.join()
         worker_thread.join(timeout=2)
-
-
-def _load_watchdog_classes() -> dict[str, Any]:
-    try:
-        from watchdog.events import FileSystemEventHandler
-        from watchdog.observers import Observer
-    except ModuleNotFoundError as exc:
-        raise RuntimeError(
-            "Missing dependency 'watchdog'. Install analysis/environment.yml."
-        ) from exc
-
-    return {
-        "FileSystemEventHandler": FileSystemEventHandler,
-        "Observer": Observer,
-    }
 
 
 if __name__ == "__main__":
