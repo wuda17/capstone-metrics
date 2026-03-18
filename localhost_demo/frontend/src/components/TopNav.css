@@ -1,4 +1,5 @@
 .topnav {
+  position: relative;
   display: flex;
   align-items: center;
   height: 52px;
@@ -8,12 +9,11 @@
   flex-shrink: 0;
 }
 
-/* Logo — fixed width so center segment stays truly centered */
+/* Logo */
 .topnav-logo {
   display: flex;
   align-items: center;
   flex: 1;
-  position: relative;
 }
 .topnav-logo-img {
   height: 28px;
@@ -29,10 +29,11 @@
 .topnav-logo-icon { font-size: 17px; color: var(--accent); }
 .topnav-logo-text { font-size: 15px; font-weight: 700; letter-spacing: -0.3px; }
 
-/* Segmented control — sits in the middle */
+/* Segmented control — absolute center so logo/patient widths don't affect it */
 .topnav-seg-wrap {
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .topnav-seg {
@@ -45,7 +46,10 @@
 }
 
 .topnav-seg-btn {
-  padding: 5px 22px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 16px;
   border-radius: 7px;
   border: none;
   background: transparent;
@@ -66,10 +70,10 @@
   background: var(--surface);
   color: var(--text);
   font-weight: 600;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
-/* Patient status — fixed width, aligned right */
+/* Patient status */
 .topnav-patient {
   display: flex;
   align-items: center;

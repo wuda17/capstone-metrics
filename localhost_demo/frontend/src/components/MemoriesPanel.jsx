@@ -1,7 +1,7 @@
 import { useRef, useCallback, useState, useEffect, useMemo } from 'react'
 import { Brain, CalendarClock, ZoomIn, ZoomOut, Maximize2, RefreshCw, X } from 'lucide-react'
 import { useMemories } from '../hooks/useApi.js'
-import { ACCENT, SUCCESS, WARNING, DANGER, TEAL } from '../theme.js'
+import { ACCENT, SUCCESS, WARNING, DANGER, TEAL, BG, LINK, LINK_CO } from '../theme.js'
 import './MemoriesPanel.css'
 
 // ── constants ─────────────────────────────────────────────────────────────────
@@ -74,7 +74,7 @@ function makeNodeRenderer(selected) {
       const fontSize = Math.max(7, 9 / globalScale)
       ctx.globalAlpha = 1.0
       ctx.font = `${fontSize}px -apple-system, sans-serif`
-      ctx.fillStyle = '#f0e8e0'
+      ctx.fillStyle = '#2a1f18'
       ctx.textAlign = 'center'
       const label = node.content.length > 32 ? node.content.slice(0, 32) + '…' : node.content
       ctx.fillText(label, node.x, node.y + size + fontSize + 2)
@@ -239,7 +239,7 @@ export default function MemoriesPanel() {
     setSelected(prev => prev?.id === cluster.id ? null : cluster)
   }, [])
 
-  const linkColor = useCallback(link => link.co_session ? '#3a3a50' : '#252530', [])
+  const linkColor = useCallback(link => link.co_session ? LINK_CO : LINK, [])
   const linkWidth = useCallback(link => link.co_session ? 1.5 : Math.max(0.3, (link.value ?? 0) * 2), [])
 
   return (
@@ -281,7 +281,7 @@ export default function MemoriesPanel() {
               graphData={graphData}
               width={dims.w}
               height={dims.h}
-              backgroundColor="#0d0908"
+              backgroundColor={BG}
               nodeCanvasObject={nodeCanvasObject}
               nodeCanvasObjectMode={() => 'replace'}
               linkColor={linkColor}

@@ -8,35 +8,35 @@
 
 :root {
   /* ── Backgrounds ─────────────────────────────────────────────────────────── */
-  --bg:         #0d0908;
-  --surface:    #141008;
-  --surface-2:  #1c1510;
-  --surface-3:  #241c17;
+  --bg:         #faf6f2;   /* warm cream */
+  --surface:    #ffffff;
+  --surface-2:  #f5f0eb;
+  --surface-3:  #ede8e0;
 
   /* ── Borders ─────────────────────────────────────────────────────────────── */
-  --border:     #2e221c;
-  --border-dim: #221a15;
+  --border:     #e0d4c8;
+  --border-dim: #ede8e0;
 
   /* ── Text ────────────────────────────────────────────────────────────────── */
-  --text:       #f0e8e0;
-  --text-muted: #9a8878;
-  --text-dim:   #5a4a40;
+  --text:       #2a1f18;
+  --text-muted: #7a5e50;
+  --text-dim:   #b8a090;
 
   /* ── Brand ───────────────────────────────────────────────────────────────── */
-  --accent:      #c8695a;   /* soft terracotta red */
-  --accent-glow: #c8695a33;
-  --accent-dim:  #7a3028;
-  --secondary:   #c4a882;   /* warm beige */
+  --accent:      #c8695a;
+  --accent-glow: #c8695a22;
+  --accent-dim:  #f0cfc8;
+  --secondary:   #b8935e;   /* slightly richer beige for light bg legibility */
 
   /* ── Semantic ────────────────────────────────────────────────────────────── */
-  --teal:       #5ab8a0;
-  --teal-glow:  #5ab8a030;
-  --success:    #5cbd88;
-  --success-bg: #5cbd8818;
-  --warning:    #e8a84a;
-  --warning-bg: #e8a84a18;
-  --danger:     #c94040;
-  --danger-bg:  #c9404018;
+  --teal:       #3aaa92;
+  --teal-glow:  #3aaa9220;
+  --success:    #2a9e62;
+  --success-bg: #edf7f2;
+  --warning:    #c07a10;
+  --warning-bg: #fdf4e5;
+  --danger:     #bf3030;
+  --danger-bg:  #fdecea;
 
   /* ── Shape ───────────────────────────────────────────────────────────────── */
   --radius:    10px;

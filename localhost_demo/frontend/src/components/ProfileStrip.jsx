@@ -96,7 +96,7 @@ export default function ProfileStrip({ current }) {
                   isAnimationActive={false}
                 />
                 <Tooltip
-                  contentStyle={{ background: '#1c1510', border: '1px solid #2e221c', fontSize: 11, borderRadius: 6 }}
+                  contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', fontSize: 11, borderRadius: 6, color: 'var(--text)' }}
                   formatter={v => [v, 'sessions']}
                   labelFormatter={l => l}
                 />
