@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-02-25T10:40:00.116739+00:00",
+    "day": "2026-02-25"
+  },
+  "source_file": "session_000.wav",
+  "transcript": "Today I went to the park with my daughter Sarah. The weather was just beautiful, really lovely. We fed the ducks and had ice cream after. It was a really nice afternoon, I felt very relaxed.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 147.761,
+      "articulation_rate_wpm": 158.258,
+      "phonation_to_time_ratio": 0.7889,
+      "mean_pause_duration_sec": 0.538,
+      "word_count": 36,
+      "duration_sec": 14.62
+    },
+    "lexical": {
+      "emotion_score": 0.0765,
+      "self_pronoun_ratio": 0.0833,
+      "type_token_ratio": 0.8611
+    },
+    "prosody": {
+      "f0_mean_hz": 197.4113,
+      "jitter_local": 0.02024,
+      "shimmer_local_db": 1.032866
+    },
+    "spectral": {}
+  }
+}

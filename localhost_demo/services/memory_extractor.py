@@ -23,7 +23,7 @@ Return ONLY a JSON array, no other text. Each object:
   "keywords": ["2-4 key terms"]
 }}
 
-Focus on meaningful, distinct items. Avoid generic observations.
+Focus on meaningful, distinct items. Avoid generic observations. And keep each memory to under 10 words.
 
 Transcript date: {date}
 Transcript: "{text}"
@@ -83,7 +83,7 @@ class MemoryExtractor:
                 self._model = False
                 return None
             genai.configure(api_key=key)
-            self._model = genai.GenerativeModel("gemini-1.5-flash")
+            self._model = genai.GenerativeModel("gemini-2.5-flash")
             return self._model
         except ImportError:
             self._model = False

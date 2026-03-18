@@ -2,8 +2,9 @@
 
 .profile-strip-wrap {
   flex-shrink: 0;
-  background: var(--bg);
+  background: var(--surface);
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* Toggle bar — always visible */
@@ -28,6 +29,21 @@
   color: var(--text-dim);
 }
 
+.ps-patient-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  flex: 1;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.ps-status-dot   { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.ps-status-name  { font-weight: 600; color: var(--text); }
+.ps-status-label { color: var(--text-muted); }
+.ps-status-date  { color: var(--text-dim); }
+
 .ps-toggle-icon {
   font-size: 11px;
   color: var(--text-dim);
@@ -38,7 +54,7 @@
 .profile-strip {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 170px 210px;
-  background: var(--bg);
+  background: var(--surface);
 }
 
 /* Base card */
@@ -67,7 +83,7 @@
 
 /* Summary text — clamp to 4 lines */
 .ps-summary-text {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
   color: var(--text-muted);
   margin: 0;
@@ -100,7 +116,7 @@
 
 /* Latest card */
 .ps-latest-text {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
   color: var(--text-muted);
   font-style: italic;
@@ -111,8 +127,8 @@
   overflow: hidden;
 }
 .ps-latest-time {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--text-dim);
   flex-shrink: 0;
 }
-.ps-empty { font-size: 12px; color: var(--text-dim); font-style: italic; margin: 0; }
+.ps-empty { font-size: 13px; color: var(--text-dim); font-style: italic; margin: 0; }

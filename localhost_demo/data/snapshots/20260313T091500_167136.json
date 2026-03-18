@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-13T09:15:00.235612+00:00",
+    "day": "2026-03-13"
+  },
+  "source_file": "session_016.wav",
+  "transcript": "Went to the supermarket this morning. Bumped into my neighbour Patricia at the checkout. We chatted for a while about the new road works on the high street. Picked up some fresh flowers.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 133.808,
+      "articulation_rate_wpm": 160.377,
+      "phonation_to_time_ratio": 0.7592,
+      "mean_pause_duration_sec": 0.643,
+      "word_count": 33,
+      "duration_sec": 14.8
+    },
+    "lexical": {
+      "emotion_score": 0.1076,
+      "self_pronoun_ratio": 0.0303,
+      "type_token_ratio": 0.9091
+    },
+    "prosody": {
+      "f0_mean_hz": 202.9951,
+      "jitter_local": 0.030328,
+      "shimmer_local_db": 1.230421
+    },
+    "spectral": {}
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-10T10:20:00.512340+00:00",
+    "day": "2026-03-10"
+  },
+  "source_file": "session_013.wav",
+  "transcript": "Slept quite poorly again. Keep waking at around three in the morning and then cannot get back to sleep. Feel groggy and slow today. Not much energy to do things. Just sat and watched television.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 152.348,
+      "articulation_rate_wpm": 165.07,
+      "phonation_to_time_ratio": 0.8342,
+      "mean_pause_duration_sec": 0.512,
+      "word_count": 35,
+      "duration_sec": 13.78
+    },
+    "lexical": {
+      "emotion_score": -0.7012,
+      "self_pronoun_ratio": 0,
+      "type_token_ratio": 0.9143
+    },
+    "prosody": {
+      "f0_mean_hz": 198.3933,
+      "jitter_local": 0.026222,
+      "shimmer_local_db": 1.020455
+    },
+    "spectral": {}
+  }
+}

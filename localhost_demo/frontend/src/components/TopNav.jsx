@@ -7,22 +7,7 @@ const TABS = [
   { id: 'wellbeing', label: 'Wellbeing', Icon: HeartPulse },
 ]
 
-function emotionMeta(emo) {
-  if (emo == null) return { color: '#555', label: null }
-  if (emo > 0.1)   return { color: '#5cbd88', label: 'Positive' }
-  if (emo < -0.1)  return { color: '#c94040', label: 'Concerning' }
-  return              { color: '#e8a84a', label: 'Neutral' }
-}
-
-export default function TopNav({ page, onNavigate, current }) {
-  const lastItem = current?.transcripts?.items?.at(-1)
-  const lastTime = lastItem
-    ? new Date(lastItem.event_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-    : null
-
-  const emo = current?.metrics?.current?.values?.emotion_score ?? null
-  const { color: emoColor, label: emoLabel } = emotionMeta(emo)
-
+export default function TopNav({ page, onNavigate }) {
   return (
     <nav className="topnav">
 
@@ -55,13 +40,8 @@ export default function TopNav({ page, onNavigate, current }) {
         </div>
       </div>
 
-      {/* Patient status */}
-      <div className="topnav-patient">
-        <span className="patient-dot" style={{ background: emoColor }} />
-        <span className="patient-name">Emily</span>
-        {emoLabel && <span className="patient-status">{emoLabel}</span>}
-        {lastTime  && <span className="patient-last">· {lastTime}</span>}
-      </div>
+      {/* Spacer to keep segmented control centered */}
+      <div className="topnav-spacer" />
 
     </nav>
   )

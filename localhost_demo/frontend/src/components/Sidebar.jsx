@@ -20,12 +20,11 @@ export default function Sidebar({ page, onNavigate, current }) {
     <aside className="sidebar">
       <div className="sidebar-logo">
         <img
-          src="/brand/company.png"
+          src="/brand/logo.png"
           alt="FerbAI"
           className="logo-img"
           onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'block' }}
         />
-        <span className="logo-text logo-text-fallback">FerbAI</span>
       </div>
 
       <div className="patient-card">

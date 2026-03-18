@@ -5,6 +5,13 @@ import { useSummary } from '../hooks/useApi.js'
 import { ACCENT } from '../theme.js'
 import './ProfileStrip.css'
 
+function emotionMeta(emo) {
+  if (emo == null) return { color: '#aaa', label: null }
+  if (emo > 0.1)  return { color: '#2a9e62', label: 'Positive' }
+  if (emo < -0.1) return { color: '#bf3030', label: 'Concerning' }
+  return              { color: '#c07a10', label: 'Neutral' }
+}
+
 const PERIODS = [
   { key: 'today', label: 'Today',      color: '#5ab8a0', Icon: Sun          },
   { key: 'week',  label: 'This Week',  color: '#c8695a', Icon: CalendarDays  },
@@ -37,12 +44,24 @@ export default function ProfileStrip({ current }) {
   const weekTotal  = sparkData.reduce((a, d) => a + d.sessions, 0)
   const latestItem = current?.transcripts?.items?.at(-1)
 
+  const emo = current?.metrics?.current?.values?.emotion_score ?? null
+  const { color: emoColor, label: emoLabel } = emotionMeta(emo)
+  const lastTime = latestItem
+    ? new Date(latestItem.event_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+    : null
+
   return (
     <div className={`profile-strip-wrap${collapsed ? ' ps-collapsed' : ''}`}>
 
       {/* Collapse toggle bar */}
       <div className="ps-toggle-bar" onClick={() => setCollapsed(c => !c)}>
-        <span className="ps-toggle-label">Patient Overview</span>
+        <span className="ps-toggle-label">Emily at a Glance</span>
+        <div className="ps-patient-status">
+          <span className="ps-status-dot" style={{ background: emoColor }} />
+          <span className="ps-status-name">Emily</span>
+          {emoLabel && <span className="ps-status-label">{emoLabel}</span>}
+          {lastTime  && <span className="ps-status-date">· {lastTime}</span>}
+        </div>
         {collapsed
           ? <ChevronDown size={13} strokeWidth={2} className="ps-toggle-icon" />
           : <ChevronUp   size={13} strokeWidth={2} className="ps-toggle-icon" />

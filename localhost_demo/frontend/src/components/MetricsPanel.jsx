@@ -266,7 +266,7 @@ export default function MetricsPanel({ current, history }) {
       {/* Radar */}
       <div className="section">
         <h3 className="section-title"><RadarIcon size={14} strokeWidth={2} /> Wellbeing Snapshot</h3>
-        <p className="section-sub">Gray = baseline (50) · Terracotta = current status · Outer = better</p>
+        <p className="section-sub">Outer = better</p>
         <div className="chart-wrap radar-wrap">
           <ResponsiveContainer width="100%" height={280}>
             <RadarChart data={radarData} outerRadius={100}>

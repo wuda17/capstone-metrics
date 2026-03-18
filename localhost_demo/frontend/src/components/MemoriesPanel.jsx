@@ -39,20 +39,29 @@ function fmtFull(iso) {
 function makeNodeRenderer(selected) {
   return (node, ctx, globalScale) => {
     const isSelected = selected?.id === node.id
-    const size = node.size ?? 6
+    const size = node.size ?? 10
 
     if (isSelected) {
       ctx.beginPath()
-      ctx.arc(node.x, node.y, size + 5, 0, 2 * Math.PI)
+      ctx.arc(node.x, node.y, size + 7, 0, 2 * Math.PI)
       ctx.fillStyle = FACT_COLOR + '40'
       ctx.fill()
       ctx.strokeStyle = FACT_COLOR
-      ctx.lineWidth = 1.5
+      ctx.lineWidth = 2
       ctx.stroke()
     }
 
+    // Glow halo
+    ctx.save()
+    ctx.globalAlpha = 0.18
+    ctx.beginPath()
+    ctx.arc(node.x, node.y, size + 5, 0, 2 * Math.PI)
+    ctx.fillStyle = FACT_COLOR
+    ctx.fill()
+    ctx.restore()
+
     // Diamond
-    const s = size * 1.1
+    const s = size * 1.15
     ctx.beginPath()
     ctx.moveTo(node.x,     node.y - s)
     ctx.lineTo(node.x + s, node.y)
@@ -62,22 +71,15 @@ function makeNodeRenderer(selected) {
     ctx.fillStyle = FACT_COLOR
     ctx.fill()
 
-    ctx.save()
-    ctx.globalAlpha = 0.12
-    ctx.beginPath()
-    ctx.arc(node.x, node.y, size + 3, 0, 2 * Math.PI)
-    ctx.fillStyle = FACT_COLOR
-    ctx.fill()
-    ctx.restore()
-
-    if (globalScale > 1.6 || isSelected) {
-      const fontSize = Math.max(7, 9 / globalScale)
-      ctx.globalAlpha = 1.0
+    // Label — only when zoomed in or selected
+    if (globalScale > 1.4 || isSelected) {
+      const fontSize = Math.max(8, 10 / globalScale)
+      ctx.globalAlpha = isSelected ? 0.85 : 0.5
       ctx.font = `${fontSize}px -apple-system, sans-serif`
       ctx.fillStyle = '#2a1f18'
       ctx.textAlign = 'center'
-      const label = node.content.length > 32 ? node.content.slice(0, 32) + '…' : node.content
-      ctx.fillText(label, node.x, node.y + size + fontSize + 2)
+      const label = node.content.length > 28 ? node.content.slice(0, 28) + '…' : node.content
+      ctx.fillText(label, node.x, node.y + s + fontSize + 3)
     }
 
     ctx.globalAlpha = 1.0
@@ -231,6 +233,13 @@ export default function MemoriesPanel() {
     [timelineData, tlFilter]
   )
 
+  useEffect(() => {
+    const g = graphRef.current
+    if (!g || !graphData.nodes.length) return
+    g.d3Force('charge')?.strength(-120)
+    g.d3Force('link')?.distance(60)
+  }, [GraphComp, graphData])
+
   const handleNodeClick = useCallback(node => {
     setSelected(prev => prev?.id === node.id ? null : node)
   }, [])
@@ -239,8 +248,8 @@ export default function MemoriesPanel() {
     setSelected(prev => prev?.id === cluster.id ? null : cluster)
   }, [])
 
-  const linkColor = useCallback(link => link.co_session ? LINK_CO : LINK, [])
-  const linkWidth = useCallback(link => link.co_session ? 1.5 : Math.max(0.3, (link.value ?? 0) * 2), [])
+  const linkColor = useCallback(link => link.co_session ? LINK_CO : LINK_CO, [])
+  const linkWidth = useCallback(link => link.co_session ? 2.5 : Math.max(1.2, (link.value ?? 1) * 2.5), [])
 
   return (
     <div className="memories-panel">
@@ -250,7 +259,7 @@ export default function MemoriesPanel() {
         <div>
           <h2 className="panel-title"><Brain size={18} strokeWidth={2} /> Memories</h2>
           <p className="panel-sub">
-            Fact graph — what is known about Emily. &nbsp;·&nbsp; Events &amp; moods timeline — what happened and how she felt.
+            Related personal details and facts.
           </p>
         </div>
         <div className="graph-controls">
@@ -286,12 +295,14 @@ export default function MemoriesPanel() {
               nodeCanvasObjectMode={() => 'replace'}
               linkColor={linkColor}
               linkWidth={linkWidth}
-              linkOpacity={0.7}
+              linkOpacity={1}
               onNodeClick={handleNodeClick}
               nodeLabel={() => ''}
-              cooldownTicks={150}
-              d3AlphaDecay={0.02}
-              d3VelocityDecay={0.3}
+              warmupTicks={120}
+              cooldownTicks={80}
+              d3AlphaDecay={0.03}
+              d3VelocityDecay={0.5}
+              onEngineStop={() => graphRef.current?.zoomToFit(300, 60)}
             />
           )}
         </div>
@@ -304,7 +315,10 @@ export default function MemoriesPanel() {
       {/* Events & moods timeline */}
       <div className="timeline-section">
         <div className="timeline-header">
-          <span className="tl-title"><CalendarClock size={14} strokeWidth={2} /> Events &amp; Moods</span>
+          <div>
+            <h2 className="panel-title"><CalendarClock size={18} strokeWidth={2} /> Events &amp; Moods</h2>
+            <p className="panel-sub">Significant events and emotional moments clustered over time.</p>
+          </div>
           <div className="filter-pills">
             {TL_FILTERS.map(f => {
               const color = f === 'event' ? '#14c8a8' : f === 'mood' ? '#f5a623' : 'var(--text-muted)'

@@ -94,7 +94,7 @@ class ChatService:
             f"PAST 24 HOURS:\n{_corpus(1)[:1500]}\n\n"
             f"PAST 7 DAYS:\n{_corpus(7)[:2000]}\n\n"
             f"PAST 30 DAYS:\n{_corpus(30)[:2500]}\n\n"
-            "Return a JSON object with exactly these three keys. Each value must be 2-3 sentences "
+            "Return a JSON object with exactly these three keys. Each value must be 1 sentence maximum "
             "of warm, professional prose for a caretaker — covering wellbeing, notable events, "
             "mood patterns, and any concerns worth flagging.\n\n"
             '{"today": "...", "week": "...", "month": "..."}\n\n'
@@ -127,7 +127,7 @@ class ChatService:
                 self._model = False
                 return None
             genai.configure(api_key=key)
-            self._model = genai.GenerativeModel("gemini-1.5-flash")
+            self._model = genai.GenerativeModel("gemini-2.5-flash")
             return self._model
         except ImportError:
             self._model = False

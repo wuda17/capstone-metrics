@@ -46,21 +46,14 @@ export default function ChatBot({ open, onToggle }) {
   return (
     <>
       {/* Persistent FAB */}
-      <button className={`ferb-fab ${open ? 'open' : ''}`} onClick={onToggle} title="Ask Ferb">
-        {open ? (
-          <X size={18} strokeWidth={2} className="ferb-fab-icon" />
-        ) : (
-          <>
-            <img
-              src="/brand/logo.png"
-              alt=""
-              className="ferb-fab-img"
-              onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
-            />
-            <span className="ferb-fab-icon ferb-fab-fallback">F</span>
-            <span className="ferb-fab-label">Ferb</span>
-          </>
-        )}
+      <button className="ferb-fab" onClick={onToggle} title="Ask Ferb">
+        <img
+          src="/brand/logo.png"
+          alt=""
+          className="ferb-fab-img"
+          onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
+        />
+        <span className="ferb-fab-icon ferb-fab-fallback">F</span>
       </button>
 
       {/* Chat panel */}
