@@ -35,7 +35,6 @@ export default function TopNav({ page, onNavigate, current }) {
           onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'flex' }}
         />
         <div className="topnav-logo-fallback">
-          <span className="topnav-logo-icon">◈</span>
           <span className="topnav-logo-text">FerbAI</span>
         </div>
       </div>

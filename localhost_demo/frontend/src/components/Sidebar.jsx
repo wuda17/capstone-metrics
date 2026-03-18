@@ -3,7 +3,7 @@ import './Sidebar.css'
 const NAV = [
   { id: 'home',      label: 'Home',      icon: '⌂' },
   { id: 'summary',   label: 'Summaries', icon: '✦' },
-  { id: 'memories',  label: 'Memories',  icon: '◈' },
+  { id: 'memories',  label: 'Memories',  icon: '⬡' },
   { id: 'wellbeing', label: 'Wellbeing', icon: '◉' },
 ]
 
@@ -19,8 +19,13 @@ export default function Sidebar({ page, onNavigate, current }) {
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
-        <span className="logo-icon">◈</span>
-        <span className="logo-text">FerbAI</span>
+        <img
+          src="/brand/company.png"
+          alt="FerbAI"
+          className="logo-img"
+          onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'block' }}
+        />
+        <span className="logo-text logo-text-fallback">FerbAI</span>
       </div>
 
       <div className="patient-card">

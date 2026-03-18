@@ -52,11 +52,11 @@ export default function EntryPage() {
           <div className="home-empty">
             <img
               src="/brand/logo.png"
-              alt="FerbAI"
+              alt="Ferb"
               className="home-logo-img"
               onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'block' }}
             />
-            <span className="home-logo home-logo-fallback">◈</span>
+            <span className="home-logo home-logo-fallback">F</span>
             <h1 className="home-heading">What would you like to know about Emily?</h1>
             <p className="home-sub">
               Ask anything about her recent conversations, mood patterns, or speech trends.
@@ -74,7 +74,7 @@ export default function EntryPage() {
                       className="hm-avatar-img"
                       onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
                     />
-                    <span className="hm-avatar-fallback">◈</span>
+                    <span className="hm-avatar-fallback">F</span>
                   </span>
                 )}
                 <div className="hm-bubble">{m.text}</div>
@@ -90,7 +90,7 @@ export default function EntryPage() {
                     className="hm-avatar-img"
                     onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
                   />
-                  <span className="hm-avatar-fallback">◈</span>
+                  <span className="hm-avatar-fallback">F</span>
                 </span>
                 <div className="hm-bubble hm-typing">
                   <span /><span /><span />
@@ -132,7 +132,7 @@ export default function EntryPage() {
             <ArrowUp size={16} strokeWidth={2.5} />
           </button>
         </div>
-        <p className="home-input-hint">FerbAI may make mistakes. Always verify clinical decisions independently.</p>
+        <p className="home-input-hint">Ferb may make mistakes. Always verify clinical decisions independently.</p>
       </div>
 
     </div>

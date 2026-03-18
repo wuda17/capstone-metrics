@@ -12,7 +12,7 @@ const SUGGESTIONS = [
 export default function ChatBot({ open, onToggle }) {
   const [messages, setMessages] = useState([{
     role: 'assistant',
-    text: "Hi! I'm FerbAI. Ask me anything about Emily — her recent conversations, mood patterns, or weekly summaries.",
+    text: "Hi! I'm Ferb. Ask me anything about Emily — her recent conversations, mood patterns, or weekly summaries.",
   }])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -46,7 +46,7 @@ export default function ChatBot({ open, onToggle }) {
   return (
     <>
       {/* Persistent FAB */}
-      <button className={`ferb-fab ${open ? 'open' : ''}`} onClick={onToggle} title="Ask FerbAI">
+      <button className={`ferb-fab ${open ? 'open' : ''}`} onClick={onToggle} title="Ask Ferb">
         {open ? (
           <X size={18} strokeWidth={2} className="ferb-fab-icon" />
         ) : (
@@ -57,7 +57,7 @@ export default function ChatBot({ open, onToggle }) {
               className="ferb-fab-img"
               onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
             />
-            <span className="ferb-fab-icon ferb-fab-fallback">◈</span>
+            <span className="ferb-fab-icon ferb-fab-fallback">F</span>
             <span className="ferb-fab-label">Ferb</span>
           </>
         )}
@@ -73,8 +73,8 @@ export default function ChatBot({ open, onToggle }) {
               className="chat-logo-img"
               onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
             />
-            <span className="chat-logo chat-logo-fallback">◈</span>
-            <span className="chat-title">FerbAI</span>
+            <span className="chat-logo chat-logo-fallback">F</span>
+            <span className="chat-title">Ferb</span>
             <span className="chat-subtitle">Ask me about Emily</span>
             <button className="chat-close" onClick={onToggle}>
               <X size={14} strokeWidth={2} />
@@ -92,7 +92,7 @@ export default function ChatBot({ open, onToggle }) {
                       className="msg-avatar-img"
                       onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
                     />
-                    <span className="msg-avatar-fallback">◈</span>
+                    <span className="msg-avatar-fallback">F</span>
                   </span>
                 )}
                 <div className="msg-bubble">{m.text}</div>
@@ -108,7 +108,7 @@ export default function ChatBot({ open, onToggle }) {
                     className="msg-avatar-img"
                     onError={e => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'inline' }}
                   />
-                  <span className="msg-avatar-fallback">◈</span>
+                  <span className="msg-avatar-fallback">F</span>
                 </span>
                 <div className="msg-bubble typing">
                   <span /><span /><span />

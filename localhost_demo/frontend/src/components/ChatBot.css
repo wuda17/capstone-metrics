@@ -131,9 +131,9 @@
 }
 
 .chat-msg.user .msg-bubble {
-  background: var(--accent-dim);
-  border: 1px solid var(--accent-dim);
-  color: #c0b8ff;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #ffffff;
   border-top-right-radius: 4px;
 }
 
