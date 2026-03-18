@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-09T15:40:00.312942+00:00",
+    "day": "2026-03-09"
+  },
+  "source_file": "session_012.wav",
+  "transcript": "Made banana bread this afternoon. The whole house smells amazing. I put some walnuts in like my mother used to. I will save a slice for when the nurse comes tomorrow morning.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 142.717,
+      "articulation_rate_wpm": 156.749,
+      "phonation_to_time_ratio": 0.8092,
+      "mean_pause_duration_sec": 0.589,
+      "word_count": 32,
+      "duration_sec": 13.45
+    },
+    "lexical": {
+      "emotion_score": -0.0003,
+      "self_pronoun_ratio": 0.0938,
+      "type_token_ratio": 0.9375
+    },
+    "prosody": {
+      "f0_mean_hz": 184.5302,
+      "jitter_local": 0.022724,
+      "shimmer_local_db": 1.047343
+    },
+    "spectral": {}
+  }
+}

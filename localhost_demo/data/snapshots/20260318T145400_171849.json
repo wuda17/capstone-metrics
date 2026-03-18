@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-18T14:54:00.194851+00:00",
+    "day": "2026-03-18"
+  },
+  "source_file": "session_024.wav",
+  "transcript": "Feeling more like myself today. Had a proper breakfast and did some watering in the garden. The sweet peas are coming along beautifully. Might cut some for the vase on the kitchen table.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 113.919,
+      "articulation_rate_wpm": 138.344,
+      "phonation_to_time_ratio": 0.719,
+      "mean_pause_duration_sec": 0.779,
+      "word_count": 33,
+      "duration_sec": 17.38
+    },
+    "lexical": {
+      "emotion_score": 0.2111,
+      "self_pronoun_ratio": 0.0303,
+      "type_token_ratio": 0.8788
+    },
+    "prosody": {
+      "f0_mean_hz": 188.7815,
+      "jitter_local": 0.034565,
+      "shimmer_local_db": 1.377845
+    },
+    "spectral": {}
+  }
+}

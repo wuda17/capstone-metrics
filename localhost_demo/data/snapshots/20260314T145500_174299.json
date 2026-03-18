@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-14T14:55:00.346479+00:00",
+    "day": "2026-03-14"
+  },
+  "source_file": "session_017.wav",
+  "transcript": "Did some gentle stretching exercises this morning following that video Sarah showed me. My back felt much better afterwards. I should try to do it every morning if I remember to.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 129.851,
+      "articulation_rate_wpm": 151.921,
+      "phonation_to_time_ratio": 0.7116,
+      "mean_pause_duration_sec": 0.643,
+      "word_count": 31,
+      "duration_sec": 14.32
+    },
+    "lexical": {
+      "emotion_score": -0.0172,
+      "self_pronoun_ratio": 0.0968,
+      "type_token_ratio": 0.9355
+    },
+    "prosody": {
+      "f0_mean_hz": 188.3117,
+      "jitter_local": 0.02388,
+      "shimmer_local_db": 1.20702
+    },
+    "spectral": {}
+  }
+}

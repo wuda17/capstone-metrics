@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-07T10:29:00.554816+00:00",
+    "day": "2026-03-07"
+  },
+  "source_file": "session_010.wav",
+  "transcript": "Felt a bit anxious this morning, not sure why. Just a general feeling of unease. I did my breathing exercises and that helped a little. Had a cup of tea and sat in the garden for a while.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 159.719,
+      "articulation_rate_wpm": 160.206,
+      "phonation_to_time_ratio": 0.8278,
+      "mean_pause_duration_sec": 0.526,
+      "word_count": 38,
+      "duration_sec": 14.28
+    },
+    "lexical": {
+      "emotion_score": -0.0078,
+      "self_pronoun_ratio": 0.0526,
+      "type_token_ratio": 0.8421
+    },
+    "prosody": {
+      "f0_mean_hz": 193.8698,
+      "jitter_local": 0.020615,
+      "shimmer_local_db": 1.037918
+    },
+    "spectral": {}
+  }
+}

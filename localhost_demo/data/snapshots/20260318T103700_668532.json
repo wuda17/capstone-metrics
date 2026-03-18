@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-18T10:37:00.771476+00:00",
+    "day": "2026-03-18"
+  },
+  "source_file": "session_023.wav",
+  "transcript": "Had a lovely dream about John last night. We were dancing, like we used to at the village hall. Woke up feeling sad but also warm, if that makes sense. I still miss him every single day.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 126.188,
+      "articulation_rate_wpm": 144.181,
+      "phonation_to_time_ratio": 0.7501,
+      "mean_pause_duration_sec": 0.772,
+      "word_count": 37,
+      "duration_sec": 17.59
+    },
+    "lexical": {
+      "emotion_score": -0.0603,
+      "self_pronoun_ratio": 0.027,
+      "type_token_ratio": 0.973
+    },
+    "prosody": {
+      "f0_mean_hz": 192.7501,
+      "jitter_local": 0.034209,
+      "shimmer_local_db": 1.55924
+    },
+    "spectral": {}
+  }
+}
