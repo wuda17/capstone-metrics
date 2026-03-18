@@ -36,9 +36,10 @@ from .temporal import (
 
 # Lexical & semantic metrics
 from .lexical_semantic import (
+    emotion_score,
     extract_lexical_semantic_metrics,
     filler_word_count,
-    self_focus_ratio,
+    self_pronoun_ratio,
     sentiment_polarity,
     tokenize_text,
     type_token_ratio,
@@ -92,7 +93,8 @@ __all__ = [
     # Lexical & semantic
     "tokenize_text",
     "type_token_ratio",
-    "self_focus_ratio",
+    "self_pronoun_ratio",
+    "emotion_score",
     "filler_word_count",
     "sentiment_polarity",
     "extract_lexical_semantic_metrics",

@@ -20,3 +20,12 @@ dependencies:
       - watchdog
       - streamlit
       - pandas
+      - spacy
+      - transformers
+      - torch
+      # FerbAI dashboard API
+      - fastapi
+      - "uvicorn[standard]"
+      - scikit-learn
+      - anthropic
+      - nltk
