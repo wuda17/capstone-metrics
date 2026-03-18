@@ -1,6 +1,73 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache
+.pytest_cache/
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ── Virtual environments ───────────────────────────────────────────────────────
 myenv/
+venv/
+env/
+.venv/
+.env/
+conda-env/
+
+# ── Environment / secrets ──────────────────────────────────────────────────────
+.env
+.env.*
+*.key
+
+# ── Node / frontend ────────────────────────────────────────────────────────────
+node_modules/
+localhost_demo/frontend/dist/
+localhost_demo/frontend/.vite/
+*.local
+
+# ── Models & large binaries ────────────────────────────────────────────────────
 model/
+models/
+*.pt
+*.pth
+*.onnx
+*.bin
+*.safetensors
 
+# ── Audio ─────────────────────────────────────────────────────────────────────
 recordings/
+*.wav
+*.mp3
+*.flac
+*.ogg
 
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── IDEs ──────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Legacy ignores ────────────────────────────────────────────────────────────
 memory.json
