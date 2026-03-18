@@ -1,0 +1,115 @@
+/* ── Wrapper ────────────────────────────────────────────────────────────── */
+
+.profile-strip-wrap {
+  flex-shrink: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Toggle bar — always visible */
+.ps-toggle-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+.ps-collapsed .ps-toggle-bar { border-bottom: none; }
+.ps-toggle-bar:hover { background: var(--surface); }
+
+.ps-toggle-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-dim);
+}
+
+.ps-toggle-icon {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* ── Cards grid ─────────────────────────────────────────────────────────── */
+
+.profile-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 170px 210px;
+  background: var(--bg);
+}
+
+/* Base card */
+.ps-card {
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  overflow: hidden;
+  border-right: 1px solid var(--border);
+}
+.ps-card:last-child { border-right: none; }
+
+/* Section label */
+.ps-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+/* Summary text — clamp to 4 lines */
+.ps-summary-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Loading skeleton */
+.ps-skeleton-lines { display: flex; flex-direction: column; gap: 7px; }
+.ps-skeleton {
+  height: 11px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  animation: ps-pulse 1.4s ease-in-out infinite;
+}
+@keyframes ps-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+/* Chart card */
+.ps-chart { gap: 4px; }
+.ps-chart-foot {
+  font-size: 10px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+/* Latest card */
+.ps-latest-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ps-latest-time {
+  font-size: 10px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+.ps-empty { font-size: 12px; color: var(--text-dim); font-style: italic; margin: 0; }

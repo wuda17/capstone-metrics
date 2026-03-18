@@ -1,0 +1,201 @@
+.home-chat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ── Scrollable body ─────────────────────────────────────────────────────── */
+
+.home-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+
+.home-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 48px 24px 0;
+  text-align: center;
+}
+
+.home-logo {
+  font-size: 52px;
+  color: var(--accent);
+  line-height: 1;
+  opacity: 0.9;
+}
+
+.home-heading {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--text);
+  max-width: 460px;
+  margin: 0;
+}
+
+.home-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 380px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Message list ────────────────────────────────────────────────────────── */
+
+.home-messages {
+  flex: 1;
+  padding: 28px 22% 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hm {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.hm--user { flex-direction: row-reverse; }
+
+.hm-avatar {
+  font-size: 15px;
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.hm-bubble {
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.65;
+  max-width: 74%;
+}
+
+.hm--assistant .hm-bubble {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-top-left-radius: 4px;
+}
+
+.hm--user .hm-bubble {
+  background: var(--accent);
+  color: #fff;
+  border-top-right-radius: 4px;
+}
+
+/* Typing indicator */
+.hm-typing {
+  display: flex !important;
+  gap: 5px;
+  align-items: center;
+  padding: 14px 18px !important;
+}
+.hm-typing span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  animation: hm-bounce 1.2s infinite;
+}
+.hm-typing span:nth-child(2) { animation-delay: 0.2s; }
+.hm-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes hm-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%           { transform: translateY(-5px); }
+}
+
+/* ── Suggestion chips ────────────────────────────────────────────────────── */
+
+.home-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  padding: 16px 22% 8px;
+}
+
+.home-chip {
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.12s, color 0.12s, background 0.12s;
+}
+.home-chip:hover {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+/* ── Input bar ───────────────────────────────────────────────────────────── */
+
+.home-input-wrap {
+  flex-shrink: 0;
+  padding: 12px 22% 14px;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.home-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 8px 8px 8px 18px;
+  transition: border-color 0.15s;
+}
+.home-input-row:focus-within { border-color: var(--accent); }
+
+.home-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+.home-input::placeholder { color: var(--text-dim); }
+
+.home-send {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.12s;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.home-send:disabled { opacity: 0.35; background: var(--surface-2); color: var(--text-dim); cursor: default; }
+
+.home-input-hint {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-align: center;
+  margin: 0;
+}
