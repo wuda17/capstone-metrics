@@ -48,7 +48,6 @@ from .lexical_semantic import (
 # Prosody/voice and spectral/cepstral metrics
 from .prosody_voice import extract_prosody_voice_metrics
 from .spectral import extract_spectral_metrics
-from .acoustic import extract_acoustic_metrics
 
 
 from .transcription import Transcriber
