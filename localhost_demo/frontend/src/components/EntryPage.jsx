@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { ArrowUp } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
 import { sendChatMessage } from '../hooks/useApi.js'
 import './EntryPage.css'
 
@@ -77,7 +78,9 @@ export default function EntryPage() {
                     <span className="hm-avatar-fallback">F</span>
                   </span>
                 )}
-                <div className="hm-bubble">{m.text}</div>
+                <div className="hm-bubble">
+                  {m.role === 'assistant' ? <ReactMarkdown>{m.text}</ReactMarkdown> : m.text}
+                </div>
               </div>
             ))}
 

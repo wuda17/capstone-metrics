@@ -1,0 +1,169 @@
+{
+  "meta": {
+    "schema_version": "2.0.0",
+    "generated_at": "2026-03-19T00:12:12.491358Z",
+    "segment_minutes": 1,
+    "snapshot_count": 2
+  },
+  "metrics": {
+    "time_series": [
+      {
+        "segment_start": "2026-03-18T20:08:00Z",
+        "segment_end": "2026-03-18T20:09:00Z",
+        "sample_count": 1,
+        "values": {
+          "speech_rate_wpm": 106.4,
+          "articulation_rate_wpm": 115.053,
+          "phonation_to_time_ratio": 0.7824,
+          "mean_pause_duration_sec": 0.227,
+          "f0_mean_hz": 132.373975,
+          "jitter_local": 0.022803,
+          "shimmer_local_db": 0.917049,
+          "emotion_score": 0.0,
+          "self_pronoun_ratio": 0.0625,
+          "type_token_ratio": 0.875
+        }
+      },
+      {
+        "segment_start": "2026-03-18T20:09:00Z",
+        "segment_end": "2026-03-18T20:10:00Z",
+        "sample_count": 1,
+        "values": {
+          "speech_rate_wpm": 106.4,
+          "articulation_rate_wpm": 115.053,
+          "phonation_to_time_ratio": 0.7824,
+          "mean_pause_duration_sec": 0.227,
+          "f0_mean_hz": 132.373975,
+          "jitter_local": 0.022803,
+          "shimmer_local_db": 0.917049,
+          "emotion_score": 0.0,
+          "self_pronoun_ratio": 0.0625,
+          "type_token_ratio": 0.875
+        }
+      }
+    ],
+    "baseline": {
+      "method": "earliest_percent",
+      "percent": 0.2,
+      "sample_count": 1,
+      "values": {
+        "speech_rate_wpm": 106.4,
+        "articulation_rate_wpm": 115.053,
+        "phonation_to_time_ratio": 0.7824,
+        "mean_pause_duration_sec": 0.227,
+        "f0_mean_hz": 132.373975,
+        "jitter_local": 0.022803,
+        "shimmer_local_db": 0.917049,
+        "emotion_score": 0.0,
+        "self_pronoun_ratio": 0.0625,
+        "type_token_ratio": 0.875
+      }
+    },
+    "current": {
+      "window_minutes": 1,
+      "sample_count": 0,
+      "values": {
+        "speech_rate_wpm": null,
+        "articulation_rate_wpm": null,
+        "phonation_to_time_ratio": null,
+        "mean_pause_duration_sec": null,
+        "f0_mean_hz": null,
+        "jitter_local": null,
+        "shimmer_local_db": null,
+        "emotion_score": 0.0,
+        "self_pronoun_ratio": 0.0,
+        "type_token_ratio": 0.0
+      }
+    }
+  },
+  "transcripts": {
+    "items": [
+      {
+        "event_time": "2026-03-18T20:09:37.970831",
+        "day": "2026-03-18",
+        "source_file": "test.wav",
+        "text": "Hello, hello, hello, today I'm going to talk about that time I made pizza and it",
+        "word_count": 16
+      },
+      {
+        "event_time": "2026-03-18T20:08:30.280641",
+        "day": "2026-03-18",
+        "source_file": "test.wav",
+        "text": "Hello, hello, hello, today I'm going to talk about that time I made pizza and it",
+        "word_count": 16
+      }
+    ]
+  },
+  "alerts": {
+    "items": [
+      {
+        "status": "alert",
+        "severity": "high",
+        "metric": "self_pronoun_ratio",
+        "delta_pct": -100.0,
+        "trend": "down",
+        "message": "self_pronoun_ratio is 100.0% below baseline."
+      },
+      {
+        "status": "alert",
+        "severity": "high",
+        "metric": "type_token_ratio",
+        "delta_pct": -100.0,
+        "trend": "down",
+        "message": "type_token_ratio is 100.0% below baseline."
+      }
+    ],
+    "deviations": {
+      "speech_rate_wpm": {
+        "from_current_window_pct": null,
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "articulation_rate_wpm": {
+        "from_current_window_pct": null,
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "phonation_to_time_ratio": {
+        "from_current_window_pct": null,
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "mean_pause_duration_sec": {
+        "from_current_window_pct": null,
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "f0_mean_hz": {
+        "from_current_window_pct": null,
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "jitter_local": {
+        "from_current_window_pct": null,
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "shimmer_local_db": {
+        "from_current_window_pct": null,
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "emotion_score": {
+        "from_current_window_pct": null,
+        "from_1m_window_pct": null,
+        "from_5m_window_pct": null
+      },
+      "self_pronoun_ratio": {
+        "from_current_window_pct": -100.0,
+        "from_1m_window_pct": -100.0,
+        "from_5m_window_pct": -100.0
+      },
+      "type_token_ratio": {
+        "from_current_window_pct": -100.0,
+        "from_1m_window_pct": -100.0,
+        "from_5m_window_pct": -100.0
+      }
+    }
+  }
+}

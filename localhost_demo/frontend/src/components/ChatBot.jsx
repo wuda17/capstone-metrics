@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { X, Send } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
 import { sendChatMessage } from '../hooks/useApi.js'
 import './ChatBot.css'
 
@@ -88,7 +89,9 @@ export default function ChatBot({ open, onToggle }) {
                     <span className="msg-avatar-fallback">F</span>
                   </span>
                 )}
-                <div className="msg-bubble">{m.text}</div>
+                <div className="msg-bubble">
+                  {m.role === 'assistant' ? <ReactMarkdown>{m.text}</ReactMarkdown> : m.text}
+                </div>
               </div>
             ))}
 

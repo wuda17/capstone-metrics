@@ -180,6 +180,14 @@
   color: var(--text);
 }
 
+/* Markdown in bubbles */
+.msg-bubble p       { margin: 0 0 5px; }
+.msg-bubble p:last-child { margin-bottom: 0; }
+.msg-bubble ul, .msg-bubble ol { margin: 3px 0 5px; padding-left: 16px; }
+.msg-bubble li      { margin-bottom: 2px; }
+.msg-bubble strong  { font-weight: 600; }
+.msg-bubble code    { font-family: monospace; font-size: 11px; background: var(--surface-3); padding: 1px 4px; border-radius: 3px; }
+
 /* Input row */
 .chat-input-row {
   display: flex;
