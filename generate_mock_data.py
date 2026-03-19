@@ -334,7 +334,7 @@ def main():
     print(f"  Alerts:    {[a['metric'] for a in aggregate['alerts']['items'] if a['status'] != 'ok'] or ['none']}")
 
     # Verify graph
-    graph = svc.get_graph()
+    graph = svc.get_memories()["graph"]
     print(f"  Graph:     {len(graph['nodes'])} nodes, {len(graph['links'])} edges")
 
 

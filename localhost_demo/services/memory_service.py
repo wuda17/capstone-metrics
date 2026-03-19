@@ -43,8 +43,9 @@ class MemoryService:
     def get_memories(self) -> dict[str, Any]:
         memories = self.load_memories()
         facts = [m for m in memories if m.get("type") == "fact"]
+        ref_counts = self._compute_reference_counts(facts, memories)
         graph = {
-            "nodes": [self._to_node(m) for m in facts],
+            "nodes": [self._to_node(m, ref_counts.get(m["id"], 1)) for m in facts],
             "links": self._compute_links(facts),
         }
         return {"graph": graph, "timeline": self._build_timeline(memories)}
@@ -120,9 +121,29 @@ class MemoryService:
     # ------------------------------------------------------------------ #
 
     @staticmethod
-    def _to_node(m: dict) -> dict:
+    def _compute_reference_counts(facts: list[dict], all_memories: list[dict]) -> dict[str, int]:
+        """For each fact, count how many other memories share at least one keyword with it."""
+        counts: dict[str, int] = {}
+        for fact in facts:
+            fact_kw = {k.lower() for k in fact.get("keywords", [])}
+            if not fact_kw:
+                counts[fact["id"]] = 1
+                continue
+            count = sum(
+                1 for mem in all_memories
+                if mem["id"] != fact["id"]
+                and fact_kw & {k.lower() for k in mem.get("keywords", [])}
+            )
+            counts[fact["id"]] = max(1, count)
+        return counts
+
+    @staticmethod
+    def _to_node(m: dict, ref_count: int = 1) -> dict:
         mem_type = m.get("type", "event")
         color = _mood_color(m.get("valence")) if mem_type == "mood" else NODE_COLORS.get(mem_type, "#7c6af7")
+        keywords = m.get("keywords", [])
+        # Size: base 7, scales with references, capped at 22
+        size = round(min(7 + ref_count * 2.0, 22), 1)
         return {
             "id": m["id"],
             "type": mem_type,
@@ -131,9 +152,11 @@ class MemoryService:
             "source_event_time": m.get("source_event_time", ""),
             "source_text": m.get("source_text", ""),
             "valence": m.get("valence"),
-            "keywords": m.get("keywords", []),
+            "keywords": keywords,
+            "primary_keyword": keywords[0] if keywords else "",
+            "reference_count": ref_count,
             "color": color,
-            "size": 6,
+            "size": size,
         }
 
     def _build_timeline(self, memories: list[dict]) -> list[dict]:

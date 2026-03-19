@@ -10,7 +10,7 @@ from typing import Any
 _PROMPT = """\
 You are extracting structured memories from a speech transcript of an elderly patient named Emily.
 
-Extract 2-4 discrete, meaningful memories. Each should be one of:
+Extract meaningful memories. Each should be one of:
 - "event": something that happened (a visit, call, activity, incident)
 - "fact": a stable truth about Emily's world (family members, health conditions, preferences, history)
 - "mood": an emotional state Emily expressed

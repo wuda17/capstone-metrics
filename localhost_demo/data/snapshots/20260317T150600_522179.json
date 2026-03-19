@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-17T15:06:00.063556+00:00",
+    "day": "2026-03-17"
+  },
+  "source_file": "session_019.wav",
+  "transcript": "Had a bit of a fall in the garden this morning, just tripped on the step. Not hurt, just a bit shaken. Sat down for a while. I need to be more careful. Maybe I should get that step fixed.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 126.55,
+      "articulation_rate_wpm": 138.525,
+      "phonation_to_time_ratio": 0.7483,
+      "mean_pause_duration_sec": 0.716,
+      "word_count": 40,
+      "duration_sec": 18.96
+    },
+    "lexical": {
+      "emotion_score": 0.0509,
+      "self_pronoun_ratio": 0.05,
+      "type_token_ratio": 0.825
+    },
+    "prosody": {
+      "f0_mean_hz": 183.3219,
+      "jitter_local": 0.032627,
+      "shimmer_local_db": 1.401186
+    },
+    "spectral": {}
+  }
+}

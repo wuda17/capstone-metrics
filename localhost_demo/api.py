@@ -74,7 +74,7 @@ def refresh_memories(force: bool = False):
 
 
 @app.get("/api/summary")
-def get_summary(force: bool = False):
+def get_summary(force: bool = True):
     """LLM-generated summaries for today, this week, and this month.
     Cached for 30 minutes; pass ?force=true to regenerate immediately."""
     global _summary_cache

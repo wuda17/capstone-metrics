@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-18T14:50:00.477110+00:00",
+    "day": "2026-03-18"
+  },
+  "source_file": "session_022.wav",
+  "transcript": "Finished the puzzle I have been working on for two weeks, the one with the flowers. One thousand pieces. Felt very satisfied when I put the last piece in. Might start the castle one next.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 111.35,
+      "articulation_rate_wpm": 150.831,
+      "phonation_to_time_ratio": 0.7636,
+      "mean_pause_duration_sec": 0.723,
+      "word_count": 35,
+      "duration_sec": 18.86
+    },
+    "lexical": {
+      "emotion_score": 0.2117,
+      "self_pronoun_ratio": 0.0571,
+      "type_token_ratio": 0.8
+    },
+    "prosody": {
+      "f0_mean_hz": 184.9576,
+      "jitter_local": 0.032794,
+      "shimmer_local_db": 1.356583
+    },
+    "spectral": {}
+  }
+}

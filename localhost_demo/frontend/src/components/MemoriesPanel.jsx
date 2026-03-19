@@ -36,9 +36,10 @@ function fmtFull(iso) {
 
 // ── fact graph node renderer ──────────────────────────────────────────────────
 
-function makeNodeRenderer(selected) {
+function makeNodeRenderer(selected, hovered) {
   return (node, ctx, globalScale) => {
     const isSelected = selected?.id === node.id
+    const isHovered  = hovered?.id  === node.id
     const size = node.size ?? 10
 
     if (isSelected) {
@@ -80,6 +81,28 @@ function makeNodeRenderer(selected) {
       ctx.textAlign = 'center'
       const label = node.content.length > 28 ? node.content.slice(0, 28) + '…' : node.content
       ctx.fillText(label, node.x, node.y + s + fontSize + 3)
+    }
+
+    // Hover tooltip — primary keyword + reference count
+    if (isHovered && node.primary_keyword) {
+      const refStr = node.reference_count > 1 ? `  ×${node.reference_count}` : ''
+      const label = node.primary_keyword + refStr
+      const fontSize = Math.max(9, 11 / globalScale)
+      ctx.font = `600 ${fontSize}px -apple-system, sans-serif`
+      const textW = ctx.measureText(label).width
+      const pad = 6
+      const boxW = textW + pad * 2
+      const boxH = fontSize + pad * 1.4
+      const bx = node.x - boxW / 2
+      const by = node.y - s - boxH - 8
+      ctx.globalAlpha = 1.0
+      ctx.fillStyle = '#2a1f18'
+      ctx.beginPath()
+      ctx.roundRect(bx, by, boxW, boxH, 5)
+      ctx.fill()
+      ctx.fillStyle = '#faf6f2'
+      ctx.textAlign = 'center'
+      ctx.fillText(label, node.x, by + boxH - pad * 0.55)
     }
 
     ctx.globalAlpha = 1.0
@@ -199,6 +222,7 @@ export default function MemoriesPanel() {
   const containerRef = useRef()
   const [dims, setDims]           = useState({ w: 800, h: 400 })
   const [selected, setSelected]   = useState(null)
+  const [hoveredNode, setHoveredNode] = useState(null)
   const [tlFilter, setTlFilter]   = useState('all')
   const [GraphComp, setGraphComp] = useState(null)
 
@@ -218,7 +242,7 @@ export default function MemoriesPanel() {
     return () => ro.disconnect()
   }, [])
 
-  const nodeCanvasObject = useCallback(makeNodeRenderer(selected), [selected])
+  const nodeCanvasObject = useCallback(makeNodeRenderer(selected, hoveredNode), [selected, hoveredNode])
   const graphData        = useMemo(() => data?.graph    ?? { nodes: [], links: [] }, [data])
   const timelineData     = useMemo(() => data?.timeline ?? [], [data])
 
@@ -239,6 +263,8 @@ export default function MemoriesPanel() {
     g.d3Force('charge')?.strength(-120)
     g.d3Force('link')?.distance(60)
   }, [GraphComp, graphData])
+
+  const handleNodeHover = useCallback(node => setHoveredNode(node ?? null), [])
 
   const handleNodeClick = useCallback(node => {
     setSelected(prev => prev?.id === node.id ? null : node)
@@ -297,6 +323,7 @@ export default function MemoriesPanel() {
               linkWidth={linkWidth}
               linkOpacity={1}
               onNodeClick={handleNodeClick}
+              onNodeHover={handleNodeHover}
               nodeLabel={() => ''}
               warmupTicks={120}
               cooldownTicks={80}

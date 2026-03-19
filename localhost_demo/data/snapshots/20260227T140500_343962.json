@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-02-27T14:05:00.229258+00:00",
+    "day": "2026-02-27"
+  },
+  "source_file": "session_001.wav",
+  "transcript": "I've been feeling a bit tired lately, not sleeping as well as I used to. Woke up a few times last night. Maybe I should try that chamomile tea again. I think the heat has been affecting me.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 146.609,
+      "articulation_rate_wpm": 161.961,
+      "phonation_to_time_ratio": 0.7937,
+      "mean_pause_duration_sec": 0.589,
+      "word_count": 38,
+      "duration_sec": 15.55
+    },
+    "lexical": {
+      "emotion_score": 0.2016,
+      "self_pronoun_ratio": 0.0789,
+      "type_token_ratio": 0.8684
+    },
+    "prosody": {
+      "f0_mean_hz": 192.5778,
+      "jitter_local": 0.02341,
+      "shimmer_local_db": 0.92665
+    },
+    "spectral": {}
+  }
+}

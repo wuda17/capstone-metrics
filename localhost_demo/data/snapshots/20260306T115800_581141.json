@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-06T11:58:00.674079+00:00",
+    "day": "2026-03-06"
+  },
+  "source_file": "session_008.wav",
+  "transcript": "My grandson Tommy called me on video today. He's learning to read now and read me a whole page from his book. I was so proud of him. Children pick things up so quickly, it is remarkable.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 150.051,
+      "articulation_rate_wpm": 164.144,
+      "phonation_to_time_ratio": 0.7788,
+      "mean_pause_duration_sec": 0.458,
+      "word_count": 37,
+      "duration_sec": 14.79
+    },
+    "lexical": {
+      "emotion_score": 0.3073,
+      "self_pronoun_ratio": 0.1081,
+      "type_token_ratio": 0.9189
+    },
+    "prosody": {
+      "f0_mean_hz": 197.8412,
+      "jitter_local": 0.020827,
+      "shimmer_local_db": 0.984364
+    },
+    "spectral": {}
+  }
+}

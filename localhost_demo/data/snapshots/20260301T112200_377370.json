@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-01T11:22:00.633052+00:00",
+    "day": "2026-03-01"
+  },
+  "source_file": "session_003.wav",
+  "transcript": "The doctor's appointment went alright. He said my blood pressure is a little high but nothing too concerning. I just need to watch my salt intake and keep walking every day. I feel okay about it.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 151.41,
+      "articulation_rate_wpm": 154.427,
+      "phonation_to_time_ratio": 0.7014,
+      "mean_pause_duration_sec": 0.49,
+      "word_count": 36,
+      "duration_sec": 14.27
+    },
+    "lexical": {
+      "emotion_score": -0.061,
+      "self_pronoun_ratio": 0.1111,
+      "type_token_ratio": 0.9444
+    },
+    "prosody": {
+      "f0_mean_hz": 190.6735,
+      "jitter_local": 0.026628,
+      "shimmer_local_db": 1.103141
+    },
+    "spectral": {}
+  }
+}

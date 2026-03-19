@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-09T09:07:00.307757+00:00",
+    "day": "2026-03-09"
+  },
+  "source_file": "session_011.wav",
+  "transcript": "Book club was lovely today. We discussed that novel about the lighthouse keeper. Everyone had different opinions which made for a good conversation. I should read more often.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 148.264,
+      "articulation_rate_wpm": 162.338,
+      "phonation_to_time_ratio": 0.7717,
+      "mean_pause_duration_sec": 0.441,
+      "word_count": 28,
+      "duration_sec": 11.33
+    },
+    "lexical": {
+      "emotion_score": 0.2131,
+      "self_pronoun_ratio": 0.0357,
+      "type_token_ratio": 1.0
+    },
+    "prosody": {
+      "f0_mean_hz": 211.3435,
+      "jitter_local": 0.023107,
+      "shimmer_local_db": 1.012095
+    },
+    "spectral": {}
+  }
+}
