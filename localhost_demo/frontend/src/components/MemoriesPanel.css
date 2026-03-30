@@ -45,9 +45,45 @@
   flex: 1;
   position: relative;
   background: var(--surface);
+  background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
+}
+
+/* Legend */
+.graph-legend {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 10;
+  pointer-events: none;
+  background: rgba(250,246,242,0.88);
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(4px);
+}
+.graph-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.graph-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 5px currentColor;
+}
+.graph-legend-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
 .graph-overlay {

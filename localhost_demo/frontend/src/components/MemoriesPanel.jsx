@@ -36,73 +36,77 @@ function fmtFull(iso) {
 
 // ── fact graph node renderer ──────────────────────────────────────────────────
 
-function makeNodeRenderer(selected, hovered) {
+const GRAPH_BG = BG
+
+function makeNodeRenderer(selected, hoveredRef) {
   return (node, ctx, globalScale) => {
     const isSelected = selected?.id === node.id
-    const isHovered  = hovered?.id  === node.id
-    const size = node.size ?? 10
+    const isHovered  = hoveredRef.current?.id === node.id
+    const size       = node.size ?? 14
+    const nodeColor  = node.color ?? FACT_COLOR
 
-    if (isSelected) {
-      ctx.beginPath()
-      ctx.arc(node.x, node.y, size + 7, 0, 2 * Math.PI)
-      ctx.fillStyle = FACT_COLOR + '40'
-      ctx.fill()
-      ctx.strokeStyle = FACT_COLOR
-      ctx.lineWidth = 2
-      ctx.stroke()
+    ctx.save()
+
+    // Outer bloom ring (selected / hovered)
+    if (isSelected || isHovered) {
+      const rings = isSelected ? 3 : 2
+      for (let i = rings; i >= 1; i--) {
+        ctx.beginPath()
+        ctx.arc(node.x, node.y, size + i * 6, 0, 2 * Math.PI)
+        ctx.fillStyle = nodeColor + Math.round((0.12 / i) * 255).toString(16).padStart(2, '0')
+        ctx.fill()
+      }
     }
 
-    // Glow halo
-    ctx.save()
-    ctx.globalAlpha = 0.18
+    // Bloom glow via shadow
+    ctx.shadowBlur   = isSelected ? 24 : isHovered ? 18 : 10
+    ctx.shadowColor  = nodeColor
+
+    // Circle node
     ctx.beginPath()
-    ctx.arc(node.x, node.y, size + 5, 0, 2 * Math.PI)
-    ctx.fillStyle = FACT_COLOR
+    ctx.arc(node.x, node.y, size, 0, 2 * Math.PI)
+    ctx.fillStyle = nodeColor
     ctx.fill()
+
+    // Bright inner highlight spot
+    ctx.shadowBlur = 0
+    ctx.beginPath()
+    ctx.arc(node.x - size * 0.28, node.y - size * 0.28, size * 0.28, 0, 2 * Math.PI)
+    ctx.fillStyle = 'rgba(255,255,255,0.22)'
+    ctx.fill()
+
     ctx.restore()
 
-    // Diamond
-    const s = size * 1.15
-    ctx.beginPath()
-    ctx.moveTo(node.x,     node.y - s)
-    ctx.lineTo(node.x + s, node.y)
-    ctx.lineTo(node.x,     node.y + s)
-    ctx.lineTo(node.x - s, node.y)
-    ctx.closePath()
-    ctx.fillStyle = FACT_COLOR
-    ctx.fill()
-
-    // Label — only when zoomed in or selected
-    if (globalScale > 1.4 || isSelected) {
-      const fontSize = Math.max(8, 10 / globalScale)
-      ctx.globalAlpha = isSelected ? 0.85 : 0.5
-      ctx.font = `${fontSize}px -apple-system, sans-serif`
-      ctx.fillStyle = '#2a1f18'
-      ctx.textAlign = 'center'
-      const label = node.content.length > 28 ? node.content.slice(0, 28) + '…' : node.content
-      ctx.fillText(label, node.x, node.y + s + fontSize + 3)
+    // Label below node — always visible, dims when not active
+    if (node.primary_keyword) {
+      const fontSize = Math.max(10, 12 / globalScale)
+      ctx.font        = `500 ${fontSize}px -apple-system, sans-serif`
+      ctx.textAlign   = 'center'
+      ctx.globalAlpha = isSelected || isHovered ? 1.0 : 0.55
+      ctx.fillStyle   = '#2a1f18'
+      ctx.fillText(node.primary_keyword, node.x, node.y + size + fontSize + 2)
     }
 
-    // Hover tooltip — primary keyword + reference count
+    // Hover tooltip pill with full keyword
     if (isHovered && node.primary_keyword) {
-      const refStr = node.reference_count > 1 ? `  ×${node.reference_count}` : ''
-      const label = node.primary_keyword + refStr
-      const fontSize = Math.max(9, 11 / globalScale)
+      const fontSize = Math.max(11, 13 / globalScale)
       ctx.font = `600 ${fontSize}px -apple-system, sans-serif`
-      const textW = ctx.measureText(label).width
-      const pad = 6
+      const textW = ctx.measureText(node.primary_keyword).width
+      const pad = 7
       const boxW = textW + pad * 2
       const boxH = fontSize + pad * 1.4
       const bx = node.x - boxW / 2
-      const by = node.y - s - boxH - 8
+      const by = node.y - size - boxH - 10
       ctx.globalAlpha = 1.0
-      ctx.fillStyle = '#2a1f18'
+      ctx.fillStyle = 'rgba(250,246,242,0.92)'
       ctx.beginPath()
       ctx.roundRect(bx, by, boxW, boxH, 5)
       ctx.fill()
-      ctx.fillStyle = '#faf6f2'
-      ctx.textAlign = 'center'
-      ctx.fillText(label, node.x, by + boxH - pad * 0.55)
+      ctx.strokeStyle = nodeColor + 'aa'
+      ctx.lineWidth = 1
+      ctx.stroke()
+      ctx.fillStyle = '#2a1f18'
+      ctx.fillText(node.primary_keyword, node.x, by + boxH - pad * 0.55)
     }
 
     ctx.globalAlpha = 1.0
@@ -114,7 +118,7 @@ function makeNodeRenderer(selected, hovered) {
 function SourceDrawer({ node, onClose }) {
   if (!node) return null
   const isFact     = node.type === 'fact'
-  const color      = isFact ? FACT_COLOR : tlColor(node)
+  const color      = isFact ? (node.color ?? FACT_COLOR) : tlColor(node)
   const typeLabel  = node.type.charAt(0).toUpperCase() + node.type.slice(1)
   const recurrence = node.recurrence_count ?? 1
 
@@ -222,7 +226,7 @@ export default function MemoriesPanel() {
   const containerRef = useRef()
   const [dims, setDims]           = useState({ w: 800, h: 400 })
   const [selected, setSelected]   = useState(null)
-  const [hoveredNode, setHoveredNode] = useState(null)
+  const hoveredNodeRef            = useRef(null)
   const [tlFilter, setTlFilter]   = useState('all')
   const [GraphComp, setGraphComp] = useState(null)
 
@@ -242,7 +246,7 @@ export default function MemoriesPanel() {
     return () => ro.disconnect()
   }, [])
 
-  const nodeCanvasObject = useCallback(makeNodeRenderer(selected, hoveredNode), [selected, hoveredNode])
+  const nodeCanvasObject = useCallback(makeNodeRenderer(selected, hoveredNodeRef), [selected])
   const graphData        = useMemo(() => data?.graph    ?? { nodes: [], links: [] }, [data])
   const timelineData     = useMemo(() => data?.timeline ?? [], [data])
 
@@ -257,14 +261,8 @@ export default function MemoriesPanel() {
     [timelineData, tlFilter]
   )
 
-  useEffect(() => {
-    const g = graphRef.current
-    if (!g || !graphData.nodes.length) return
-    g.d3Force('charge')?.strength(-120)
-    g.d3Force('link')?.distance(60)
-  }, [GraphComp, graphData])
 
-  const handleNodeHover = useCallback(node => setHoveredNode(node ?? null), [])
+  const handleNodeHover = useCallback(node => { hoveredNodeRef.current = node ?? null }, [])
 
   const handleNodeClick = useCallback(node => {
     setSelected(prev => prev?.id === node.id ? null : node)
@@ -274,8 +272,8 @@ export default function MemoriesPanel() {
     setSelected(prev => prev?.id === cluster.id ? null : cluster)
   }, [])
 
-  const linkColor = useCallback(link => link.co_session ? LINK_CO : LINK_CO, [])
-  const linkWidth = useCallback(link => link.co_session ? 2.5 : Math.max(1.2, (link.value ?? 1) * 2.5), [])
+  const linkColor = useCallback(link => link.co_session ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.12)', [])
+  const linkWidth = useCallback(link => link.co_session ? 1.5 : Math.max(0.5, (link.value ?? 0.5) * 1.5), [])
 
   return (
     <div className="memories-panel">
@@ -299,6 +297,20 @@ export default function MemoriesPanel() {
       {/* Fact graph + drawer */}
       <div className="graph-row">
         <div className="graph-outer" ref={containerRef}>
+          <div className="graph-legend">
+            {[
+              { label: 'People',     color: '#d4856a' },
+              { label: 'Health',     color: '#6aaa82' },
+              { label: 'Activity',   color: '#d4a84b' },
+              { label: 'Place',      color: '#5a9eb5' },
+              { label: 'Preference', color: '#a07ab5' },
+            ].map(({ label, color }) => (
+              <div key={label} className="graph-legend-item">
+                <span className="graph-legend-dot" style={{ background: color }} />
+                <span className="graph-legend-label">{label}</span>
+              </div>
+            ))}
+          </div>
           {(loading || !GraphComp) && (
             <div className="graph-overlay">
               {loading ? 'Loading memories…' : 'Initialising…'}
@@ -316,7 +328,7 @@ export default function MemoriesPanel() {
               graphData={graphData}
               width={dims.w}
               height={dims.h}
-              backgroundColor={BG}
+              backgroundColor={GRAPH_BG}
               nodeCanvasObject={nodeCanvasObject}
               nodeCanvasObjectMode={() => 'replace'}
               linkColor={linkColor}
@@ -325,10 +337,8 @@ export default function MemoriesPanel() {
               onNodeClick={handleNodeClick}
               onNodeHover={handleNodeHover}
               nodeLabel={() => ''}
-              warmupTicks={120}
-              cooldownTicks={80}
-              d3AlphaDecay={0.03}
-              d3VelocityDecay={0.5}
+              warmupTicks={0}
+              cooldownTicks={150}
               onEngineStop={() => graphRef.current?.zoomToFit(300, 60)}
             />
           )}

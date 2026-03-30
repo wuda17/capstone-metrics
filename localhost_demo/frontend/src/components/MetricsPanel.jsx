@@ -4,7 +4,7 @@ import {
   ResponsiveContainer, ReferenceLine, Legend,
   RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
 } from 'recharts'
-import { HeartPulse, AlertTriangle, TrendingUp, Radar as RadarIcon } from 'lucide-react'
+import { HeartPulse, AlertTriangle, TrendingUp, Radar as RadarIcon, X } from 'lucide-react'
 import { ACCENT, SECONDARY, TEAL, SUCCESS, WARNING, DANGER, MUTED } from '../theme.js'
 import './MetricsPanel.css'
 
@@ -113,28 +113,44 @@ function StatCard({ label, value, sub, color }) {
   )
 }
 
-function AlertCard({ alerts }) {
+function AlertChips({ alerts }) {
+  const [selected, setSelected] = useState(null)
   const active = alerts.filter(a => a.status !== 'ok')
+
   if (active.length === 0) {
     return (
-      <div className="alert-card ok">
+      <div className="alert-all-ok">
         <span className="alert-dot ok" />
-        <span>All tracked metrics are within baseline tolerance.</span>
+        <span>All metrics within baseline</span>
       </div>
     )
   }
+
+  const toggle = (i) => setSelected(selected === i ? null : i)
+  const sel = selected !== null ? active[selected] : null
+
   return (
-    <div className="alert-list">
-      {active.map((a, i) => (
-        <div key={i} className={`alert-card ${a.severity}`}>
-          <span className={`alert-dot ${a.severity}`} />
-          <div>
-            <div className="alert-metric">{a.metric?.replace(/_/g, ' ')}</div>
-            <div className="alert-msg">{a.message}</div>
-          </div>
-          <span className={`alert-badge ${a.severity}`}>{a.severity}</span>
+    <div className="alert-chips-wrap">
+      <div className="alert-chips">
+        {active.map((a, i) => (
+          <button
+            key={i}
+            className={`alert-chip ${a.severity}${selected === i ? ' active' : ''}`}
+            onClick={() => toggle(i)}
+          >
+            <span className={`alert-dot ${a.severity}`} />
+            <span className="chip-label">{a.metric?.replace(/_/g, ' ')}</span>
+            <span className={`alert-badge ${a.severity}`}>{a.severity}</span>
+          </button>
+        ))}
+      </div>
+      {sel && (
+        <div className={`alert-detail ${sel.severity}`}>
+          <div className="alert-detail-metric">{sel.metric?.replace(/_/g, ' ')}</div>
+          <div className="alert-detail-msg">{sel.message}</div>
+          <button className="alert-detail-close" onClick={() => setSelected(null)}><X size={12} /></button>
         </div>
-      ))}
+      )}
     </div>
   )
 }
@@ -205,10 +221,49 @@ export default function MetricsPanel({ current, history }) {
         />
       </div>
 
-      {/* Alert strip */}
-      <div className="section">
-        <h3 className="section-title"><AlertTriangle size={14} strokeWidth={2} /> Alerts</h3>
-        <AlertCard alerts={alerts} />
+      {/* Alerts + Radar side by side */}
+      <div className="snapshot-row">
+        {/* Alert chips */}
+        <div className="section alerts-col">
+          <h3 className="section-title"><AlertTriangle size={14} strokeWidth={2} /> Alerts</h3>
+          <AlertChips alerts={alerts} />
+        </div>
+
+        {/* Radar */}
+        <div className="section radar-col">
+          <h3 className="section-title"><RadarIcon size={14} strokeWidth={2} /> Wellbeing Snapshot</h3>
+          <p className="section-sub">Outer = better</p>
+          <div className="chart-wrap radar-wrap">
+            <ResponsiveContainer width="100%" height={280}>
+              <RadarChart data={radarData} outerRadius={100}>
+                <PolarGrid stroke="var(--border)" />
+                <PolarAngleAxis
+                  dataKey="metric"
+                  tick={{ fill: 'var(--text-muted)', fontSize: 11 }}
+                />
+                <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
+                <Radar
+                  name="Baseline"
+                  dataKey="baseline"
+                  stroke="var(--text-dim)"
+                  fill="var(--text-dim)"
+                  fillOpacity={0.05}
+                  strokeDasharray="5 3"
+                />
+                <Radar
+                  name="Current"
+                  dataKey="current"
+                  stroke="var(--accent)"
+                  fill="var(--accent)"
+                  fillOpacity={0.2}
+                />
+                <Legend
+                  wrapperStyle={{ fontSize: 12, color: 'var(--text-muted)' }}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </div>
 
       {/* Time series */}
@@ -261,42 +316,6 @@ export default function MetricsPanel({ current, history }) {
             </ResponsiveContainer>
           </div>
         )}
-      </div>
-
-      {/* Radar */}
-      <div className="section">
-        <h3 className="section-title"><RadarIcon size={14} strokeWidth={2} /> Wellbeing Snapshot</h3>
-        <p className="section-sub">Outer = better</p>
-        <div className="chart-wrap radar-wrap">
-          <ResponsiveContainer width="100%" height={280}>
-            <RadarChart data={radarData} outerRadius={100}>
-              <PolarGrid stroke="var(--border)" />
-              <PolarAngleAxis
-                dataKey="metric"
-                tick={{ fill: 'var(--text-muted)', fontSize: 11 }}
-              />
-              <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
-              <Radar
-                name="Baseline"
-                dataKey="baseline"
-                stroke="var(--text-dim)"
-                fill="var(--text-dim)"
-                fillOpacity={0.05}
-                strokeDasharray="5 3"
-              />
-              <Radar
-                name="Current"
-                dataKey="current"
-                stroke="var(--accent)"
-                fill="var(--accent)"
-                fillOpacity={0.2}
-              />
-              <Legend
-                wrapperStyle={{ fontSize: 12, color: 'var(--text-muted)' }}
-              />
-            </RadarChart>
-          </ResponsiveContainer>
-        </div>
       </div>
     </div>
   )
