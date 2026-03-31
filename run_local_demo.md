@@ -8,7 +8,8 @@ python -m localhost_demo.services.metrics_service
 python -m localhost_demo.services.aggregator
 
 # Terminal 1 — API
-export GEMINI_API_KEY=
+export GEMINI_API_KEY=""
+PATIENT_NAME=""
 python -m uvicorn localhost_demo.api:app --reload --port 8000
 
 # Terminal 2 — Frontend

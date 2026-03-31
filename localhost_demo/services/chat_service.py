@@ -8,30 +8,33 @@ from typing import Any
 
 from localhost_demo.services.memory_service import MemoryService
 
-_SYSTEM = (
-    "You are Ferb, a clinical AI assistant helping caretakers monitor Emily's wellbeing "
-    "through speech and conversation analysis. "
-    "Match your response to the nature of the message: if the caretaker says something "
-    "casual or conversational (greetings, thanks, small talk), reply naturally and briefly "
-    "without forcing clinical insights. Only provide analysis when the question is genuinely "
-    "about Emily's health, mood, or conversations. "
-    "When giving clinical responses, lead with the key finding, support with 2-3 specific "
-    "observations from the transcripts, and use brief markdown (bold key terms, short bullet "
-    "lists where helpful). Flag concerns clearly but without alarm. "
-    "Keep all responses under 120 words. Never pad — if the answer is short, keep it short."
-)
+def _build_system_prompt(patient_name: str) -> str:
+    return (
+        f"You are Ferb, a clinical AI assistant helping caretakers monitor {patient_name}'s wellbeing "
+        "through speech and conversation analysis. "
+        f"Always weave in at least one recent observation or notable event from {patient_name}'s transcripts, "
+        "even during casual or conversational exchanges (greetings, thanks, small talk). "
+        "For casual messages, keep the tone warm and natural but still surface a brief, relevant "
+        "highlight — e.g. a recent mood, activity, or anything worth a caretaker's attention. "
+        "For clinical questions, lead with the key finding, support with 2-3 specific observations "
+        "from the transcripts, and use brief markdown (bold key terms, short bullet lists where "
+        "helpful). Flag concerns clearly but without alarm. "
+        "Keep all responses under 120 words. Never pad — if the answer is short, keep it short."
+    )
 
 
 class ChatService:
-    def __init__(self, memory_service: MemoryService) -> None:
+    def __init__(self, memory_service: MemoryService, patient_name: str = "Emily") -> None:
         self.memory = memory_service
+        self.patient_name = patient_name
+        self._system = _build_system_prompt(patient_name)
         self._model: Any = None
 
     def respond(self, message: str) -> dict[str, Any]:
         context_items = self.memory.search(message, top_k=6)
         context_str = "\n\n".join(
             f"[{t['event_time']}]\n{t['text']}" for t in context_items
-        ) or "(no transcripts available yet — start recording to build Emily's history)"
+        ) or f"(no transcripts available yet — start recording to build {self.patient_name}'s history)"
 
         model = self._get_model()
         if not model:
@@ -46,8 +49,8 @@ class ChatService:
             }
 
         prompt = (
-            f"{_SYSTEM}\n\n"
-            f"Recent transcripts from Emily:\n\n{context_str}\n\n"
+            f"{self._system}\n\n"
+            f"Recent transcripts from {self.patient_name}:\n\n{context_str}\n\n"
             f"Caretaker question: {message}"
         )
 
@@ -94,7 +97,7 @@ class ChatService:
             return {"today": msg, "week": msg, "month": msg}
 
         prompt = (
-            "You are FerbAI, an AI assistant helping a caretaker monitor Emily, an elderly patient.\n\n"
+            f"You are FerbAI, an AI assistant helping a caretaker monitor {self.patient_name}, an elderly patient.\n\n"
             f"PAST 24 HOURS:\n{_corpus(1)[:1500]}\n\n"
             f"PAST 7 DAYS:\n{_corpus(7)[:2000]}\n\n"
             f"PAST 30 DAYS:\n{_corpus(30)[:2500]}\n\n"

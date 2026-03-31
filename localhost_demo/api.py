@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import time
 from pathlib import Path
 
@@ -24,6 +25,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+_PATIENT_NAME = os.environ.get("PATIENT_NAME", "Emily")
+
 _mem: MemoryService | None = None
 _chat: ChatService | None = None
 _summary_cache: dict = {}
@@ -33,14 +36,14 @@ _SUMMARY_TTL = 1800  # 30 minutes
 def _memory() -> MemoryService:
     global _mem
     if _mem is None:
-        _mem = MemoryService(_SNAP, _AGG)
+        _mem = MemoryService(_SNAP, _AGG, patient_name=_PATIENT_NAME)
     return _mem
 
 
 def _chatbot() -> ChatService:
     global _chat
     if _chat is None:
-        _chat = ChatService(_memory())
+        _chat = ChatService(_memory(), patient_name=_PATIENT_NAME)
     return _chat
 
 

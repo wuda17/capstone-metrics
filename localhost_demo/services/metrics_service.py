@@ -290,6 +290,13 @@ def main() -> None:
             if path.suffix.lower() in SUPPORTED_EXT:
                 processor.enqueue_audio(path, source="watchdog")
 
+        def on_moved(self, event: Any) -> None:
+            if event.is_directory:
+                return
+            path = Path(event.dest_path)
+            if path.suffix.lower() in SUPPORTED_EXT:
+                processor.enqueue_audio(path, source="watchdog")
+
     observer = Observer()
     observer.schedule(WatchdogHandler(), path=str(incoming_dir), recursive=False)
     observer.start()

@@ -8,12 +8,12 @@ import uuid
 from typing import Any
 
 _PROMPT = """\
-You are extracting structured memories from a speech transcript of an elderly patient named Emily.
+You are extracting structured memories from a speech transcript of an elderly patient named {patient_name}.
 
 Extract meaningful memories. Each should be one of:
 - "event": something that happened (a visit, call, activity, incident)
-- "fact": a stable truth about Emily's world (family members, health conditions, preferences, history)
-- "mood": an emotional state Emily expressed
+- "fact": a stable truth about {patient_name}'s world (family members, health conditions, preferences, history)
+- "mood": an emotional state {patient_name} expressed
 
 Return ONLY a JSON array, no other text. Each object:
 {{
@@ -31,8 +31,9 @@ Transcript: "{text}"
 
 
 class MemoryExtractor:
-    def __init__(self) -> None:
+    def __init__(self, patient_name: str = "Emily") -> None:
         self._model: Any = None
+        self.patient_name = patient_name
 
     def extract(self, text: str, event_time: str, date: str) -> list[dict]:
         model = self._get_model()
@@ -44,7 +45,7 @@ class MemoryExtractor:
         return []
 
     def _llm_extract(self, model: Any, text: str, event_time: str, date: str) -> list[dict]:
-        prompt = _PROMPT.format(text=text, date=date)
+        prompt = _PROMPT.format(patient_name=self.patient_name, text=text, date=date)
         try:
             resp = model.generate_content(prompt)
             raw = resp.text.strip()
