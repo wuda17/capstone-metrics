@@ -13,9 +13,10 @@ from pydantic import BaseModel
 from localhost_demo.services.memory_service import MemoryService
 from localhost_demo.services.chat_service import ChatService
 
-_BASE = Path(__file__).parent
-_AGG  = _BASE / "data" / "aggregates"
-_SNAP = _BASE / "data" / "snapshots"
+_BASE     = Path(__file__).parent
+_AGG      = _BASE / "data" / "aggregates"
+_SNAP     = _BASE / "data" / "snapshots"
+_INCOMING = _BASE / "data" / "incoming"
 
 app = FastAPI(title="FerbAI API")
 app.add_middleware(
@@ -86,6 +87,13 @@ def get_summary(force: bool = True):
     result = _chatbot().get_summaries()
     _summary_cache = {"ts": time.time(), "data": result}
     return result
+
+
+@app.get("/api/status")
+def get_status():
+    """Returns whether WAV files are queued for processing in the incoming directory."""
+    wav_files = list(_INCOMING.glob("*.wav")) if _INCOMING.exists() else []
+    return {"recording": len(wav_files) > 0, "queued_count": len(wav_files)}
 
 
 class ChatReq(BaseModel):

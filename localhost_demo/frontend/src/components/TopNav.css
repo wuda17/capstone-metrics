@@ -74,4 +74,40 @@
 }
 
 /* Spacer to mirror logo zone and keep seg control centered */
-.topnav-spacer { flex: 1; }
+.topnav-spacer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Live recording indicator */
+.topnav-recording {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topnav-rec-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e03030;
+  flex-shrink: 0;
+  animation: topnav-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes topnav-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(224, 48, 48, 0.5); }
+  50%  { box-shadow: 0 0 0 6px rgba(224, 48, 48, 0);   }
+  100% { box-shadow: 0 0 0 0   rgba(224, 48, 48, 0);   }
+}
+
+.topnav-rec-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #e03030;
+}

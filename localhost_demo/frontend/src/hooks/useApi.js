@@ -47,6 +47,10 @@ export function useSummary() {
   return usePoll('/api/summary', 1_800_000)
 }
 
+export function useStatus() {
+  return usePoll('/api/status', 3_000)
+}
+
 export async function sendChatMessage(message) {
   const res = await fetch('/api/chat', {
     method: 'POST',

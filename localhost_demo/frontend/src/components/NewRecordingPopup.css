@@ -1,0 +1,107 @@
+.nrp-wrap {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  width: 320px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14), 0 0 0 1px var(--border-dim, var(--border));
+  overflow: hidden;
+  z-index: 1100;
+  animation: nrp-slide-in 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes nrp-slide-in {
+  from { transform: translateX(110%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.nrp-body {
+  padding: 14px 16px 12px;
+}
+
+.nrp-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+}
+
+.nrp-icon {
+  color: var(--accent, #3b82f6);
+  flex-shrink: 0;
+}
+
+.nrp-title {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.nrp-close {
+  background: none;
+  border: none;
+  padding: 2px;
+  color: var(--text-dim, var(--text-muted));
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.nrp-close:hover {
+  color: var(--text);
+}
+
+.nrp-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0 0 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nrp-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.nrp-pill {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--surface-2, var(--bg));
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nrp-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Progress bar — shrinks over 8s matching AUTO_DISMISS_MS */
+.nrp-progress {
+  height: 3px;
+  background: var(--accent, #3b82f6);
+  transform-origin: left;
+  animation: nrp-progress 8s linear forwards;
+}
+
+@keyframes nrp-progress {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
