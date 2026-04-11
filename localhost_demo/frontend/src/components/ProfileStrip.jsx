@@ -1,21 +1,21 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { AreaChart, Area, ResponsiveContainer, Tooltip } from 'recharts'
 import { ChevronDown, ChevronUp, Sun, CalendarDays, CalendarRange, BarChart2, MessageSquare } from 'lucide-react'
 import { useSummary } from '../hooks/useApi.js'
-import { ACCENT } from '../theme.js'
+import { TEAL, RED, AMBER, GREEN, PURPLE } from '../theme.js'
 import './ProfileStrip.css'
 
 function emotionMeta(emo) {
   if (emo == null) return { color: '#aaa', label: null }
-  if (emo > 0.1)  return { color: '#2a9e62', label: 'Positive' }
-  if (emo < -0.1) return { color: '#bf3030', label: 'Concerning' }
-  return              { color: '#c07a10', label: 'Neutral' }
+  if (emo > 0.1)  return { color: GREEN, label: 'Positive' }
+  if (emo < -0.1) return { color: RED,   label: 'Concerning' }
+  return              { color: AMBER, label: 'Neutral' }
 }
 
 const PERIODS = [
-  { key: 'today', label: 'Today',      color: '#5ab8a0', Icon: Sun          },
-  { key: 'week',  label: 'This Week',  color: '#c8695a', Icon: CalendarDays  },
-  { key: 'month', label: 'This Month', color: '#c4a882', Icon: CalendarRange },
+  { key: 'today', label: 'Today',      color: TEAL,   Icon: Sun          },
+  { key: 'week',  label: 'This Week',  color: RED,    Icon: CalendarDays  },
+  { key: 'month', label: 'This Month', color: PURPLE, Icon: CalendarRange },
 ]
 
 export default function ProfileStrip({ current }) {
@@ -49,6 +49,21 @@ export default function ProfileStrip({ current }) {
   const lastTime = latestItem
     ? new Date(latestItem.event_time).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
     : null
+
+  const [seenEventTime, setSeenEventTime] = useState(() => {
+    try { return localStorage.getItem('ferbai_latest_seen') || null }
+    catch { return null }
+  })
+  const isLatestNew = Boolean(latestItem && latestItem.event_time !== seenEventTime)
+
+  useEffect(() => {
+    if (!isLatestNew || !latestItem) return
+    const id = setTimeout(() => {
+      setSeenEventTime(latestItem.event_time)
+      try { localStorage.setItem('ferbai_latest_seen', latestItem.event_time) } catch {}
+    }, 12_000)
+    return () => clearTimeout(id)
+  }, [isLatestNew, latestItem])
 
   return (
     <div className={`profile-strip-wrap${collapsed ? ' ps-collapsed' : ''}`}>
@@ -101,14 +116,14 @@ export default function ProfileStrip({ current }) {
               <AreaChart data={sparkData} margin={{ top: 4, right: 2, left: 2, bottom: 0 }}>
                 <defs>
                   <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%"  stopColor={ACCENT} stopOpacity={0.3} />
-                    <stop offset="95%" stopColor={ACCENT} stopOpacity={0}   />
+                    <stop offset="5%"  stopColor={TEAL} stopOpacity={0.3} />
+                    <stop offset="95%" stopColor={TEAL} stopOpacity={0}   />
                   </linearGradient>
                 </defs>
                 <Area
                   type="monotone"
                   dataKey="sessions"
-                  stroke={ACCENT}
+                  stroke={TEAL}
                   fill="url(#sparkFill)"
                   strokeWidth={1.5}
                   dot={false}
@@ -129,6 +144,7 @@ export default function ProfileStrip({ current }) {
             <div className="ps-label">
               <MessageSquare size={11} strokeWidth={2.5} />
               Latest
+              {isLatestNew && <span className="ps-new-dot" />}
             </div>
             {latestItem ? (
               <>

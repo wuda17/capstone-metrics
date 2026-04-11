@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-09T15:06:00.063556+00:00",
+    "day": "2026-04-09"
+  },
+  "source_file": "session_019.wav",
+  "transcript": "Woke up feeling much better today, which was such a relief. Made a proper cooked breakfast, eggs and tomatoes. Then got out my watercolours, which I have not touched in months. Did a little sketch of the view from the kitchen window, nothing very accomplished but I enjoyed the doing of it. Listened to Radio Four in the afternoon. Felt genuinely like myself again. It is funny how quickly things can shift when you get a decent night.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 126.55,
+      "articulation_rate_wpm": 138.525,
+      "phonation_to_time_ratio": 0.7483,
+      "mean_pause_duration_sec": 0.716,
+      "word_count": 78,
+      "duration_sec": 36.98
+    },
+    "lexical": {
+      "emotion_score": 0.3394,
+      "self_pronoun_ratio": 0.0513,
+      "type_token_ratio": 0.8718
+    },
+    "prosody": {
+      "f0_mean_hz": 183.3219,
+      "jitter_local": 0.032627,
+      "shimmer_local_db": 1.401186
+    },
+    "spectral": {}
+  }
+}

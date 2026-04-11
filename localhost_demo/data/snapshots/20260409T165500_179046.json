@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-09T16:55:00.968114+00:00",
+    "day": "2026-04-09"
+  },
+  "source_file": "session_020.wav",
+  "transcript": "Had a bit of a turn this afternoon. Stood up from the armchair a bit too quickly and everything went dark and swimmy for a moment. I held onto the doorframe and it passed after a few seconds. I know the doctor said it is just blood pressure when you stand too fast but it still gives you a real fright every time it happens. Sat back down for a while. Told myself I will mention it at my next appointment. Did not want to bother anyone.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 116.846,
+      "articulation_rate_wpm": 150.896,
+      "phonation_to_time_ratio": 0.724,
+      "mean_pause_duration_sec": 0.69,
+      "word_count": 87,
+      "duration_sec": 44.67
+    },
+    "lexical": {
+      "emotion_score": -0.4756,
+      "self_pronoun_ratio": 0.0575,
+      "type_token_ratio": 0.7701
+    },
+    "prosody": {
+      "f0_mean_hz": 202.8177,
+      "jitter_local": 0.032974,
+      "shimmer_local_db": 1.544275
+    },
+    "spectral": {}
+  }
+}

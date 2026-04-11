@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-10T14:50:00.477110+00:00",
+    "day": "2026-04-10"
+  },
+  "source_file": "session_022.wav",
+  "transcript": "A very peaceful afternoon. Put on some old records, Ella Fitzgerald first and then Frank Sinatra, and sat and knitted. I am making a cardigan for Tommy in navy blue, quite a complicated yoke pattern. The music and the knitting together with the sun coming through the window felt very settling. Almost like a kind of meditation I suppose. Finished two rows of the yoke. Had a small glass of sherry before supper which felt like a proper little luxury.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 111.35,
+      "articulation_rate_wpm": 150.831,
+      "phonation_to_time_ratio": 0.7636,
+      "mean_pause_duration_sec": 0.723,
+      "word_count": 80,
+      "duration_sec": 43.11
+    },
+    "lexical": {
+      "emotion_score": 0.4135,
+      "self_pronoun_ratio": 0.025,
+      "type_token_ratio": 0.775
+    },
+    "prosody": {
+      "f0_mean_hz": 184.9576,
+      "jitter_local": 0.032794,
+      "shimmer_local_db": 1.356583
+    },
+    "spectral": {}
+  }
+}

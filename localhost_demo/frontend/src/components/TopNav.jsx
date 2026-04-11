@@ -1,13 +1,15 @@
-import { Home, Brain, HeartPulse } from 'lucide-react'
+import { Home, Brain, HeartPulse, BookOpen, Activity } from 'lucide-react'
 import './TopNav.css'
 
 const TABS = [
-  { id: 'home',      label: 'Home',      Icon: Home      },
-  { id: 'memories',  label: 'Memories',  Icon: Brain     },
-  { id: 'wellbeing', label: 'Wellbeing', Icon: HeartPulse },
+  { id: 'home',       label: 'Home',       Icon: Home      },
+  { id: 'memories',   label: 'Memories',   Icon: Brain     },
+  { id: 'wellbeing',  label: 'Wellbeing',  Icon: HeartPulse },
+  { id: 'activity',   label: 'Activity',   Icon: Activity  },
+  { id: 'literature', label: 'Literature', Icon: BookOpen  },
 ]
 
-export default function TopNav({ page, onNavigate }) {
+export default function TopNav({ page, onNavigate, recording = false }) {
   return (
     <nav className="topnav">
 
@@ -40,8 +42,15 @@ export default function TopNav({ page, onNavigate }) {
         </div>
       </div>
 
-      {/* Spacer to keep segmented control centered */}
-      <div className="topnav-spacer" />
+      {/* Spacer — mirrors logo zone to keep seg control centered; hosts live indicator */}
+      <div className="topnav-spacer">
+        {recording && (
+          <div className="topnav-recording">
+            <span className="topnav-rec-dot" />
+            <span className="topnav-rec-label">Live</span>
+          </div>
+        )}
+      </div>
 
     </nav>
   )

@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-11T14:54:00.194851+00:00",
+    "day": "2026-04-11"
+  },
+  "source_file": "session_024.wav",
+  "transcript": "Sarah and Michael are both coming for Sunday lunch today and I have Tommy as well. I have the leg of lamb in the oven with rosemary, roast potatoes, green beans. The house smells absolutely wonderful. I love having a full table. I will be tired afterwards of course but it is the good kind of tired. This is exactly the kind of Sunday I like best and I feel completely ready for it.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 113.919,
+      "articulation_rate_wpm": 138.344,
+      "phonation_to_time_ratio": 0.719,
+      "mean_pause_duration_sec": 0.779,
+      "word_count": 74,
+      "duration_sec": 38.98
+    },
+    "lexical": {
+      "emotion_score": 0.2922,
+      "self_pronoun_ratio": 0.0811,
+      "type_token_ratio": 0.7432
+    },
+    "prosody": {
+      "f0_mean_hz": 188.7815,
+      "jitter_local": 0.034565,
+      "shimmer_local_db": 1.377845
+    },
+    "spectral": {}
+  }
+}

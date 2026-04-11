@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-01T09:07:00.307757+00:00",
+    "day": "2026-04-01"
+  },
+  "source_file": "session_011.wav",
+  "transcript": "Had a strange moment this morning that unsettled me quite a lot. I was trying to tell the radio presenter to be quiet and I could not think of the word for the thing you use to open wine. I knew exactly what it was, I could picture it sitting in the kitchen drawer, but the word would not come. It took me nearly ten minutes. Corkscrew. Obviously corkscrew. I am sure it happens to everyone but it gave me a real fright. I did not mention it to anyone. Had a normal afternoon watching television.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 148.264,
+      "articulation_rate_wpm": 162.338,
+      "phonation_to_time_ratio": 0.7717,
+      "mean_pause_duration_sec": 0.441,
+      "word_count": 96,
+      "duration_sec": 38.85
+    },
+    "lexical": {
+      "emotion_score": -0.3824,
+      "self_pronoun_ratio": 0.0938,
+      "type_token_ratio": 0.6875
+    },
+    "prosody": {
+      "f0_mean_hz": 211.3435,
+      "jitter_local": 0.023107,
+      "shimmer_local_db": 1.012095
+    },
+    "spectral": {}
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-03T10:20:00.512340+00:00",
+    "day": "2026-04-03"
+  },
+  "source_file": "session_013.wav",
+  "transcript": "Long video call with Margaret today and she gave me quite a fright at the beginning because she looked very worried. Turns out her husband Robert had chest pains last week and spent two nights in hospital. He is fine now, they think it was stress related rather than his heart. But still, you do not expect that sort of news. We talked for a long time. I feel so far away from her. We agreed we absolutely must arrange a visit before the end of the summer.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 152.348,
+      "articulation_rate_wpm": 165.07,
+      "phonation_to_time_ratio": 0.8342,
+      "mean_pause_duration_sec": 0.512,
+      "word_count": 88,
+      "duration_sec": 34.66
+    },
+    "lexical": {
+      "emotion_score": -0.0424,
+      "self_pronoun_ratio": 0.0227,
+      "type_token_ratio": 0.8864
+    },
+    "prosody": {
+      "f0_mean_hz": 198.3933,
+      "jitter_local": 0.026222,
+      "shimmer_local_db": 1.020455
+    },
+    "spectral": {}
+  }
+}

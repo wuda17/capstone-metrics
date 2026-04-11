@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-26T10:29:00.666563+00:00",
+    "day": "2026-03-26"
+  },
+  "source_file": "session_005.wav",
+  "transcript": "Quite a nice ordinary day today. Had porridge and listened to the radio. Did some weeding in the front garden before it got too hot. Popped to the post office to send a birthday card to my cousin Patricia and bumped into Mr Henderson from the village. We had a nice chat about nothing in particular. Came home, had a cheese sandwich for lunch, watched Countdown in the afternoon. All in all a perfectly fine quiet day.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 144.189,
+      "articulation_rate_wpm": 165.61,
+      "phonation_to_time_ratio": 0.786,
+      "mean_pause_duration_sec": 0.558,
+      "word_count": 77,
+      "duration_sec": 32.04
+    },
+    "lexical": {
+      "emotion_score": 0.0585,
+      "self_pronoun_ratio": 0.013,
+      "type_token_ratio": 0.7532
+    },
+    "prosody": {
+      "f0_mean_hz": 208.6575,
+      "jitter_local": 0.02232,
+      "shimmer_local_db": 1.012062
+    },
+    "spectral": {}
+  }
+}

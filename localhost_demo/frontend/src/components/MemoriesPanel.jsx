@@ -3,6 +3,7 @@ import { Brain, CalendarClock, ZoomIn, ZoomOut, Maximize2, RefreshCw, X } from '
 import { useMemories } from '../hooks/useApi.js'
 import { ACCENT, SUCCESS, WARNING, DANGER, TEAL, BG, LINK, LINK_CO } from '../theme.js'
 import './MemoriesPanel.css'
+import { PATIENT_NAME } from '../config.js'
 
 // ── constants ─────────────────────────────────────────────────────────────────
 
@@ -184,28 +185,35 @@ function SourceDrawer({ node, onClose }) {
 
 // ── Timeline bubble ───────────────────────────────────────────────────────────
 
-function TimelineBubble({ cluster, isSelected, onClick }) {
+function TimelineBubble({ cluster, isSelected, onClick, isNew }) {
   const color    = tlColor(cluster)
-  const diameter = Math.min(52, 14 + (cluster.recurrence_count - 1) * 9)
+  const diameter = Math.min(72, 22 + (cluster.recurrence_count - 1) * 10)
   const label    = cluster.content.length > 42 ? cluster.content.slice(0, 42) + '…' : cluster.content
 
   return (
     <button
-      className={`tl-bubble${isSelected ? ' tl-bubble--selected' : ''}`}
+      className={`tl-bubble${isSelected ? ' tl-bubble--selected' : ''}${isNew ? ' tl-bubble--new' : ''}`}
       onClick={onClick}
       title={cluster.content}
     >
       <div className="tl-circle-wrap" style={{ width: diameter + 16, height: diameter + 16 }}>
         <div
-          className="tl-circle"
+          className={`tl-circle${isNew ? ' tl-circle--new' : ''}`}
           style={{
             width: diameter,
             height: diameter,
             background: color + '28',
             border: `2px solid ${color}`,
-            boxShadow: isSelected ? `0 0 0 3px ${color}44` : undefined,
+            boxShadow: isSelected
+              ? `0 0 0 3px ${color}44`
+              : isNew
+              ? `0 0 0 3px ${color}66, 0 0 10px ${color}44`
+              : undefined,
           }}
         />
+        {isNew && (
+          <div className="tl-new-ring" style={{ '--ring-color': color }} />
+        )}
         {cluster.recurrence_count > 1 && (
           <span className="tl-count" style={{ color, borderColor: color }}>
             {cluster.recurrence_count}
@@ -220,7 +228,7 @@ function TimelineBubble({ cluster, isSelected, onClick }) {
 
 // ── Main panel ────────────────────────────────────────────────────────────────
 
-export default function MemoriesPanel() {
+export default function MemoriesPanel({ onNavigate }) {
   const { data, loading, refresh } = useMemories()
   const graphRef     = useRef()
   const containerRef = useRef()
@@ -229,12 +237,38 @@ export default function MemoriesPanel() {
   const hoveredNodeRef            = useRef(null)
   const [tlFilter, setTlFilter]   = useState('all')
   const [GraphComp, setGraphComp] = useState(null)
+  const seenIdsRef                = useRef(null)
+  const [newIds, setNewIds]       = useState(new Set())
 
   useEffect(() => {
     import('react-force-graph-2d')
       .then(m => setGraphComp(() => m.default))
       .catch(() => {})
   }, [])
+
+  useEffect(() => {
+    if (!data) return
+    const currentIds = new Set([
+      ...(data.timeline ?? []).map(c => c.id),
+      ...(data.graph?.nodes ?? []).map(n => n.id),
+    ])
+    if (seenIdsRef.current === null) {
+      seenIdsRef.current = currentIds
+      return
+    }
+    const fresh = [...currentIds].filter(id => !seenIdsRef.current.has(id))
+    if (fresh.length === 0) return
+    fresh.forEach(id => seenIdsRef.current.add(id))
+    setNewIds(prev => new Set([...prev, ...fresh]))
+    const timer = setTimeout(() => {
+      setNewIds(prev => {
+        const next = new Set(prev)
+        fresh.forEach(id => next.delete(id))
+        return next
+      })
+    }, 2 * 60 * 1000)
+    return () => clearTimeout(timer)
+  }, [data])
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -266,11 +300,13 @@ export default function MemoriesPanel() {
 
   const handleNodeClick = useCallback(node => {
     setSelected(prev => prev?.id === node.id ? null : node)
-  }, [])
+    if (node.source_event_time) onNavigate?.('activity', node.source_event_time)
+  }, [onNavigate])
 
   const handleTlClick = useCallback(cluster => {
     setSelected(prev => prev?.id === cluster.id ? null : cluster)
-  }, [])
+    if (cluster.source_event_time) onNavigate?.('activity', cluster.source_event_time)
+  }, [onNavigate])
 
   const linkColor = useCallback(link => link.co_session ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.12)', [])
   const linkWidth = useCallback(link => link.co_session ? 1.5 : Math.max(0.5, (link.value ?? 0.5) * 1.5), [])
@@ -319,7 +355,7 @@ export default function MemoriesPanel() {
           {!loading && GraphComp && graphData.nodes.length === 0 && (
             <div className="graph-overlay">
               <p>No facts yet.</p>
-              <p className="hint">Record conversations to build Emily's knowledge graph.</p>
+              <p className="hint">Record conversations to build {PATIENT_NAME}'s knowledge graph.</p>
             </div>
           )}
           {!loading && GraphComp && graphData.nodes.length > 0 && (
@@ -386,6 +422,7 @@ export default function MemoriesPanel() {
                 key={cluster.id}
                 cluster={cluster}
                 isSelected={selected?.id === cluster.id}
+                isNew={newIds.has(cluster.id)}
                 onClick={() => handleTlClick(cluster)}
               />
             ))}

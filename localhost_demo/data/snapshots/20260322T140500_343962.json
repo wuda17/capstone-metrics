@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-22T14:05:00.229258+00:00",
+    "day": "2026-03-22"
+  },
+  "source_file": "session_001.wav",
+  "transcript": "Stayed indoors most of the day because of the rain, which suited me fine. Spent the afternoon reading and then had a bit of a cry, which actually felt quite good in a way. I found an old postcard tucked inside my book, from John, written on a work trip to Edinburgh. Just silly little things on it, something about the weather and a pub he liked. But I kept reading it over and over. Went to bed early.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 146.609,
+      "articulation_rate_wpm": 161.961,
+      "phonation_to_time_ratio": 0.7937,
+      "mean_pause_duration_sec": 0.589,
+      "word_count": 79,
+      "duration_sec": 32.33
+    },
+    "lexical": {
+      "emotion_score": -0.3605,
+      "self_pronoun_ratio": 0.0506,
+      "type_token_ratio": 0.7975
+    },
+    "prosody": {
+      "f0_mean_hz": 192.5778,
+      "jitter_local": 0.02341,
+      "shimmer_local_db": 0.92665
+    },
+    "spectral": {}
+  }
+}

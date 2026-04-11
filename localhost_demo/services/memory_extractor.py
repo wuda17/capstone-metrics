@@ -11,7 +11,7 @@ _PROMPT = """\
 You are extracting structured memories from a speech transcript of an elderly patient named {patient_name}.
 
 Extract meaningful memories. Each should be one of:
-- "event": something that happened (a visit, call, activity, incident)
+- "event": something that happened, including everyday routines and activities (a visit, call, meal, walk, TV show)
 - "fact": a stable truth about {patient_name}'s world (family members, health conditions, preferences, history)
 - "mood": an emotional state {patient_name} expressed
 
@@ -23,7 +23,14 @@ Return ONLY a JSON array, no other text. Each object:
   "keywords": ["2-4 key terms"]
 }}
 
-Focus on meaningful, distinct items. Avoid generic observations. And keep each memory to under 10 words.
+Include everyday moments — meals, TV, short walks, phone calls, small chores — not just significant events.
+Extract 3–6 memories per transcript, preferring more over fewer.
+Keep each memory content to under 10 words.
+Good examples:
+  event: "Had morning coffee and watched the news"
+  event: "Daughter Sarah called to check in"
+  fact:  "Emily prefers tea over coffee"
+  mood:  "Felt a bit tired after lunch" (valence ≈ -0.2)
 
 Transcript date: {date}
 Transcript: "{text}"

@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-21T10:40:00.116739+00:00",
+    "day": "2026-03-21"
+  },
+  "source_file": "session_000.wav",
+  "transcript": "Went for my walk this morning before breakfast. The whole lane was lined with cow parsley, it looked almost like snow. And then I spotted a red kite circling above the field, very high up. I stood and watched it for a good few minutes. Felt very peaceful and rather lucky to see that. Had a boiled egg and read the paper when I got home. A good start to the day.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 147.761,
+      "articulation_rate_wpm": 158.258,
+      "phonation_to_time_ratio": 0.7889,
+      "mean_pause_duration_sec": 0.538,
+      "word_count": 72,
+      "duration_sec": 29.24
+    },
+    "lexical": {
+      "emotion_score": 0.4098,
+      "self_pronoun_ratio": 0.0556,
+      "type_token_ratio": 0.7778
+    },
+    "prosody": {
+      "f0_mean_hz": 197.4113,
+      "jitter_local": 0.02024,
+      "shimmer_local_db": 1.032866
+    },
+    "spectral": {}
+  }
+}

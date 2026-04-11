@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -8,39 +8,54 @@
 
 :root {
   /* ── Backgrounds ─────────────────────────────────────────────────────────── */
-  --bg:         #faf6f2;   /* warm cream */
+  --bg:         #faf7f4;
   --surface:    #ffffff;
-  --surface-2:  #f5f0eb;
-  --surface-3:  #ede8e0;
+  --surface-2:  #f5f1ee;
+  --surface-3:  #ede8e4;
 
   /* ── Borders ─────────────────────────────────────────────────────────────── */
-  --border:     #e0d4c8;
-  --border-dim: #ede8e0;
+  --border:     #e2d8d0;
+  --border-dim: #ebe4df;
 
   /* ── Text ────────────────────────────────────────────────────────────────── */
-  --text:       #2a1f18;
-  --text-muted: #7a5e50;
-  --text-dim:   #b8a090;
+  --text:       #0f1923;
+  --text-muted: #4a6070;
+  --text-dim:   #96aab8;
 
-  /* ── Brand ───────────────────────────────────────────────────────────────── */
-  --accent:      #c8695a;
-  --accent-glow: #c8695a22;
-  --accent-dim:  #f0cfc8;
-  --secondary:   #b8935e;   /* slightly richer beige for light bg legibility */
+  /* ── Per-tile accent palette ─────────────────────────────────────────────── */
+  --red:        #e0475c;
+  --red-bg:     #fff1f3;
+  --blue:       #1a6eb5;
+  --blue-bg:    #eff5ff;
+  --teal:       #0ba890;
+  --teal-bg:    #edfaf6;
+  --purple:     #7c3aed;
+  --purple-bg:  #f5f0ff;
+  --amber:      #d97706;
+  --amber-bg:   #fffbeb;
+  --green:      #15a653;
+  --green-bg:   #eaf7f0;
+  --pink:       #db2777;
+  --pink-bg:    #fdf2f8;
 
-  /* ── Semantic ────────────────────────────────────────────────────────────── */
-  --teal:       #3aaa92;
-  --teal-glow:  #3aaa9220;
-  --success:    #2a9e62;
-  --success-bg: #edf7f2;
-  --warning:    #c07a10;
-  --warning-bg: #fdf4e5;
-  --danger:     #bf3030;
-  --danger-bg:  #fdecea;
+  /* ── Semantic aliases ────────────────────────────────────────────────────── */
+  --accent:      var(--red);
+  --accent-glow: #e0475c18;
+  --accent-dim:  var(--red-bg);
+  --secondary:   var(--blue);
+  --teal-glow:   #0ba89018;
+  --success:     var(--green);
+  --success-bg:  var(--green-bg);
+  --warning:     var(--amber);
+  --warning-bg:  var(--amber-bg);
+  --danger:      var(--red);
+  --danger-bg:   var(--red-bg);
 
   /* ── Shape ───────────────────────────────────────────────────────────────── */
-  --radius:    10px;
-  --radius-lg: 16px;
+  --radius:      14px;
+  --radius-lg:   22px;
+  --radius-xl:   32px;
+  --radius-full: 9999px;
 }
 
 body {
@@ -48,7 +63,7 @@ body {
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -60,3 +75,32 @@ body {
 
 button { cursor: pointer; font-family: inherit; font-size: inherit; }
 input, textarea { font-family: inherit; font-size: inherit; }
+
+/* ── Tile utilities ──────────────────────────────────────────────────────────
+   Base white card with elevation shadow — inspired by widget_styles.webp tiles.
+   Combine with .tile--filled-* for colored KPI tiles.
+───────────────────────────────────────────────────────────────────────────── */
+
+.tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 14px rgba(15, 25, 35, 0.07);
+  padding: 22px 24px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.tile:hover { box-shadow: 0 6px 28px rgba(15, 25, 35, 0.13); transform: translateY(-2px); }
+
+@keyframes panel-enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Filled KPI tile variants — colored background for small metric tiles */
+.tile.tile--filled-red    { background: var(--red-bg);    border-color: #f0b0b0; }
+.tile.tile--filled-blue   { background: var(--blue-bg);   border-color: #a8c8e8; }
+.tile.tile--filled-teal   { background: var(--teal-bg);   border-color: #90d8cc; }
+.tile.tile--filled-purple { background: var(--purple-bg); border-color: #c0a0f0; }
+.tile.tile--filled-amber  { background: var(--amber-bg);  border-color: #f0cc80; }
+.tile.tile--filled-green  { background: var(--green-bg);  border-color: #88d4aa; }
+.tile.tile--filled-pink   { background: var(--pink-bg);   border-color: #f0a0c8; }

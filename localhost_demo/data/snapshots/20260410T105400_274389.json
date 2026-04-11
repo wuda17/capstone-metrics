@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-10T10:54:00.247861+00:00",
+    "day": "2026-04-10"
+  },
+  "source_file": "session_021.wav",
+  "transcript": "Michael drove me to the garden centre this morning, which was very kind of him. I bought two more lavender plants and some trailing geraniums for the window boxes. He pushed the trolley and carried everything to the car. We stopped for coffee and a scone on the way home and sat by the window. The geraniums are already in the boxes and they look very cheerful. Really nice to get out and have some company for a few hours.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 118.969,
+      "articulation_rate_wpm": 148.168,
+      "phonation_to_time_ratio": 0.7681,
+      "mean_pause_duration_sec": 0.644,
+      "word_count": 80,
+      "duration_sec": 40.35
+    },
+    "lexical": {
+      "emotion_score": 0.1101,
+      "self_pronoun_ratio": 0.025,
+      "type_token_ratio": 0.75
+    },
+    "prosody": {
+      "f0_mean_hz": 186.141,
+      "jitter_local": 0.034669,
+      "shimmer_local_db": 1.276339
+    },
+    "spectral": {}
+  }
+}

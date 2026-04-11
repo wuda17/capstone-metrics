@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-02T15:40:00.312942+00:00",
+    "day": "2026-04-02"
+  },
+  "source_file": "session_012.wav",
+  "transcript": "A beautiful day so I spent most of it in the garden. Planted the new lavender along the back fence and I think it will look lovely come summer. Got quite sweaty doing it and my knees were not very happy, but it was worth it. Found an old ceramic pot buried under the hedge, must have been put there by John years ago. Cleaned it up nicely. Might put herbs in it. Sat outside with a cold glass of water when I had finished. Felt very satisfied.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 142.717,
+      "articulation_rate_wpm": 156.749,
+      "phonation_to_time_ratio": 0.8092,
+      "mean_pause_duration_sec": 0.589,
+      "word_count": 88,
+      "duration_sec": 37.0
+    },
+    "lexical": {
+      "emotion_score": 0.0679,
+      "self_pronoun_ratio": 0.0455,
+      "type_token_ratio": 0.8182
+    },
+    "prosody": {
+      "f0_mean_hz": 184.5302,
+      "jitter_local": 0.022724,
+      "shimmer_local_db": 1.047343
+    },
+    "spectral": {}
+  }
+}

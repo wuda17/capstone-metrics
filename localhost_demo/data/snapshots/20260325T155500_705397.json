@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-25T15:55:00.379201+00:00",
+    "day": "2026-03-25"
+  },
+  "source_file": "session_004.wav",
+  "transcript": "I made John's lamb stew today. I have not cooked it since before he died, nearly two years now. I was not sure I would remember the recipe but my hands just seemed to know what to do. The whole kitchen smelled exactly like it used to on a Sunday. I sat and ate a bowl of it on my own and felt his absence very strongly. It was painful but also strangely comforting. I think I will make it again. It felt like keeping something alive.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 148.808,
+      "articulation_rate_wpm": 163.775,
+      "phonation_to_time_ratio": 0.7527,
+      "mean_pause_duration_sec": 0.447,
+      "word_count": 87,
+      "duration_sec": 35.08
+    },
+    "lexical": {
+      "emotion_score": -0.1053,
+      "self_pronoun_ratio": 0.1034,
+      "type_token_ratio": 0.7356
+    },
+    "prosody": {
+      "f0_mean_hz": 213.6628,
+      "jitter_local": 0.023453,
+      "shimmer_local_db": 1.102286
+    },
+    "spectral": {}
+  }
+}

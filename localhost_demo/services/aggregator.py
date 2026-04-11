@@ -36,6 +36,23 @@ LEXICAL_METRIC_NAMES = (
 TRACKED_METRICS = tuple(METRIC_PATHS.keys()) + LEXICAL_METRIC_NAMES
 SELF_PRONOUN_TERMS = {"i", "me", "my", "mine", "myself"}
 
+# Human-readable display names for each tracked metric
+METRIC_LABELS: dict[str, str] = {
+    "speech_rate_wpm":         "Speaking Speed",
+    "articulation_rate_wpm":   "Articulation Rate",
+    "phonation_to_time_ratio": "Phonation Ratio",
+    "mean_pause_duration_sec": "Mean Pause Duration",
+    "f0_mean_hz":              "Pitch (F0)",
+    "jitter_local":            "Voice Jitter",
+    "shimmer_local_db":        "Voice Shimmer",
+    "type_token_ratio":        "Vocabulary Diversity",
+    "emotion_score":           "Mood Score",
+    "self_pronoun_ratio":      "Self-Reference",
+}
+
+# Minimum snapshots required before baseline comparisons are meaningful
+MIN_SNAPSHOTS_FOR_ALERTS = 5
+
 
 def parse_args() -> argparse.Namespace:
     root = Path(__file__).resolve().parents[1]
@@ -218,17 +235,17 @@ def _tokenize_text(text: str) -> list[str]:
     return [tok for tok in clean.split() if tok]
 
 
-def _type_token_ratio(text: str) -> float:
+def _type_token_ratio(text: str) -> float | None:
     tokens = _tokenize_text(text)
     if not tokens:
-        return 0.0
+        return None
     return len(set(tokens)) / len(tokens)
 
 
-def _self_pronoun_ratio(text: str) -> float:
+def _self_pronoun_ratio(text: str) -> float | None:
     tokens = _tokenize_text(text)
     if not tokens:
-        return 0.0
+        return None
     count = sum(1 for token in tokens if token in SELF_PRONOUN_TERMS)
     return count / len(tokens)
 
@@ -260,14 +277,17 @@ def _conversation_lexical_metrics(
             if d in daily_emotion_cache
             and isinstance((daily_emotion_cache[d] or {}).get("emotion_score"), (int, float))
         ]
-        emo = sum(day_scores) / len(day_scores) if day_scores else 0.0
+        emo: float | None = sum(day_scores) / len(day_scores) if day_scores else None
     else:
-        emo = 0.0
+        emo = None
+
+    ttr = _type_token_ratio(corpus)
+    spr = _self_pronoun_ratio(corpus)
 
     return {
-        "emotion_score": round(float(emo), 6),
-        "self_pronoun_ratio": float(_self_pronoun_ratio(corpus)),
-        "type_token_ratio": float(_type_token_ratio(corpus)),
+        "emotion_score": round(float(emo), 6) if emo is not None else None,
+        "self_pronoun_ratio": float(spr) if spr is not None else None,
+        "type_token_ratio": float(ttr) if ttr is not None else None,
     }
 
 
@@ -443,15 +463,17 @@ def _alerts_from_drift(drift: dict[str, dict[str, float | None | str]]) -> list[
         if magnitude < 20.0:
             continue
         severity = "high" if magnitude >= 40.0 else "medium"
+        display_name = METRIC_LABELS.get(metric, metric.replace("_", " ").title())
         alerts.append(
             {
                 "status": "alert",
                 "severity": severity,
                 "metric": metric,
+                "label": display_name,
                 "delta_pct": round(float(delta_pct), 3),
                 "trend": item.get("trend"),
                 "message": (
-                    f"{metric} is {magnitude:.1f}% "
+                    f"{display_name} is {magnitude:.1f}% "
                     f"{'above' if delta_pct > 0 else 'below'} baseline."
                 ),
             }
@@ -483,11 +505,42 @@ def compute_aggregate(
     time_series = _time_series(snapshots, now, segment_minutes, daily_emotion_cache)
     baseline_obj = _baseline_from_earliest_percent(snapshots, now, baseline_percent, daily_emotion_cache)
     current_obj = _current_metrics(snapshots, now, current_window_minutes, daily_emotion_cache)
+    # For alert comparison, fall back to the latest time-series bucket values
+    # when the current window has no data (None) for a metric.  This prevents
+    # false alerts when the rolling window contains no transcript text (lexical
+    # metrics now return None on an empty corpus instead of 0.0).
+    ts_latest_values = time_series[-1]["values"] if time_series else {}
+    comparison_values: dict[str, float | None] = {
+        metric: (
+            current_obj["values"].get(metric)
+            if current_obj["values"].get(metric) is not None
+            else ts_latest_values.get(metric)
+        )
+        for metric in TRACKED_METRICS
+    }
+
     drift = _drift_metrics(
         baseline_obj["values"],
-        current_obj["values"],
+        comparison_values,
     )
-    alerts = _alerts_from_drift(drift)
+    if len(snapshots) >= MIN_SNAPSHOTS_FOR_ALERTS:
+        alerts = _alerts_from_drift(drift)
+    else:
+        alerts = [
+            {
+                "status": "ok",
+                "severity": "none",
+                "metric": None,
+                "label": None,
+                "delta_pct": None,
+                "trend": "stable",
+                "message": (
+                    f"Collecting baseline data — alerts will activate after "
+                    f"{MIN_SNAPSHOTS_FOR_ALERTS} sessions are recorded "
+                    f"({len(snapshots)} so far)."
+                ),
+            }
+        ]
 
     baseline = dict(baseline_obj["values"])
     baseline["sample_count"] = baseline_obj["sample_count"]

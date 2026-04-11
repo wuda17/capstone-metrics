@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-27T09:46:00.256702+00:00",
+    "day": "2026-03-27"
+  },
+  "source_file": "session_006.wav",
+  "transcript": "Book club this evening was quite lively. We were discussing a memoir about a woman who walks across Iceland alone. There was a real debate about whether she was being self-indulgent or brave. I said I thought she was both and everyone laughed. Celia brought her lemon drizzle cake which was absolutely delicious, I had two slices. Walked home in the evening light feeling very stimulated. Glad I made the effort to go.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 143.374,
+      "articulation_rate_wpm": 162.932,
+      "phonation_to_time_ratio": 0.8209,
+      "mean_pause_duration_sec": 0.486,
+      "word_count": 73,
+      "duration_sec": 30.55
+    },
+    "lexical": {
+      "emotion_score": 0.2331,
+      "self_pronoun_ratio": 0.0548,
+      "type_token_ratio": 0.8219
+    },
+    "prosody": {
+      "f0_mean_hz": 199.3441,
+      "jitter_local": 0.026608,
+      "shimmer_local_db": 1.053117
+    },
+    "spectral": {}
+  }
+}

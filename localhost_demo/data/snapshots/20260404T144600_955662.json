@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-04T14:46:00.509597+00:00",
+    "day": "2026-04-04"
+  },
+  "source_file": "session_014.wav",
+  "transcript": "My hip has been really painful today, worse than it has been for a while. Think it might be the weather turning. Did very little, watched television most of the day which is not like me at all. Made myself a proper dinner at least, chicken and vegetables. Took a painkiller at bedtime. I hate feeling like this, it makes me feel old and useless and frustrated. Really hope it eases off tomorrow.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 153.871,
+      "articulation_rate_wpm": 163.132,
+      "phonation_to_time_ratio": 0.7738,
+      "mean_pause_duration_sec": 0.523,
+      "word_count": 73,
+      "duration_sec": 28.47
+    },
+    "lexical": {
+      "emotion_score": -0.3312,
+      "self_pronoun_ratio": 0.0685,
+      "type_token_ratio": 0.7945
+    },
+    "prosody": {
+      "f0_mean_hz": 186.2821,
+      "jitter_local": 0.026086,
+      "shimmer_local_db": 1.087164
+    },
+    "spectral": {}
+  }
+}

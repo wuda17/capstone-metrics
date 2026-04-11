@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-29T11:58:00.674079+00:00",
+    "day": "2026-03-29"
+  },
+  "source_file": "session_008.wav",
+  "transcript": "A very difficult night. Woke at around half two and could not get back to sleep at all. My mind was racing, going over all sorts of things. Whether the boiler needs a service, whether I said something odd to Sarah last week. Nothing actually serious but at three in the morning everything feels enormous. Got up and made tea and watched an old film until it was light. Feel absolutely dreadful today, slow and foggy. Hard to concentrate on anything.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 150.051,
+      "articulation_rate_wpm": 164.144,
+      "phonation_to_time_ratio": 0.7788,
+      "mean_pause_duration_sec": 0.458,
+      "word_count": 81,
+      "duration_sec": 32.39
+    },
+    "lexical": {
+      "emotion_score": -0.4478,
+      "self_pronoun_ratio": 0.0247,
+      "type_token_ratio": 0.8642
+    },
+    "prosody": {
+      "f0_mean_hz": 197.8412,
+      "jitter_local": 0.020827,
+      "shimmer_local_db": 0.984364
+    },
+    "spectral": {}
+  }
+}

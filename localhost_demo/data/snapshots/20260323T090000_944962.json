@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-23T09:00:00.795667+00:00",
+    "day": "2026-03-23"
+  },
+  "source_file": "session_002.wav",
+  "transcript": "Had such a lovely phone call with Sarah this morning, we chatted for nearly an hour. She told me that Tommy has been given the lead part in his school play. He is going to be a lighthouse keeper which is quite funny. She said he has been rehearsing his lines around the house all week. I had my coffee while we talked and felt so happy and proud just hearing about it. Cannot wait to see him on stage.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 151.381,
+      "articulation_rate_wpm": 166.419,
+      "phonation_to_time_ratio": 0.7764,
+      "mean_pause_duration_sec": 0.554,
+      "word_count": 80,
+      "duration_sec": 31.71
+    },
+    "lexical": {
+      "emotion_score": 0.3948,
+      "self_pronoun_ratio": 0.0375,
+      "type_token_ratio": 0.85
+    },
+    "prosody": {
+      "f0_mean_hz": 198.3146,
+      "jitter_local": 0.022612,
+      "shimmer_local_db": 0.995026
+    },
+    "spectral": {}
+  }
+}

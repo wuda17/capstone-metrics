@@ -1,0 +1,1636 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-04-11T22:45:32.325973+00:00",
+  "memories": [
+    {
+      "id": "m_2e80e7ea1c",
+      "type": "event",
+      "content": "Spotted a red kite circling above the field on morning walk",
+      "valence": null,
+      "keywords": [
+        "red kite",
+        "walk",
+        "bird",
+        "field"
+      ],
+      "date": "2026-03-21",
+      "source_event_time": "2026-03-21T10:40:00.116739+00:00",
+      "source_text": "Went for my walk this morning before breakfast. The whole lane was lined with cow parsley, it looked almost like snow. And then I spotted a red kite circling above the field, very high up. I stood and watched it for a good few minutes. Felt very peaceful and rather lucky to see that. Had a boiled egg and read the paper when I got home. A good start to the day."
+    },
+    {
+      "id": "m_ccfc39abf8",
+      "type": "event",
+      "content": "Had a boiled egg and read the paper after the walk",
+      "valence": null,
+      "keywords": [
+        "breakfast",
+        "boiled egg",
+        "paper",
+        "morning"
+      ],
+      "date": "2026-03-21",
+      "source_event_time": "2026-03-21T10:40:00.116739+00:00",
+      "source_text": "Went for my walk this morning before breakfast. The whole lane was lined with cow parsley, it looked almost like snow. And then I spotted a red kite circling above the field, very high up. I stood and watched it for a good few minutes. Felt very peaceful and rather lucky to see that. Had a boiled egg and read the paper when I got home. A good start to the day."
+    },
+    {
+      "id": "m_1acd1f319b",
+      "type": "mood",
+      "content": "Emily felt peaceful and lucky seeing the red kite",
+      "valence": 0.8,
+      "keywords": [
+        "peaceful",
+        "lucky",
+        "morning",
+        "nature"
+      ],
+      "date": "2026-03-21",
+      "source_event_time": "2026-03-21T10:40:00.116739+00:00",
+      "source_text": "Went for my walk this morning before breakfast. The whole lane was lined with cow parsley, it looked almost like snow. And then I spotted a red kite circling above the field, very high up. I stood and watched it for a good few minutes. Felt very peaceful and rather lucky to see that. Had a boiled egg and read the paper when I got home. A good start to the day."
+    },
+    {
+      "id": "m_4e093b9d17",
+      "type": "fact",
+      "content": "Emily enjoys early morning walks before breakfast",
+      "valence": null,
+      "keywords": [
+        "walks",
+        "morning",
+        "routine",
+        "exercise"
+      ],
+      "date": "2026-03-21",
+      "source_event_time": "2026-03-21T10:40:00.116739+00:00",
+      "source_text": "Went for my walk this morning before breakfast. The whole lane was lined with cow parsley, it looked almost like snow. And then I spotted a red kite circling above the field, very high up. I stood and watched it for a good few minutes. Felt very peaceful and rather lucky to see that. Had a boiled egg and read the paper when I got home. A good start to the day."
+    },
+    {
+      "id": "m_1d85580717",
+      "type": "event",
+      "content": "Found an old postcard from John tucked in a book",
+      "valence": null,
+      "keywords": [
+        "postcard",
+        "John",
+        "Edinburgh",
+        "book"
+      ],
+      "date": "2026-03-22",
+      "source_event_time": "2026-03-22T14:05:00.229258+00:00",
+      "source_text": "Stayed indoors most of the day because of the rain, which suited me fine. Spent the afternoon reading and then had a bit of a cry, which actually felt quite good in a way. I found an old postcard tucked inside my book, from John, written on a work trip to Edinburgh. Just silly little things on it, something about the weather and a pub he liked. But I kept reading it over and over. Went to bed early."
+    },
+    {
+      "id": "m_3dffc76335",
+      "type": "event",
+      "content": "Spent a rainy afternoon indoors reading and went to bed early",
+      "valence": null,
+      "keywords": [
+        "reading",
+        "rain",
+        "indoors",
+        "afternoon"
+      ],
+      "date": "2026-03-22",
+      "source_event_time": "2026-03-22T14:05:00.229258+00:00",
+      "source_text": "Stayed indoors most of the day because of the rain, which suited me fine. Spent the afternoon reading and then had a bit of a cry, which actually felt quite good in a way. I found an old postcard tucked inside my book, from John, written on a work trip to Edinburgh. Just silly little things on it, something about the weather and a pub he liked. But I kept reading it over and over. Went to bed early."
+    },
+    {
+      "id": "m_4346c4d39c",
+      "type": "mood",
+      "content": "Emily cried reading John's old postcard \u2014 sad but cathartic",
+      "valence": -0.3,
+      "keywords": [
+        "cry",
+        "John",
+        "miss",
+        "postcard"
+      ],
+      "date": "2026-03-22",
+      "source_event_time": "2026-03-22T14:05:00.229258+00:00",
+      "source_text": "Stayed indoors most of the day because of the rain, which suited me fine. Spent the afternoon reading and then had a bit of a cry, which actually felt quite good in a way. I found an old postcard tucked inside my book, from John, written on a work trip to Edinburgh. Just silly little things on it, something about the weather and a pub he liked. But I kept reading it over and over. Went to bed early."
+    },
+    {
+      "id": "m_c976ca7057",
+      "type": "fact",
+      "content": "John wrote postcards to Emily when he was away on work trips",
+      "valence": null,
+      "keywords": [
+        "John",
+        "postcards",
+        "Edinburgh",
+        "work trips"
+      ],
+      "date": "2026-03-22",
+      "source_event_time": "2026-03-22T14:05:00.229258+00:00",
+      "source_text": "Stayed indoors most of the day because of the rain, which suited me fine. Spent the afternoon reading and then had a bit of a cry, which actually felt quite good in a way. I found an old postcard tucked inside my book, from John, written on a work trip to Edinburgh. Just silly little things on it, something about the weather and a pub he liked. But I kept reading it over and over. Went to bed early."
+    },
+    {
+      "id": "m_5a02e4ca79",
+      "type": "event",
+      "content": "Tommy got the lead role in his school play as a lighthouse keeper",
+      "valence": null,
+      "keywords": [
+        "Tommy",
+        "school play",
+        "lighthouse keeper",
+        "lead role"
+      ],
+      "date": "2026-03-23",
+      "source_event_time": "2026-03-23T09:00:00.795667+00:00",
+      "source_text": "Had such a lovely phone call with Sarah this morning, we chatted for nearly an hour. She told me that Tommy has been given the lead part in his school play. He is going to be a lighthouse keeper which is quite funny. She said he has been rehearsing his lines around the house all week. I had my coffee while we talked and felt so happy and proud just hearing about it. Cannot wait to see him on stage."
+    },
+    {
+      "id": "m_5a5d26a10c",
+      "type": "event",
+      "content": "Long phone call with Sarah over morning coffee \u2014 chatted for nearly an hour",
+      "valence": null,
+      "keywords": [
+        "Sarah",
+        "phone call",
+        "coffee",
+        "morning"
+      ],
+      "date": "2026-03-23",
+      "source_event_time": "2026-03-23T09:00:00.795667+00:00",
+      "source_text": "Had such a lovely phone call with Sarah this morning, we chatted for nearly an hour. She told me that Tommy has been given the lead part in his school play. He is going to be a lighthouse keeper which is quite funny. She said he has been rehearsing his lines around the house all week. I had my coffee while we talked and felt so happy and proud just hearing about it. Cannot wait to see him on stage."
+    },
+    {
+      "id": "m_5bad732ef7",
+      "type": "mood",
+      "content": "Emily felt excited and proud hearing about Tommy's school play role",
+      "valence": 0.85,
+      "keywords": [
+        "excited",
+        "proud",
+        "happy",
+        "Tommy"
+      ],
+      "date": "2026-03-23",
+      "source_event_time": "2026-03-23T09:00:00.795667+00:00",
+      "source_text": "Had such a lovely phone call with Sarah this morning, we chatted for nearly an hour. She told me that Tommy has been given the lead part in his school play. He is going to be a lighthouse keeper which is quite funny. She said he has been rehearsing his lines around the house all week. I had my coffee while we talked and felt so happy and proud just hearing about it. Cannot wait to see him on stage."
+    },
+    {
+      "id": "m_ffe0d6c369",
+      "type": "fact",
+      "content": "Tommy has the lead part in his school play as a lighthouse keeper",
+      "valence": null,
+      "keywords": [
+        "Tommy",
+        "school play",
+        "lighthouse keeper",
+        "lead"
+      ],
+      "date": "2026-03-23",
+      "source_event_time": "2026-03-23T09:00:00.795667+00:00",
+      "source_text": "Had such a lovely phone call with Sarah this morning, we chatted for nearly an hour. She told me that Tommy has been given the lead part in his school play. He is going to be a lighthouse keeper which is quite funny. She said he has been rehearsing his lines around the house all week. I had my coffee while we talked and felt so happy and proud just hearing about it. Cannot wait to see him on stage."
+    },
+    {
+      "id": "m_cc84a8cfc0",
+      "type": "event",
+      "content": "Doctor said cholesterol is slightly high and needs monitoring",
+      "valence": null,
+      "keywords": [
+        "doctor",
+        "cholesterol",
+        "appointment",
+        "health"
+      ],
+      "date": "2026-03-24",
+      "source_event_time": "2026-03-24T11:22:00.633052+00:00",
+      "source_text": "Doctor's appointment first thing. He says my cholesterol is a little on the high side and wants to keep an eye on it. Suggested I cut back on butter and cheese, which I am not at all happy about if I am honest. On the better side he said my blood pressure has actually improved since last time, which was encouraging. Picked up my prescription and walked home. Had soup for lunch and watched the afternoon news. Fairly ordinary rest of the day."
+    },
+    {
+      "id": "m_e45c985c26",
+      "type": "event",
+      "content": "Had soup for lunch and watched the afternoon news",
+      "valence": null,
+      "keywords": [
+        "soup",
+        "lunch",
+        "news",
+        "afternoon"
+      ],
+      "date": "2026-03-24",
+      "source_event_time": "2026-03-24T11:22:00.633052+00:00",
+      "source_text": "Doctor's appointment first thing. He says my cholesterol is a little on the high side and wants to keep an eye on it. Suggested I cut back on butter and cheese, which I am not at all happy about if I am honest. On the better side he said my blood pressure has actually improved since last time, which was encouraging. Picked up my prescription and walked home. Had soup for lunch and watched the afternoon news. Fairly ordinary rest of the day."
+    },
+    {
+      "id": "m_beb24d1175",
+      "type": "mood",
+      "content": "Emily felt encouraged by improved blood pressure but unhappy about the diet advice",
+      "valence": 0.2,
+      "keywords": [
+        "encouraged",
+        "blood pressure",
+        "cholesterol",
+        "diet"
+      ],
+      "date": "2026-03-24",
+      "source_event_time": "2026-03-24T11:22:00.633052+00:00",
+      "source_text": "Doctor's appointment first thing. He says my cholesterol is a little on the high side and wants to keep an eye on it. Suggested I cut back on butter and cheese, which I am not at all happy about if I am honest. On the better side he said my blood pressure has actually improved since last time, which was encouraging. Picked up my prescription and walked home. Had soup for lunch and watched the afternoon news. Fairly ordinary rest of the day."
+    },
+    {
+      "id": "m_1279e2a4a7",
+      "type": "fact",
+      "content": "Emily's cholesterol is elevated \u2014 doctor advised cutting butter and cheese",
+      "valence": null,
+      "keywords": [
+        "cholesterol",
+        "butter",
+        "cheese",
+        "diet"
+      ],
+      "date": "2026-03-24",
+      "source_event_time": "2026-03-24T11:22:00.633052+00:00",
+      "source_text": "Doctor's appointment first thing. He says my cholesterol is a little on the high side and wants to keep an eye on it. Suggested I cut back on butter and cheese, which I am not at all happy about if I am honest. On the better side he said my blood pressure has actually improved since last time, which was encouraging. Picked up my prescription and walked home. Had soup for lunch and watched the afternoon news. Fairly ordinary rest of the day."
+    },
+    {
+      "id": "m_1de76a54a6",
+      "type": "fact",
+      "content": "Emily's blood pressure has improved since her last appointment",
+      "valence": null,
+      "keywords": [
+        "blood pressure",
+        "improved",
+        "doctor",
+        "health"
+      ],
+      "date": "2026-03-24",
+      "source_event_time": "2026-03-24T11:22:00.633052+00:00",
+      "source_text": "Doctor's appointment first thing. He says my cholesterol is a little on the high side and wants to keep an eye on it. Suggested I cut back on butter and cheese, which I am not at all happy about if I am honest. On the better side he said my blood pressure has actually improved since last time, which was encouraging. Picked up my prescription and walked home. Had soup for lunch and watched the afternoon news. Fairly ordinary rest of the day."
+    },
+    {
+      "id": "m_972bd9a9b8",
+      "type": "event",
+      "content": "Cooked John's lamb stew for the first time in nearly two years",
+      "valence": null,
+      "keywords": [
+        "lamb stew",
+        "John",
+        "cooking",
+        "recipe"
+      ],
+      "date": "2026-03-25",
+      "source_event_time": "2026-03-25T15:55:00.379201+00:00",
+      "source_text": "I made John's lamb stew today. I have not cooked it since before he died, nearly two years now. I was not sure I would remember the recipe but my hands just seemed to know what to do. The whole kitchen smelled exactly like it used to on a Sunday. I sat and ate a bowl of it on my own and felt his absence very strongly. It was painful but also strangely comforting. I think I will make it again. It felt like keeping something alive."
+    },
+    {
+      "id": "m_7b8ccfb806",
+      "type": "mood",
+      "content": "Emily felt John's absence strongly cooking his recipe but also comforted",
+      "valence": -0.15,
+      "keywords": [
+        "miss John",
+        "absence",
+        "comfort",
+        "bittersweet"
+      ],
+      "date": "2026-03-25",
+      "source_event_time": "2026-03-25T15:55:00.379201+00:00",
+      "source_text": "I made John's lamb stew today. I have not cooked it since before he died, nearly two years now. I was not sure I would remember the recipe but my hands just seemed to know what to do. The whole kitchen smelled exactly like it used to on a Sunday. I sat and ate a bowl of it on my own and felt his absence very strongly. It was painful but also strangely comforting. I think I will make it again. It felt like keeping something alive."
+    },
+    {
+      "id": "m_da80fdb59d",
+      "type": "fact",
+      "content": "Lamb stew was John's recipe and they always had it on Sundays",
+      "valence": null,
+      "keywords": [
+        "John",
+        "lamb stew",
+        "Sundays",
+        "recipe",
+        "tradition"
+      ],
+      "date": "2026-03-25",
+      "source_event_time": "2026-03-25T15:55:00.379201+00:00",
+      "source_text": "I made John's lamb stew today. I have not cooked it since before he died, nearly two years now. I was not sure I would remember the recipe but my hands just seemed to know what to do. The whole kitchen smelled exactly like it used to on a Sunday. I sat and ate a bowl of it on my own and felt his absence very strongly. It was painful but also strangely comforting. I think I will make it again. It felt like keeping something alive."
+    },
+    {
+      "id": "m_860c3cd3b1",
+      "type": "fact",
+      "content": "John passed away nearly two years ago",
+      "valence": null,
+      "keywords": [
+        "John",
+        "passed away",
+        "two years",
+        "grief"
+      ],
+      "date": "2026-03-25",
+      "source_event_time": "2026-03-25T15:55:00.379201+00:00",
+      "source_text": "I made John's lamb stew today. I have not cooked it since before he died, nearly two years now. I was not sure I would remember the recipe but my hands just seemed to know what to do. The whole kitchen smelled exactly like it used to on a Sunday. I sat and ate a bowl of it on my own and felt his absence very strongly. It was painful but also strangely comforting. I think I will make it again. It felt like keeping something alive."
+    },
+    {
+      "id": "m_53fd4c503d",
+      "type": "event",
+      "content": "Had porridge and listened to the radio for breakfast",
+      "valence": null,
+      "keywords": [
+        "porridge",
+        "radio",
+        "breakfast",
+        "morning routine"
+      ],
+      "date": "2026-03-26",
+      "source_event_time": "2026-03-26T10:29:00.666563+00:00",
+      "source_text": "Quite a nice ordinary day today. Had porridge and listened to the radio. Did some weeding in the front garden before it got too hot. Popped to the post office to send a birthday card to my cousin Patricia and bumped into Mr Henderson from the village. We had a nice chat about nothing in particular. Came home, had a cheese sandwich for lunch, watched Countdown in the afternoon. All in all a perfectly fine quiet day."
+    },
+    {
+      "id": "m_8db6c4a5f7",
+      "type": "event",
+      "content": "Did weeding in the front garden in the morning before the heat",
+      "valence": null,
+      "keywords": [
+        "weeding",
+        "garden",
+        "morning",
+        "outdoors"
+      ],
+      "date": "2026-03-26",
+      "source_event_time": "2026-03-26T10:29:00.666563+00:00",
+      "source_text": "Quite a nice ordinary day today. Had porridge and listened to the radio. Did some weeding in the front garden before it got too hot. Popped to the post office to send a birthday card to my cousin Patricia and bumped into Mr Henderson from the village. We had a nice chat about nothing in particular. Came home, had a cheese sandwich for lunch, watched Countdown in the afternoon. All in all a perfectly fine quiet day."
+    },
+    {
+      "id": "m_bbb08aaac8",
+      "type": "event",
+      "content": "Bumped into Mr Henderson from the village at the post office",
+      "valence": null,
+      "keywords": [
+        "Mr Henderson",
+        "post office",
+        "village",
+        "chat"
+      ],
+      "date": "2026-03-26",
+      "source_event_time": "2026-03-26T10:29:00.666563+00:00",
+      "source_text": "Quite a nice ordinary day today. Had porridge and listened to the radio. Did some weeding in the front garden before it got too hot. Popped to the post office to send a birthday card to my cousin Patricia and bumped into Mr Henderson from the village. We had a nice chat about nothing in particular. Came home, had a cheese sandwich for lunch, watched Countdown in the afternoon. All in all a perfectly fine quiet day."
+    },
+    {
+      "id": "m_4d6a6f1d07",
+      "type": "event",
+      "content": "Watched Countdown in the afternoon with a cheese sandwich",
+      "valence": null,
+      "keywords": [
+        "Countdown",
+        "TV",
+        "afternoon",
+        "sandwich"
+      ],
+      "date": "2026-03-26",
+      "source_event_time": "2026-03-26T10:29:00.666563+00:00",
+      "source_text": "Quite a nice ordinary day today. Had porridge and listened to the radio. Did some weeding in the front garden before it got too hot. Popped to the post office to send a birthday card to my cousin Patricia and bumped into Mr Henderson from the village. We had a nice chat about nothing in particular. Came home, had a cheese sandwich for lunch, watched Countdown in the afternoon. All in all a perfectly fine quiet day."
+    },
+    {
+      "id": "m_6aafb145d7",
+      "type": "mood",
+      "content": "Emily felt quietly content with an ordinary pleasant day",
+      "valence": 0.55,
+      "keywords": [
+        "content",
+        "pleasant",
+        "ordinary",
+        "quiet day"
+      ],
+      "date": "2026-03-26",
+      "source_event_time": "2026-03-26T10:29:00.666563+00:00",
+      "source_text": "Quite a nice ordinary day today. Had porridge and listened to the radio. Did some weeding in the front garden before it got too hot. Popped to the post office to send a birthday card to my cousin Patricia and bumped into Mr Henderson from the village. We had a nice chat about nothing in particular. Came home, had a cheese sandwich for lunch, watched Countdown in the afternoon. All in all a perfectly fine quiet day."
+    },
+    {
+      "id": "m_2f156dcad4",
+      "type": "event",
+      "content": "Book club debated a memoir about a woman walking across Iceland alone",
+      "valence": null,
+      "keywords": [
+        "book club",
+        "Iceland",
+        "memoir",
+        "debate"
+      ],
+      "date": "2026-03-27",
+      "source_event_time": "2026-03-27T09:46:00.256702+00:00",
+      "source_text": "Book club this evening was quite lively. We were discussing a memoir about a woman who walks across Iceland alone. There was a real debate about whether she was being self-indulgent or brave. I said I thought she was both and everyone laughed. Celia brought her lemon drizzle cake which was absolutely delicious, I had two slices. Walked home in the evening light feeling very stimulated. Glad I made the effort to go."
+    },
+    {
+      "id": "m_7ec1c44344",
+      "type": "event",
+      "content": "Celia brought lemon drizzle cake to book club \u2014 Emily had two slices",
+      "valence": null,
+      "keywords": [
+        "Celia",
+        "lemon drizzle",
+        "cake",
+        "book club"
+      ],
+      "date": "2026-03-27",
+      "source_event_time": "2026-03-27T09:46:00.256702+00:00",
+      "source_text": "Book club this evening was quite lively. We were discussing a memoir about a woman who walks across Iceland alone. There was a real debate about whether she was being self-indulgent or brave. I said I thought she was both and everyone laughed. Celia brought her lemon drizzle cake which was absolutely delicious, I had two slices. Walked home in the evening light feeling very stimulated. Glad I made the effort to go."
+    },
+    {
+      "id": "m_084176002a",
+      "type": "mood",
+      "content": "Emily felt stimulated and glad she made the effort to go to book club",
+      "valence": 0.75,
+      "keywords": [
+        "stimulated",
+        "glad",
+        "engaged",
+        "lively"
+      ],
+      "date": "2026-03-27",
+      "source_event_time": "2026-03-27T09:46:00.256702+00:00",
+      "source_text": "Book club this evening was quite lively. We were discussing a memoir about a woman who walks across Iceland alone. There was a real debate about whether she was being self-indulgent or brave. I said I thought she was both and everyone laughed. Celia brought her lemon drizzle cake which was absolutely delicious, I had two slices. Walked home in the evening light feeling very stimulated. Glad I made the effort to go."
+    },
+    {
+      "id": "m_52e20e7111",
+      "type": "fact",
+      "content": "Celia is a book club member known for her lemon drizzle cake",
+      "valence": null,
+      "keywords": [
+        "Celia",
+        "book club",
+        "lemon drizzle",
+        "friend"
+      ],
+      "date": "2026-03-27",
+      "source_event_time": "2026-03-27T09:46:00.256702+00:00",
+      "source_text": "Book club this evening was quite lively. We were discussing a memoir about a woman who walks across Iceland alone. There was a real debate about whether she was being self-indulgent or brave. I said I thought she was both and everyone laughed. Celia brought her lemon drizzle cake which was absolutely delicious, I had two slices. Walked home in the evening light feeling very stimulated. Glad I made the effort to go."
+    },
+    {
+      "id": "m_9a39e95b54",
+      "type": "event",
+      "content": "Watched Tommy perform the lead role in his school play",
+      "valence": null,
+      "keywords": [
+        "Tommy",
+        "school play",
+        "performance",
+        "stage"
+      ],
+      "date": "2026-03-28",
+      "source_event_time": "2026-03-28T16:52:00.033659+00:00",
+      "source_text": "Tommy's school play this afternoon. I could not be more proud if I tried. He stood up on that little stage and said every single line perfectly and loudly. When he spotted me in the audience he gave a tiny wave and I genuinely thought my heart might burst. Sarah and I took him for ice cream afterwards and he had two scoops of chocolate. He told us all about the backstage nerves on the way home. What a wonderful afternoon."
+    },
+    {
+      "id": "m_29175cc9aa",
+      "type": "event",
+      "content": "Took Tommy for two scoops of chocolate ice cream after the play",
+      "valence": null,
+      "keywords": [
+        "Tommy",
+        "ice cream",
+        "chocolate",
+        "after show"
+      ],
+      "date": "2026-03-28",
+      "source_event_time": "2026-03-28T16:52:00.033659+00:00",
+      "source_text": "Tommy's school play this afternoon. I could not be more proud if I tried. He stood up on that little stage and said every single line perfectly and loudly. When he spotted me in the audience he gave a tiny wave and I genuinely thought my heart might burst. Sarah and I took him for ice cream afterwards and he had two scoops of chocolate. He told us all about the backstage nerves on the way home. What a wonderful afternoon."
+    },
+    {
+      "id": "m_7e8d9e6547",
+      "type": "mood",
+      "content": "Emily's heart burst with pride when Tommy waved to her from the stage",
+      "valence": 0.95,
+      "keywords": [
+        "proud",
+        "heart burst",
+        "Tommy",
+        "wave"
+      ],
+      "date": "2026-03-28",
+      "source_event_time": "2026-03-28T16:52:00.033659+00:00",
+      "source_text": "Tommy's school play this afternoon. I could not be more proud if I tried. He stood up on that little stage and said every single line perfectly and loudly. When he spotted me in the audience he gave a tiny wave and I genuinely thought my heart might burst. Sarah and I took him for ice cream afterwards and he had two scoops of chocolate. He told us all about the backstage nerves on the way home. What a wonderful afternoon."
+    },
+    {
+      "id": "m_b0d8d2327b",
+      "type": "fact",
+      "content": "Tommy spotted Emily in the audience and gave her a little wave mid-performance",
+      "valence": null,
+      "keywords": [
+        "Tommy",
+        "wave",
+        "audience",
+        "proud moment"
+      ],
+      "date": "2026-03-28",
+      "source_event_time": "2026-03-28T16:52:00.033659+00:00",
+      "source_text": "Tommy's school play this afternoon. I could not be more proud if I tried. He stood up on that little stage and said every single line perfectly and loudly. When he spotted me in the audience he gave a tiny wave and I genuinely thought my heart might burst. Sarah and I took him for ice cream afterwards and he had two scoops of chocolate. He told us all about the backstage nerves on the way home. What a wonderful afternoon."
+    },
+    {
+      "id": "m_b3466adcc1",
+      "type": "event",
+      "content": "Woke at 2:30am with racing thoughts and could not get back to sleep",
+      "valence": null,
+      "keywords": [
+        "insomnia",
+        "2:30am",
+        "woke",
+        "racing thoughts"
+      ],
+      "date": "2026-03-29",
+      "source_event_time": "2026-03-29T11:58:00.674079+00:00",
+      "source_text": "A very difficult night. Woke at around half two and could not get back to sleep at all. My mind was racing, going over all sorts of things. Whether the boiler needs a service, whether I said something odd to Sarah last week. Nothing actually serious but at three in the morning everything feels enormous. Got up and made tea and watched an old film until it was light. Feel absolutely dreadful today, slow and foggy. Hard to concentrate on anything."
+    },
+    {
+      "id": "m_4fc8fac50c",
+      "type": "event",
+      "content": "Made tea and watched an old film alone until daylight",
+      "valence": null,
+      "keywords": [
+        "tea",
+        "old film",
+        "sleepless",
+        "night",
+        "alone"
+      ],
+      "date": "2026-03-29",
+      "source_event_time": "2026-03-29T11:58:00.674079+00:00",
+      "source_text": "A very difficult night. Woke at around half two and could not get back to sleep at all. My mind was racing, going over all sorts of things. Whether the boiler needs a service, whether I said something odd to Sarah last week. Nothing actually serious but at three in the morning everything feels enormous. Got up and made tea and watched an old film until it was light. Feel absolutely dreadful today, slow and foggy. Hard to concentrate on anything."
+    },
+    {
+      "id": "m_57628cf41e",
+      "type": "mood",
+      "content": "Emily felt absolutely dreadful after a sleepless night of racing thoughts",
+      "valence": -0.75,
+      "keywords": [
+        "dreadful",
+        "exhausted",
+        "sleepless",
+        "slow and foggy"
+      ],
+      "date": "2026-03-29",
+      "source_event_time": "2026-03-29T11:58:00.674079+00:00",
+      "source_text": "A very difficult night. Woke at around half two and could not get back to sleep at all. My mind was racing, going over all sorts of things. Whether the boiler needs a service, whether I said something odd to Sarah last week. Nothing actually serious but at three in the morning everything feels enormous. Got up and made tea and watched an old film until it was light. Feel absolutely dreadful today, slow and foggy. Hard to concentrate on anything."
+    },
+    {
+      "id": "m_1552eec0c2",
+      "type": "mood",
+      "content": "Emily worried she may have said something odd to Sarah last week",
+      "valence": -0.5,
+      "keywords": [
+        "worry",
+        "Sarah",
+        "anxious",
+        "night worries"
+      ],
+      "date": "2026-03-29",
+      "source_event_time": "2026-03-29T11:58:00.674079+00:00",
+      "source_text": "A very difficult night. Woke at around half two and could not get back to sleep at all. My mind was racing, going over all sorts of things. Whether the boiler needs a service, whether I said something odd to Sarah last week. Nothing actually serious but at three in the morning everything feels enormous. Got up and made tea and watched an old film until it was light. Feel absolutely dreadful today, slow and foggy. Hard to concentrate on anything."
+    },
+    {
+      "id": "m_5413b70bf2",
+      "type": "event",
+      "content": "Finally went through John's belongings in boxes in the spare room",
+      "valence": null,
+      "keywords": [
+        "John",
+        "spare room",
+        "belongings",
+        "sorting"
+      ],
+      "date": "2026-03-30",
+      "source_event_time": "2026-03-30T14:08:00.534277+00:00",
+      "source_text": "I finally went through the spare room today. John's things have been sitting in boxes in there since we cleared his study. I did not expect it to take all afternoon but it did. Found his bird-watching notebook, all his lists in his handwriting. I sat down on the floor and just held it for quite a long time. Kept some things, put some in bags for the charity shop. I feel wrung out and emotional but also, strangely, just a tiny bit lighter."
+    },
+    {
+      "id": "m_0b1887904f",
+      "type": "event",
+      "content": "Found John's bird-watching notebook with all his handwritten lists",
+      "valence": null,
+      "keywords": [
+        "John",
+        "bird-watching",
+        "notebook",
+        "handwriting"
+      ],
+      "date": "2026-03-30",
+      "source_event_time": "2026-03-30T14:08:00.534277+00:00",
+      "source_text": "I finally went through the spare room today. John's things have been sitting in boxes in there since we cleared his study. I did not expect it to take all afternoon but it did. Found his bird-watching notebook, all his lists in his handwriting. I sat down on the floor and just held it for quite a long time. Kept some things, put some in bags for the charity shop. I feel wrung out and emotional but also, strangely, just a tiny bit lighter."
+    },
+    {
+      "id": "m_479f90859c",
+      "type": "mood",
+      "content": "Emily sat on the floor holding John's notebook for a long time \u2014 overwhelmed",
+      "valence": -0.4,
+      "keywords": [
+        "emotional",
+        "John",
+        "notebook",
+        "grief"
+      ],
+      "date": "2026-03-30",
+      "source_event_time": "2026-03-30T14:08:00.534277+00:00",
+      "source_text": "I finally went through the spare room today. John's things have been sitting in boxes in there since we cleared his study. I did not expect it to take all afternoon but it did. Found his bird-watching notebook, all his lists in his handwriting. I sat down on the floor and just held it for quite a long time. Kept some things, put some in bags for the charity shop. I feel wrung out and emotional but also, strangely, just a tiny bit lighter."
+    },
+    {
+      "id": "m_ebb825ed46",
+      "type": "mood",
+      "content": "After sorting John's things Emily felt wrung out but slightly lighter",
+      "valence": 0.15,
+      "keywords": [
+        "lighter",
+        "closure",
+        "wrung out",
+        "bittersweet"
+      ],
+      "date": "2026-03-30",
+      "source_event_time": "2026-03-30T14:08:00.534277+00:00",
+      "source_text": "I finally went through the spare room today. John's things have been sitting in boxes in there since we cleared his study. I did not expect it to take all afternoon but it did. Found his bird-watching notebook, all his lists in his handwriting. I sat down on the floor and just held it for quite a long time. Kept some things, put some in bags for the charity shop. I feel wrung out and emotional but also, strangely, just a tiny bit lighter."
+    },
+    {
+      "id": "m_cdc216b1d8",
+      "type": "fact",
+      "content": "John was a keen bird-watcher who kept detailed handwritten notebooks",
+      "valence": null,
+      "keywords": [
+        "John",
+        "bird-watching",
+        "notebooks",
+        "hobby"
+      ],
+      "date": "2026-03-30",
+      "source_event_time": "2026-03-30T14:08:00.534277+00:00",
+      "source_text": "I finally went through the spare room today. John's things have been sitting in boxes in there since we cleared his study. I did not expect it to take all afternoon but it did. Found his bird-watching notebook, all his lists in his handwriting. I sat down on the floor and just held it for quite a long time. Kept some things, put some in bags for the charity shop. I feel wrung out and emotional but also, strangely, just a tiny bit lighter."
+    },
+    {
+      "id": "m_6117e7ed61",
+      "type": "event",
+      "content": "Had smoked salmon lunch at the new caf\u00e9 on the high street with Dorothy",
+      "valence": null,
+      "keywords": [
+        "Dorothy",
+        "caf\u00e9",
+        "smoked salmon",
+        "lunch",
+        "high street"
+      ],
+      "date": "2026-03-31",
+      "source_event_time": "2026-03-31T10:29:00.554816+00:00",
+      "source_text": "Dorothy and I had lunch at that new little caf\u00e9 on the high street, the one that does the open sandwiches. I had smoked salmon and it was very good. We talked for nearly two and a half hours. She is having some difficulty with her daughter-in-law, nothing serious but you could tell she needed to talk and I mostly just listened. It is nice to feel useful. Walked home feeling very fond of her and glad we made the effort."
+    },
+    {
+      "id": "m_3f7e572e2b",
+      "type": "event",
+      "content": "Talked with Dorothy for nearly two and a half hours over lunch",
+      "valence": null,
+      "keywords": [
+        "Dorothy",
+        "conversation",
+        "lunch",
+        "long chat"
+      ],
+      "date": "2026-03-31",
+      "source_event_time": "2026-03-31T10:29:00.554816+00:00",
+      "source_text": "Dorothy and I had lunch at that new little caf\u00e9 on the high street, the one that does the open sandwiches. I had smoked salmon and it was very good. We talked for nearly two and a half hours. She is having some difficulty with her daughter-in-law, nothing serious but you could tell she needed to talk and I mostly just listened. It is nice to feel useful. Walked home feeling very fond of her and glad we made the effort."
+    },
+    {
+      "id": "m_4f1162fc29",
+      "type": "mood",
+      "content": "Emily felt warm and useful after mostly listening to Dorothy's difficulties",
+      "valence": 0.7,
+      "keywords": [
+        "warm",
+        "useful",
+        "fond",
+        "friendship"
+      ],
+      "date": "2026-03-31",
+      "source_event_time": "2026-03-31T10:29:00.554816+00:00",
+      "source_text": "Dorothy and I had lunch at that new little caf\u00e9 on the high street, the one that does the open sandwiches. I had smoked salmon and it was very good. We talked for nearly two and a half hours. She is having some difficulty with her daughter-in-law, nothing serious but you could tell she needed to talk and I mostly just listened. It is nice to feel useful. Walked home feeling very fond of her and glad we made the effort."
+    },
+    {
+      "id": "m_c2e67c9726",
+      "type": "fact",
+      "content": "Dorothy is having difficulty with her daughter-in-law at the moment",
+      "valence": null,
+      "keywords": [
+        "Dorothy",
+        "daughter-in-law",
+        "family",
+        "difficulty"
+      ],
+      "date": "2026-03-31",
+      "source_event_time": "2026-03-31T10:29:00.554816+00:00",
+      "source_text": "Dorothy and I had lunch at that new little caf\u00e9 on the high street, the one that does the open sandwiches. I had smoked salmon and it was very good. We talked for nearly two and a half hours. She is having some difficulty with her daughter-in-law, nothing serious but you could tell she needed to talk and I mostly just listened. It is nice to feel useful. Walked home feeling very fond of her and glad we made the effort."
+    },
+    {
+      "id": "m_179b9f9449",
+      "type": "event",
+      "content": "Could not recall the word 'corkscrew' for nearly ten minutes",
+      "valence": null,
+      "keywords": [
+        "corkscrew",
+        "word",
+        "memory lapse",
+        "forgot"
+      ],
+      "date": "2026-04-01",
+      "source_event_time": "2026-04-01T09:07:00.307757+00:00",
+      "source_text": "Had a strange moment this morning that unsettled me quite a lot. I was trying to tell the radio presenter to be quiet and I could not think of the word for the thing you use to open wine. I knew exactly what it was, I could picture it sitting in the kitchen drawer, but the word would not come. It took me nearly ten minutes. Corkscrew. Obviously corkscrew. I am sure it happens to everyone but it gave me a real fright. I did not mention it to anyone. Had a normal afternoon watching television."
+    },
+    {
+      "id": "m_0ac27cb48c",
+      "type": "event",
+      "content": "Had a normal afternoon watching television despite the earlier memory worry",
+      "valence": null,
+      "keywords": [
+        "television",
+        "afternoon",
+        "watching TV",
+        "routine"
+      ],
+      "date": "2026-04-01",
+      "source_event_time": "2026-04-01T09:07:00.307757+00:00",
+      "source_text": "Had a strange moment this morning that unsettled me quite a lot. I was trying to tell the radio presenter to be quiet and I could not think of the word for the thing you use to open wine. I knew exactly what it was, I could picture it sitting in the kitchen drawer, but the word would not come. It took me nearly ten minutes. Corkscrew. Obviously corkscrew. I am sure it happens to everyone but it gave me a real fright. I did not mention it to anyone. Had a normal afternoon watching television."
+    },
+    {
+      "id": "m_7643c798d2",
+      "type": "mood",
+      "content": "The word-finding lapse frightened Emily \u2014 she told no one about it",
+      "valence": -0.65,
+      "keywords": [
+        "frightened",
+        "memory",
+        "unsettled",
+        "worried",
+        "alone"
+      ],
+      "date": "2026-04-01",
+      "source_event_time": "2026-04-01T09:07:00.307757+00:00",
+      "source_text": "Had a strange moment this morning that unsettled me quite a lot. I was trying to tell the radio presenter to be quiet and I could not think of the word for the thing you use to open wine. I knew exactly what it was, I could picture it sitting in the kitchen drawer, but the word would not come. It took me nearly ten minutes. Corkscrew. Obviously corkscrew. I am sure it happens to everyone but it gave me a real fright. I did not mention it to anyone. Had a normal afternoon watching television."
+    },
+    {
+      "id": "m_7350b89252",
+      "type": "event",
+      "content": "Planted new lavender along the back garden fence",
+      "valence": null,
+      "keywords": [
+        "lavender",
+        "planting",
+        "garden",
+        "back fence"
+      ],
+      "date": "2026-04-02",
+      "source_event_time": "2026-04-02T15:40:00.312942+00:00",
+      "source_text": "A beautiful day so I spent most of it in the garden. Planted the new lavender along the back fence and I think it will look lovely come summer. Got quite sweaty doing it and my knees were not very happy, but it was worth it. Found an old ceramic pot buried under the hedge, must have been put there by John years ago. Cleaned it up nicely. Might put herbs in it. Sat outside with a cold glass of water when I had finished. Felt very satisfied."
+    },
+    {
+      "id": "m_dd5d277b6a",
+      "type": "event",
+      "content": "Found an old ceramic pot buried under the hedge \u2014 must have been John's",
+      "valence": null,
+      "keywords": [
+        "ceramic pot",
+        "John",
+        "hedge",
+        "garden find"
+      ],
+      "date": "2026-04-02",
+      "source_event_time": "2026-04-02T15:40:00.312942+00:00",
+      "source_text": "A beautiful day so I spent most of it in the garden. Planted the new lavender along the back fence and I think it will look lovely come summer. Got quite sweaty doing it and my knees were not very happy, but it was worth it. Found an old ceramic pot buried under the hedge, must have been put there by John years ago. Cleaned it up nicely. Might put herbs in it. Sat outside with a cold glass of water when I had finished. Felt very satisfied."
+    },
+    {
+      "id": "m_5ef030748e",
+      "type": "mood",
+      "content": "Emily felt very satisfied after a productive and sweaty day gardening",
+      "valence": 0.7,
+      "keywords": [
+        "satisfied",
+        "productive",
+        "garden",
+        "content"
+      ],
+      "date": "2026-04-02",
+      "source_event_time": "2026-04-02T15:40:00.312942+00:00",
+      "source_text": "A beautiful day so I spent most of it in the garden. Planted the new lavender along the back fence and I think it will look lovely come summer. Got quite sweaty doing it and my knees were not very happy, but it was worth it. Found an old ceramic pot buried under the hedge, must have been put there by John years ago. Cleaned it up nicely. Might put herbs in it. Sat outside with a cold glass of water when I had finished. Felt very satisfied."
+    },
+    {
+      "id": "m_18dbf13d24",
+      "type": "fact",
+      "content": "Emily is planting lavender along the back fence of her garden",
+      "valence": null,
+      "keywords": [
+        "lavender",
+        "garden",
+        "back fence",
+        "planting"
+      ],
+      "date": "2026-04-02",
+      "source_event_time": "2026-04-02T15:40:00.312942+00:00",
+      "source_text": "A beautiful day so I spent most of it in the garden. Planted the new lavender along the back fence and I think it will look lovely come summer. Got quite sweaty doing it and my knees were not very happy, but it was worth it. Found an old ceramic pot buried under the hedge, must have been put there by John years ago. Cleaned it up nicely. Might put herbs in it. Sat outside with a cold glass of water when I had finished. Felt very satisfied."
+    },
+    {
+      "id": "m_a3809f04b8",
+      "type": "event",
+      "content": "Margaret's husband Robert spent two nights in hospital with chest pains",
+      "valence": null,
+      "keywords": [
+        "Robert",
+        "chest pains",
+        "hospital",
+        "health scare"
+      ],
+      "date": "2026-04-03",
+      "source_event_time": "2026-04-03T10:20:00.512340+00:00",
+      "source_text": "Long video call with Margaret today and she gave me quite a fright at the beginning because she looked very worried. Turns out her husband Robert had chest pains last week and spent two nights in hospital. He is fine now, they think it was stress related rather than his heart. But still, you do not expect that sort of news. We talked for a long time. I feel so far away from her. We agreed we absolutely must arrange a visit before the end of the summer."
+    },
+    {
+      "id": "m_84dcfd2ce9",
+      "type": "event",
+      "content": "Emily and Margaret agreed to arrange a visit before end of summer",
+      "valence": null,
+      "keywords": [
+        "visit",
+        "Margaret",
+        "summer",
+        "plan"
+      ],
+      "date": "2026-04-03",
+      "source_event_time": "2026-04-03T10:20:00.512340+00:00",
+      "source_text": "Long video call with Margaret today and she gave me quite a fright at the beginning because she looked very worried. Turns out her husband Robert had chest pains last week and spent two nights in hospital. He is fine now, they think it was stress related rather than his heart. But still, you do not expect that sort of news. We talked for a long time. I feel so far away from her. We agreed we absolutely must arrange a visit before the end of the summer."
+    },
+    {
+      "id": "m_2c16140df3",
+      "type": "mood",
+      "content": "Emily felt frightened and far away from Margaret during the health scare",
+      "valence": -0.55,
+      "keywords": [
+        "frightened",
+        "far away",
+        "worried",
+        "Margaret"
+      ],
+      "date": "2026-04-03",
+      "source_event_time": "2026-04-03T10:20:00.512340+00:00",
+      "source_text": "Long video call with Margaret today and she gave me quite a fright at the beginning because she looked very worried. Turns out her husband Robert had chest pains last week and spent two nights in hospital. He is fine now, they think it was stress related rather than his heart. But still, you do not expect that sort of news. We talked for a long time. I feel so far away from her. We agreed we absolutely must arrange a visit before the end of the summer."
+    },
+    {
+      "id": "m_e3a07cfe50",
+      "type": "fact",
+      "content": "Margaret's husband Robert was hospitalised \u2014 doctors think stress, not his heart",
+      "valence": null,
+      "keywords": [
+        "Robert",
+        "chest pains",
+        "stress",
+        "hospital",
+        "not heart attack"
+      ],
+      "date": "2026-04-03",
+      "source_event_time": "2026-04-03T10:20:00.512340+00:00",
+      "source_text": "Long video call with Margaret today and she gave me quite a fright at the beginning because she looked very worried. Turns out her husband Robert had chest pains last week and spent two nights in hospital. He is fine now, they think it was stress related rather than his heart. But still, you do not expect that sort of news. We talked for a long time. I feel so far away from her. We agreed we absolutely must arrange a visit before the end of the summer."
+    },
+    {
+      "id": "m_05135bf8db",
+      "type": "fact",
+      "content": "Emily wants to visit her sister Margaret before the end of summer",
+      "valence": null,
+      "keywords": [
+        "visit",
+        "Margaret",
+        "summer",
+        "sisters"
+      ],
+      "date": "2026-04-03",
+      "source_event_time": "2026-04-03T10:20:00.512340+00:00",
+      "source_text": "Long video call with Margaret today and she gave me quite a fright at the beginning because she looked very worried. Turns out her husband Robert had chest pains last week and spent two nights in hospital. He is fine now, they think it was stress related rather than his heart. But still, you do not expect that sort of news. We talked for a long time. I feel so far away from her. We agreed we absolutely must arrange a visit before the end of the summer."
+    },
+    {
+      "id": "m_8f72bf60bc",
+      "type": "event",
+      "content": "Spent most of the day resting on the sofa due to bad hip pain",
+      "valence": null,
+      "keywords": [
+        "hip pain",
+        "resting",
+        "sofa",
+        "television"
+      ],
+      "date": "2026-04-04",
+      "source_event_time": "2026-04-04T14:46:00.509597+00:00",
+      "source_text": "My hip has been really painful today, worse than it has been for a while. Think it might be the weather turning. Did very little, watched television most of the day which is not like me at all. Made myself a proper dinner at least, chicken and vegetables. Took a painkiller at bedtime. I hate feeling like this, it makes me feel old and useless and frustrated. Really hope it eases off tomorrow."
+    },
+    {
+      "id": "m_5575829398",
+      "type": "event",
+      "content": "Made chicken and vegetables for dinner despite the pain",
+      "valence": null,
+      "keywords": [
+        "dinner",
+        "chicken",
+        "vegetables",
+        "cooking"
+      ],
+      "date": "2026-04-04",
+      "source_event_time": "2026-04-04T14:46:00.509597+00:00",
+      "source_text": "My hip has been really painful today, worse than it has been for a while. Think it might be the weather turning. Did very little, watched television most of the day which is not like me at all. Made myself a proper dinner at least, chicken and vegetables. Took a painkiller at bedtime. I hate feeling like this, it makes me feel old and useless and frustrated. Really hope it eases off tomorrow."
+    },
+    {
+      "id": "m_b4d1a9ba43",
+      "type": "mood",
+      "content": "Emily felt frustrated and old \u2014 hip pain made her feel useless",
+      "valence": -0.7,
+      "keywords": [
+        "frustrated",
+        "old",
+        "useless",
+        "hip pain"
+      ],
+      "date": "2026-04-04",
+      "source_event_time": "2026-04-04T14:46:00.509597+00:00",
+      "source_text": "My hip has been really painful today, worse than it has been for a while. Think it might be the weather turning. Did very little, watched television most of the day which is not like me at all. Made myself a proper dinner at least, chicken and vegetables. Took a painkiller at bedtime. I hate feeling like this, it makes me feel old and useless and frustrated. Really hope it eases off tomorrow."
+    },
+    {
+      "id": "m_9a14fb6edc",
+      "type": "fact",
+      "content": "Emily has a recurring hip problem that worsens when the weather turns",
+      "valence": null,
+      "keywords": [
+        "hip",
+        "pain",
+        "weather",
+        "recurring",
+        "health"
+      ],
+      "date": "2026-04-04",
+      "source_event_time": "2026-04-04T14:46:00.509597+00:00",
+      "source_text": "My hip has been really painful today, worse than it has been for a while. Think it might be the weather turning. Did very little, watched television most of the day which is not like me at all. Made myself a proper dinner at least, chicken and vegetables. Took a painkiller at bedtime. I hate feeling like this, it makes me feel old and useless and frustrated. Really hope it eases off tomorrow."
+    },
+    {
+      "id": "m_d7bb8c4036",
+      "type": "event",
+      "content": "Telephoned old school friend Brenda after months of meaning to call",
+      "valence": null,
+      "keywords": [
+        "Brenda",
+        "phone call",
+        "school friend",
+        "reconnecting"
+      ],
+      "date": "2026-04-05",
+      "source_event_time": "2026-04-05T10:27:00.222086+00:00",
+      "source_text": "I telephoned Brenda today, which I have been meaning to do for months. We were friends all through school, then lost touch for a while, found each other again a few years ago. She is in Cornwall now, has been for years. We talked for over an hour. She told me she and her husband walk every single morning without fail. We made quite a firm plan to visit each other this summer. I felt very warm after hanging up. Some friendships just pick right back up."
+    },
+    {
+      "id": "m_16f7979d59",
+      "type": "event",
+      "content": "Made a firm plan to visit Brenda in Cornwall this summer",
+      "valence": null,
+      "keywords": [
+        "Brenda",
+        "Cornwall",
+        "visit",
+        "summer plan"
+      ],
+      "date": "2026-04-05",
+      "source_event_time": "2026-04-05T10:27:00.222086+00:00",
+      "source_text": "I telephoned Brenda today, which I have been meaning to do for months. We were friends all through school, then lost touch for a while, found each other again a few years ago. She is in Cornwall now, has been for years. We talked for over an hour. She told me she and her husband walk every single morning without fail. We made quite a firm plan to visit each other this summer. I felt very warm after hanging up. Some friendships just pick right back up."
+    },
+    {
+      "id": "m_84592f1508",
+      "type": "mood",
+      "content": "Emily felt very warm after reconnecting with her old school friend Brenda",
+      "valence": 0.8,
+      "keywords": [
+        "warm",
+        "connected",
+        "friendship",
+        "school days"
+      ],
+      "date": "2026-04-05",
+      "source_event_time": "2026-04-05T10:27:00.222086+00:00",
+      "source_text": "I telephoned Brenda today, which I have been meaning to do for months. We were friends all through school, then lost touch for a while, found each other again a few years ago. She is in Cornwall now, has been for years. We talked for over an hour. She told me she and her husband walk every single morning without fail. We made quite a firm plan to visit each other this summer. I felt very warm after hanging up. Some friendships just pick right back up."
+    },
+    {
+      "id": "m_38f65c5758",
+      "type": "fact",
+      "content": "Brenda is an old school friend now living in Cornwall with her husband",
+      "valence": null,
+      "keywords": [
+        "Brenda",
+        "Cornwall",
+        "school friend",
+        "old friend"
+      ],
+      "date": "2026-04-05",
+      "source_event_time": "2026-04-05T10:27:00.222086+00:00",
+      "source_text": "I telephoned Brenda today, which I have been meaning to do for months. We were friends all through school, then lost touch for a while, found each other again a few years ago. She is in Cornwall now, has been for years. We talked for over an hour. She told me she and her husband walk every single morning without fail. We made quite a firm plan to visit each other this summer. I felt very warm after hanging up. Some friendships just pick right back up."
+    },
+    {
+      "id": "m_eef11f3c20",
+      "type": "fact",
+      "content": "Brenda and her husband walk together every single morning without fail",
+      "valence": null,
+      "keywords": [
+        "Brenda",
+        "morning walks",
+        "husband",
+        "routine"
+      ],
+      "date": "2026-04-05",
+      "source_event_time": "2026-04-05T10:27:00.222086+00:00",
+      "source_text": "I telephoned Brenda today, which I have been meaning to do for months. We were friends all through school, then lost touch for a while, found each other again a few years ago. She is in Cornwall now, has been for years. We talked for over an hour. She told me she and her husband walk every single morning without fail. We made quite a firm plan to visit each other this summer. I felt very warm after hanging up. Some friendships just pick right back up."
+    },
+    {
+      "id": "m_80f71d9e46",
+      "type": "event",
+      "content": "Watched a programme about Patagonia featuring extraordinary condors",
+      "valence": null,
+      "keywords": [
+        "Patagonia",
+        "condors",
+        "documentary",
+        "wildlife"
+      ],
+      "date": "2026-04-06",
+      "source_event_time": "2026-04-06T09:15:00.235612+00:00",
+      "source_text": "A quiet day at home mostly, pottered about and did some ironing. In the evening I watched a wonderful programme about Patagonia, all about the wildlife. The condors were extraordinary, these enormous birds just riding the thermals for hours. Made me think about the red kite I saw the other week. I would love to travel again, even somewhere in Britain I have never been. Had a cup of chamomile and went to bed feeling quite content."
+    },
+    {
+      "id": "m_2c0efdc715",
+      "type": "event",
+      "content": "Quiet day at home \u2014 pottered about, did some ironing, had chamomile tea",
+      "valence": null,
+      "keywords": [
+        "ironing",
+        "chamomile tea",
+        "quiet day",
+        "home"
+      ],
+      "date": "2026-04-06",
+      "source_event_time": "2026-04-06T09:15:00.235612+00:00",
+      "source_text": "A quiet day at home mostly, pottered about and did some ironing. In the evening I watched a wonderful programme about Patagonia, all about the wildlife. The condors were extraordinary, these enormous birds just riding the thermals for hours. Made me think about the red kite I saw the other week. I would love to travel again, even somewhere in Britain I have never been. Had a cup of chamomile and went to bed feeling quite content."
+    },
+    {
+      "id": "m_d4433e9599",
+      "type": "mood",
+      "content": "Emily felt content and wistful \u2014 the condors made her want to travel again",
+      "valence": 0.6,
+      "keywords": [
+        "content",
+        "wistful",
+        "travel",
+        "nature"
+      ],
+      "date": "2026-04-06",
+      "source_event_time": "2026-04-06T09:15:00.235612+00:00",
+      "source_text": "A quiet day at home mostly, pottered about and did some ironing. In the evening I watched a wonderful programme about Patagonia, all about the wildlife. The condors were extraordinary, these enormous birds just riding the thermals for hours. Made me think about the red kite I saw the other week. I would love to travel again, even somewhere in Britain I have never been. Had a cup of chamomile and went to bed feeling quite content."
+    },
+    {
+      "id": "m_ddd871993e",
+      "type": "fact",
+      "content": "Emily would love to travel again, even somewhere in Britain she has never been",
+      "valence": null,
+      "keywords": [
+        "travel",
+        "Britain",
+        "wish",
+        "adventure"
+      ],
+      "date": "2026-04-06",
+      "source_event_time": "2026-04-06T09:15:00.235612+00:00",
+      "source_text": "A quiet day at home mostly, pottered about and did some ironing. In the evening I watched a wonderful programme about Patagonia, all about the wildlife. The condors were extraordinary, these enormous birds just riding the thermals for hours. Made me think about the red kite I saw the other week. I would love to travel again, even somewhere in Britain I have never been. Had a cup of chamomile and went to bed feeling quite content."
+    },
+    {
+      "id": "m_5da41b4e51",
+      "type": "event",
+      "content": "Sarah brought Tommy round for the afternoon \u2014 had tea and Victoria sponge",
+      "valence": null,
+      "keywords": [
+        "Sarah",
+        "Tommy",
+        "tea",
+        "Victoria sponge",
+        "afternoon visit"
+      ],
+      "date": "2026-04-07",
+      "source_event_time": "2026-04-07T14:55:00.346479+00:00",
+      "source_text": "Sarah brought Tommy round for the afternoon, which was just wonderful. He helped me water the plants in the garden, which mostly meant he soaked himself with the hose. We had tea and I made a Victoria sponge and Tommy ate three slices without any embarrassment at all. He told me he wants to be an astronaut now, which has changed from last month when it was a dinosaur. Sarah looked a bit tired but happy. I felt so full when they left. The good kind of full."
+    },
+    {
+      "id": "m_9d2705848c",
+      "type": "event",
+      "content": "Tommy helped water the garden and mostly soaked himself with the hose",
+      "valence": null,
+      "keywords": [
+        "Tommy",
+        "watering",
+        "garden",
+        "hose",
+        "funny"
+      ],
+      "date": "2026-04-07",
+      "source_event_time": "2026-04-07T14:55:00.346479+00:00",
+      "source_text": "Sarah brought Tommy round for the afternoon, which was just wonderful. He helped me water the plants in the garden, which mostly meant he soaked himself with the hose. We had tea and I made a Victoria sponge and Tommy ate three slices without any embarrassment at all. He told me he wants to be an astronaut now, which has changed from last month when it was a dinosaur. Sarah looked a bit tired but happy. I felt so full when they left. The good kind of full."
+    },
+    {
+      "id": "m_504cba32a1",
+      "type": "mood",
+      "content": "Emily felt wonderfully full in the good way after the family visit",
+      "valence": 0.9,
+      "keywords": [
+        "wonderful",
+        "full",
+        "family",
+        "happy",
+        "warm"
+      ],
+      "date": "2026-04-07",
+      "source_event_time": "2026-04-07T14:55:00.346479+00:00",
+      "source_text": "Sarah brought Tommy round for the afternoon, which was just wonderful. He helped me water the plants in the garden, which mostly meant he soaked himself with the hose. We had tea and I made a Victoria sponge and Tommy ate three slices without any embarrassment at all. He told me he wants to be an astronaut now, which has changed from last month when it was a dinosaur. Sarah looked a bit tired but happy. I felt so full when they left. The good kind of full."
+    },
+    {
+      "id": "m_31937793a2",
+      "type": "fact",
+      "content": "Tommy now wants to be an astronaut \u2014 last month it was a dinosaur",
+      "valence": null,
+      "keywords": [
+        "Tommy",
+        "astronaut",
+        "ambitions",
+        "funny"
+      ],
+      "date": "2026-04-07",
+      "source_event_time": "2026-04-07T14:55:00.346479+00:00",
+      "source_text": "Sarah brought Tommy round for the afternoon, which was just wonderful. He helped me water the plants in the garden, which mostly meant he soaked himself with the hose. We had tea and I made a Victoria sponge and Tommy ate three slices without any embarrassment at all. He told me he wants to be an astronaut now, which has changed from last month when it was a dinosaur. Sarah looked a bit tired but happy. I felt so full when they left. The good kind of full."
+    },
+    {
+      "id": "m_35d7e0c390",
+      "type": "fact",
+      "content": "Emily made a Victoria sponge for the family visit and Tommy ate three slices",
+      "valence": null,
+      "keywords": [
+        "Victoria sponge",
+        "baking",
+        "Tommy",
+        "three slices"
+      ],
+      "date": "2026-04-07",
+      "source_event_time": "2026-04-07T14:55:00.346479+00:00",
+      "source_text": "Sarah brought Tommy round for the afternoon, which was just wonderful. He helped me water the plants in the garden, which mostly meant he soaked himself with the hose. We had tea and I made a Victoria sponge and Tommy ate three slices without any embarrassment at all. He told me he wants to be an astronaut now, which has changed from last month when it was a dinosaur. Sarah looked a bit tired but happy. I felt so full when they left. The good kind of full."
+    },
+    {
+      "id": "m_c33839beec",
+      "type": "event",
+      "content": "Woke at 2am and again at 4am \u2014 could not sleep either time",
+      "valence": null,
+      "keywords": [
+        "poor sleep",
+        "2am",
+        "4am",
+        "woke",
+        "insomnia"
+      ],
+      "date": "2026-04-08",
+      "source_event_time": "2026-04-08T10:30:00.846721+00:00",
+      "source_text": "Another wretched night. Woke at two and then again at four and could not get back to sleep either time. My mind just will not settle lately. Felt slow and foggy all day and could not concentrate on my book at all. Had a nap after lunch which helped a little. I really do worry when the bad nights cluster together like this. Made a note to mention it to the doctor at the next appointment. Had beans on toast for dinner because I could not face cooking properly."
+    },
+    {
+      "id": "m_91751b967e",
+      "type": "event",
+      "content": "Had beans on toast for dinner \u2014 too tired to cook a proper meal",
+      "valence": null,
+      "keywords": [
+        "beans on toast",
+        "dinner",
+        "too tired",
+        "easy meal"
+      ],
+      "date": "2026-04-08",
+      "source_event_time": "2026-04-08T10:30:00.846721+00:00",
+      "source_text": "Another wretched night. Woke at two and then again at four and could not get back to sleep either time. My mind just will not settle lately. Felt slow and foggy all day and could not concentrate on my book at all. Had a nap after lunch which helped a little. I really do worry when the bad nights cluster together like this. Made a note to mention it to the doctor at the next appointment. Had beans on toast for dinner because I could not face cooking properly."
+    },
+    {
+      "id": "m_f82ffece22",
+      "type": "event",
+      "content": "Made a note to mention the sleep pattern to the doctor",
+      "valence": null,
+      "keywords": [
+        "doctor",
+        "sleep",
+        "note",
+        "mention",
+        "health"
+      ],
+      "date": "2026-04-08",
+      "source_event_time": "2026-04-08T10:30:00.846721+00:00",
+      "source_text": "Another wretched night. Woke at two and then again at four and could not get back to sleep either time. My mind just will not settle lately. Felt slow and foggy all day and could not concentrate on my book at all. Had a nap after lunch which helped a little. I really do worry when the bad nights cluster together like this. Made a note to mention it to the doctor at the next appointment. Had beans on toast for dinner because I could not face cooking properly."
+    },
+    {
+      "id": "m_a668cb9149",
+      "type": "mood",
+      "content": "Emily felt slow and foggy all day \u2014 worried about the clustering bad nights",
+      "valence": -0.65,
+      "keywords": [
+        "foggy",
+        "slow",
+        "worried",
+        "bad nights",
+        "tired"
+      ],
+      "date": "2026-04-08",
+      "source_event_time": "2026-04-08T10:30:00.846721+00:00",
+      "source_text": "Another wretched night. Woke at two and then again at four and could not get back to sleep either time. My mind just will not settle lately. Felt slow and foggy all day and could not concentrate on my book at all. Had a nap after lunch which helped a little. I really do worry when the bad nights cluster together like this. Made a note to mention it to the doctor at the next appointment. Had beans on toast for dinner because I could not face cooking properly."
+    },
+    {
+      "id": "m_b36b667714",
+      "type": "event",
+      "content": "Made a proper cooked breakfast \u2014 eggs and tomatoes",
+      "valence": null,
+      "keywords": [
+        "eggs",
+        "tomatoes",
+        "breakfast",
+        "cooked",
+        "morning"
+      ],
+      "date": "2026-04-09",
+      "source_event_time": "2026-04-09T15:06:00.063556+00:00",
+      "source_text": "Woke up feeling much better today, which was such a relief. Made a proper cooked breakfast, eggs and tomatoes. Then got out my watercolours, which I have not touched in months. Did a little sketch of the view from the kitchen window, nothing very accomplished but I enjoyed the doing of it. Listened to Radio Four in the afternoon. Felt genuinely like myself again. It is funny how quickly things can shift when you get a decent night."
+    },
+    {
+      "id": "m_d00bda6a1d",
+      "type": "event",
+      "content": "Got out the watercolours and painted the view from the kitchen window",
+      "valence": null,
+      "keywords": [
+        "watercolours",
+        "painting",
+        "kitchen window",
+        "art"
+      ],
+      "date": "2026-04-09",
+      "source_event_time": "2026-04-09T15:06:00.063556+00:00",
+      "source_text": "Woke up feeling much better today, which was such a relief. Made a proper cooked breakfast, eggs and tomatoes. Then got out my watercolours, which I have not touched in months. Did a little sketch of the view from the kitchen window, nothing very accomplished but I enjoyed the doing of it. Listened to Radio Four in the afternoon. Felt genuinely like myself again. It is funny how quickly things can shift when you get a decent night."
+    },
+    {
+      "id": "m_1eeb9d861a",
+      "type": "event",
+      "content": "Listened to Radio Four in the afternoon",
+      "valence": null,
+      "keywords": [
+        "Radio Four",
+        "afternoon",
+        "radio",
+        "routine"
+      ],
+      "date": "2026-04-09",
+      "source_event_time": "2026-04-09T15:06:00.063556+00:00",
+      "source_text": "Woke up feeling much better today, which was such a relief. Made a proper cooked breakfast, eggs and tomatoes. Then got out my watercolours, which I have not touched in months. Did a little sketch of the view from the kitchen window, nothing very accomplished but I enjoyed the doing of it. Listened to Radio Four in the afternoon. Felt genuinely like myself again. It is funny how quickly things can shift when you get a decent night."
+    },
+    {
+      "id": "m_7014006211",
+      "type": "mood",
+      "content": "Emily felt genuinely like herself again after a bright good day",
+      "valence": 0.8,
+      "keywords": [
+        "myself",
+        "bright",
+        "relief",
+        "better",
+        "good day"
+      ],
+      "date": "2026-04-09",
+      "source_event_time": "2026-04-09T15:06:00.063556+00:00",
+      "source_text": "Woke up feeling much better today, which was such a relief. Made a proper cooked breakfast, eggs and tomatoes. Then got out my watercolours, which I have not touched in months. Did a little sketch of the view from the kitchen window, nothing very accomplished but I enjoyed the doing of it. Listened to Radio Four in the afternoon. Felt genuinely like myself again. It is funny how quickly things can shift when you get a decent night."
+    },
+    {
+      "id": "m_a7d85b256d",
+      "type": "fact",
+      "content": "Emily does watercolour painting as a hobby, though she had not touched them in months",
+      "valence": null,
+      "keywords": [
+        "watercolours",
+        "painting",
+        "hobby",
+        "art"
+      ],
+      "date": "2026-04-09",
+      "source_event_time": "2026-04-09T15:06:00.063556+00:00",
+      "source_text": "Woke up feeling much better today, which was such a relief. Made a proper cooked breakfast, eggs and tomatoes. Then got out my watercolours, which I have not touched in months. Did a little sketch of the view from the kitchen window, nothing very accomplished but I enjoyed the doing of it. Listened to Radio Four in the afternoon. Felt genuinely like myself again. It is funny how quickly things can shift when you get a decent night."
+    },
+    {
+      "id": "m_6387af21b8",
+      "type": "event",
+      "content": "Stood up from the armchair too quickly and had a dizzy spell",
+      "valence": null,
+      "keywords": [
+        "dizzy",
+        "stood up",
+        "armchair",
+        "blood pressure"
+      ],
+      "date": "2026-04-09",
+      "source_event_time": "2026-04-09T16:55:00.968114+00:00",
+      "source_text": "Had a bit of a turn this afternoon. Stood up from the armchair a bit too quickly and everything went dark and swimmy for a moment. I held onto the doorframe and it passed after a few seconds. I know the doctor said it is just blood pressure when you stand too fast but it still gives you a real fright every time it happens. Sat back down for a while. Told myself I will mention it at my next appointment. Did not want to bother anyone."
+    },
+    {
+      "id": "m_0676e7dc1c",
+      "type": "event",
+      "content": "Held onto the doorframe until the dizziness passed in a few seconds",
+      "valence": null,
+      "keywords": [
+        "doorframe",
+        "dizzy",
+        "held on",
+        "passed"
+      ],
+      "date": "2026-04-09",
+      "source_event_time": "2026-04-09T16:55:00.968114+00:00",
+      "source_text": "Had a bit of a turn this afternoon. Stood up from the armchair a bit too quickly and everything went dark and swimmy for a moment. I held onto the doorframe and it passed after a few seconds. I know the doctor said it is just blood pressure when you stand too fast but it still gives you a real fright every time it happens. Sat back down for a while. Told myself I will mention it at my next appointment. Did not want to bother anyone."
+    },
+    {
+      "id": "m_444411a67c",
+      "type": "mood",
+      "content": "The dizzy spell frightened Emily even though she knew it was postural hypotension",
+      "valence": -0.5,
+      "keywords": [
+        "frightened",
+        "dizzy",
+        "worried",
+        "fright"
+      ],
+      "date": "2026-04-09",
+      "source_event_time": "2026-04-09T16:55:00.968114+00:00",
+      "source_text": "Had a bit of a turn this afternoon. Stood up from the armchair a bit too quickly and everything went dark and swimmy for a moment. I held onto the doorframe and it passed after a few seconds. I know the doctor said it is just blood pressure when you stand too fast but it still gives you a real fright every time it happens. Sat back down for a while. Told myself I will mention it at my next appointment. Did not want to bother anyone."
+    },
+    {
+      "id": "m_7b72e9f08d",
+      "type": "fact",
+      "content": "Emily has postural hypotension \u2014 dizziness when standing up too quickly",
+      "valence": null,
+      "keywords": [
+        "postural hypotension",
+        "dizzy",
+        "standing",
+        "blood pressure",
+        "health"
+      ],
+      "date": "2026-04-09",
+      "source_event_time": "2026-04-09T16:55:00.968114+00:00",
+      "source_text": "Had a bit of a turn this afternoon. Stood up from the armchair a bit too quickly and everything went dark and swimmy for a moment. I held onto the doorframe and it passed after a few seconds. I know the doctor said it is just blood pressure when you stand too fast but it still gives you a real fright every time it happens. Sat back down for a while. Told myself I will mention it at my next appointment. Did not want to bother anyone."
+    },
+    {
+      "id": "m_83f73daae7",
+      "type": "event",
+      "content": "Michael drove Emily to the garden centre to buy new plants",
+      "valence": null,
+      "keywords": [
+        "Michael",
+        "garden centre",
+        "plants",
+        "outing"
+      ],
+      "date": "2026-04-10",
+      "source_event_time": "2026-04-10T10:54:00.247861+00:00",
+      "source_text": "Michael drove me to the garden centre this morning, which was very kind of him. I bought two more lavender plants and some trailing geraniums for the window boxes. He pushed the trolley and carried everything to the car. We stopped for coffee and a scone on the way home and sat by the window. The geraniums are already in the boxes and they look very cheerful. Really nice to get out and have some company for a few hours."
+    },
+    {
+      "id": "m_a9b9e92a6e",
+      "type": "event",
+      "content": "Stopped for coffee and a scone with Michael on the way home",
+      "valence": null,
+      "keywords": [
+        "coffee",
+        "scone",
+        "Michael",
+        "caf\u00e9 stop"
+      ],
+      "date": "2026-04-10",
+      "source_event_time": "2026-04-10T10:54:00.247861+00:00",
+      "source_text": "Michael drove me to the garden centre this morning, which was very kind of him. I bought two more lavender plants and some trailing geraniums for the window boxes. He pushed the trolley and carried everything to the car. We stopped for coffee and a scone on the way home and sat by the window. The geraniums are already in the boxes and they look very cheerful. Really nice to get out and have some company for a few hours."
+    },
+    {
+      "id": "m_826c39ee11",
+      "type": "event",
+      "content": "Planted trailing geraniums in the window boxes when home",
+      "valence": null,
+      "keywords": [
+        "geraniums",
+        "window boxes",
+        "planting",
+        "garden"
+      ],
+      "date": "2026-04-10",
+      "source_event_time": "2026-04-10T10:54:00.247861+00:00",
+      "source_text": "Michael drove me to the garden centre this morning, which was very kind of him. I bought two more lavender plants and some trailing geraniums for the window boxes. He pushed the trolley and carried everything to the car. We stopped for coffee and a scone on the way home and sat by the window. The geraniums are already in the boxes and they look very cheerful. Really nice to get out and have some company for a few hours."
+    },
+    {
+      "id": "m_a922a2c5a1",
+      "type": "mood",
+      "content": "Emily felt cheered up by the outing and the company with Michael",
+      "valence": 0.75,
+      "keywords": [
+        "cheered",
+        "company",
+        "cheerful",
+        "Michael",
+        "outing"
+      ],
+      "date": "2026-04-10",
+      "source_event_time": "2026-04-10T10:54:00.247861+00:00",
+      "source_text": "Michael drove me to the garden centre this morning, which was very kind of him. I bought two more lavender plants and some trailing geraniums for the window boxes. He pushed the trolley and carried everything to the car. We stopped for coffee and a scone on the way home and sat by the window. The geraniums are already in the boxes and they look very cheerful. Really nice to get out and have some company for a few hours."
+    },
+    {
+      "id": "m_5a56da5204",
+      "type": "fact",
+      "content": "Michael is a close friend who regularly helps Emily with outings and errands",
+      "valence": null,
+      "keywords": [
+        "Michael",
+        "friend",
+        "help",
+        "outings",
+        "kind"
+      ],
+      "date": "2026-04-10",
+      "source_event_time": "2026-04-10T10:54:00.247861+00:00",
+      "source_text": "Michael drove me to the garden centre this morning, which was very kind of him. I bought two more lavender plants and some trailing geraniums for the window boxes. He pushed the trolley and carried everything to the car. We stopped for coffee and a scone on the way home and sat by the window. The geraniums are already in the boxes and they look very cheerful. Really nice to get out and have some company for a few hours."
+    },
+    {
+      "id": "m_c8a8ea158c",
+      "type": "event",
+      "content": "Listened to Ella Fitzgerald and Frank Sinatra records while knitting",
+      "valence": null,
+      "keywords": [
+        "Ella Fitzgerald",
+        "Frank Sinatra",
+        "records",
+        "knitting"
+      ],
+      "date": "2026-04-10",
+      "source_event_time": "2026-04-10T14:50:00.477110+00:00",
+      "source_text": "A very peaceful afternoon. Put on some old records, Ella Fitzgerald first and then Frank Sinatra, and sat and knitted. I am making a cardigan for Tommy in navy blue, quite a complicated yoke pattern. The music and the knitting together with the sun coming through the window felt very settling. Almost like a kind of meditation I suppose. Finished two rows of the yoke. Had a small glass of sherry before supper which felt like a proper little luxury."
+    },
+    {
+      "id": "m_c46aafb59c",
+      "type": "event",
+      "content": "Had a small glass of sherry before supper as a little luxury",
+      "valence": null,
+      "keywords": [
+        "sherry",
+        "supper",
+        "luxury",
+        "evening"
+      ],
+      "date": "2026-04-10",
+      "source_event_time": "2026-04-10T14:50:00.477110+00:00",
+      "source_text": "A very peaceful afternoon. Put on some old records, Ella Fitzgerald first and then Frank Sinatra, and sat and knitted. I am making a cardigan for Tommy in navy blue, quite a complicated yoke pattern. The music and the knitting together with the sun coming through the window felt very settling. Almost like a kind of meditation I suppose. Finished two rows of the yoke. Had a small glass of sherry before supper which felt like a proper little luxury."
+    },
+    {
+      "id": "m_47ad44ca42",
+      "type": "mood",
+      "content": "Emily felt deeply settled and peaceful \u2014 the afternoon felt like meditation",
+      "valence": 0.85,
+      "keywords": [
+        "settled",
+        "peaceful",
+        "content",
+        "meditative"
+      ],
+      "date": "2026-04-10",
+      "source_event_time": "2026-04-10T14:50:00.477110+00:00",
+      "source_text": "A very peaceful afternoon. Put on some old records, Ella Fitzgerald first and then Frank Sinatra, and sat and knitted. I am making a cardigan for Tommy in navy blue, quite a complicated yoke pattern. The music and the knitting together with the sun coming through the window felt very settling. Almost like a kind of meditation I suppose. Finished two rows of the yoke. Had a small glass of sherry before supper which felt like a proper little luxury."
+    },
+    {
+      "id": "m_bbfa7285e3",
+      "type": "fact",
+      "content": "Emily is knitting a navy cardigan for Tommy \u2014 working on the complicated yoke pattern",
+      "valence": null,
+      "keywords": [
+        "knitting",
+        "cardigan",
+        "Tommy",
+        "navy",
+        "yoke pattern"
+      ],
+      "date": "2026-04-10",
+      "source_event_time": "2026-04-10T14:50:00.477110+00:00",
+      "source_text": "A very peaceful afternoon. Put on some old records, Ella Fitzgerald first and then Frank Sinatra, and sat and knitted. I am making a cardigan for Tommy in navy blue, quite a complicated yoke pattern. The music and the knitting together with the sun coming through the window felt very settling. Almost like a kind of meditation I suppose. Finished two rows of the yoke. Had a small glass of sherry before supper which felt like a proper little luxury."
+    },
+    {
+      "id": "m_c17843ddfe",
+      "type": "event",
+      "content": "Woke at 5am and sat in the garden with tea watching the sunrise",
+      "valence": null,
+      "keywords": [
+        "5am",
+        "garden",
+        "tea",
+        "sunrise",
+        "early morning"
+      ],
+      "date": "2026-04-11",
+      "source_event_time": "2026-04-11T10:37:00.771476+00:00",
+      "source_text": "Woke very early this morning, just after five, and instead of lying there I got up and took my tea out into the garden. It was that grey-gold light you only get at that hour. Completely quiet except for the birds. Sat for almost an hour just watching everything slowly come to life. A fox came through the gap in the hedge bold as anything and looked straight at me, neither of us moving. Did not feel lonely at all. Felt quite the opposite."
+    },
+    {
+      "id": "m_68f7378cd3",
+      "type": "event",
+      "content": "A fox came through the hedge and looked straight at Emily in the garden",
+      "valence": null,
+      "keywords": [
+        "fox",
+        "hedge",
+        "garden",
+        "wildlife",
+        "bold"
+      ],
+      "date": "2026-04-11",
+      "source_event_time": "2026-04-11T10:37:00.771476+00:00",
+      "source_text": "Woke very early this morning, just after five, and instead of lying there I got up and took my tea out into the garden. It was that grey-gold light you only get at that hour. Completely quiet except for the birds. Sat for almost an hour just watching everything slowly come to life. A fox came through the gap in the hedge bold as anything and looked straight at me, neither of us moving. Did not feel lonely at all. Felt quite the opposite."
+    },
+    {
+      "id": "m_49aecd2849",
+      "type": "mood",
+      "content": "Emily felt completely at peace \u2014 not lonely at all in the early morning garden",
+      "valence": 0.9,
+      "keywords": [
+        "peaceful",
+        "not lonely",
+        "quiet",
+        "content",
+        "at peace"
+      ],
+      "date": "2026-04-11",
+      "source_event_time": "2026-04-11T10:37:00.771476+00:00",
+      "source_text": "Woke very early this morning, just after five, and instead of lying there I got up and took my tea out into the garden. It was that grey-gold light you only get at that hour. Completely quiet except for the birds. Sat for almost an hour just watching everything slowly come to life. A fox came through the gap in the hedge bold as anything and looked straight at me, neither of us moving. Did not feel lonely at all. Felt quite the opposite."
+    },
+    {
+      "id": "m_7a9a120653",
+      "type": "fact",
+      "content": "Emily loves early mornings in the garden when it is quiet and the birds are active",
+      "valence": null,
+      "keywords": [
+        "early morning",
+        "garden",
+        "quiet",
+        "birds",
+        "favourite time"
+      ],
+      "date": "2026-04-11",
+      "source_event_time": "2026-04-11T10:37:00.771476+00:00",
+      "source_text": "Woke very early this morning, just after five, and instead of lying there I got up and took my tea out into the garden. It was that grey-gold light you only get at that hour. Completely quiet except for the birds. Sat for almost an hour just watching everything slowly come to life. A fox came through the gap in the hedge bold as anything and looked straight at me, neither of us moving. Did not feel lonely at all. Felt quite the opposite."
+    },
+    {
+      "id": "m_e27f5661c3",
+      "type": "event",
+      "content": "Cooking leg of lamb with rosemary and roast potatoes for Sunday lunch",
+      "valence": null,
+      "keywords": [
+        "leg of lamb",
+        "rosemary",
+        "roast potatoes",
+        "Sunday lunch"
+      ],
+      "date": "2026-04-11",
+      "source_event_time": "2026-04-11T14:54:00.194851+00:00",
+      "source_text": "Sarah and Michael are both coming for Sunday lunch today and I have Tommy as well. I have the leg of lamb in the oven with rosemary, roast potatoes, green beans. The house smells absolutely wonderful. I love having a full table. I will be tired afterwards of course but it is the good kind of tired. This is exactly the kind of Sunday I like best and I feel completely ready for it."
+    },
+    {
+      "id": "m_32e05ad787",
+      "type": "event",
+      "content": "Sarah, Michael, and Tommy are all coming for Sunday lunch today",
+      "valence": null,
+      "keywords": [
+        "Sarah",
+        "Michael",
+        "Tommy",
+        "Sunday lunch",
+        "family gathering"
+      ],
+      "date": "2026-04-11",
+      "source_event_time": "2026-04-11T14:54:00.194851+00:00",
+      "source_text": "Sarah and Michael are both coming for Sunday lunch today and I have Tommy as well. I have the leg of lamb in the oven with rosemary, roast potatoes, green beans. The house smells absolutely wonderful. I love having a full table. I will be tired afterwards of course but it is the good kind of tired. This is exactly the kind of Sunday I like best and I feel completely ready for it."
+    },
+    {
+      "id": "m_622a5b64cb",
+      "type": "mood",
+      "content": "Emily feels completely ready and happy \u2014 loves having a full table",
+      "valence": 0.9,
+      "keywords": [
+        "ready",
+        "happy",
+        "full table",
+        "Sunday",
+        "family"
+      ],
+      "date": "2026-04-11",
+      "source_event_time": "2026-04-11T14:54:00.194851+00:00",
+      "source_text": "Sarah and Michael are both coming for Sunday lunch today and I have Tommy as well. I have the leg of lamb in the oven with rosemary, roast potatoes, green beans. The house smells absolutely wonderful. I love having a full table. I will be tired afterwards of course but it is the good kind of tired. This is exactly the kind of Sunday I like best and I feel completely ready for it."
+    },
+    {
+      "id": "m_8dd51b3c83",
+      "type": "fact",
+      "content": "Sunday lunch with the whole family is one of Emily's favourite things",
+      "valence": null,
+      "keywords": [
+        "Sunday lunch",
+        "family",
+        "favourite",
+        "tradition",
+        "roast"
+      ],
+      "date": "2026-04-11",
+      "source_event_time": "2026-04-11T14:54:00.194851+00:00",
+      "source_text": "Sarah and Michael are both coming for Sunday lunch today and I have Tommy as well. I have the leg of lamb in the oven with rosemary, roast potatoes, green beans. The house smells absolutely wonderful. I love having a full table. I will be tired afterwards of course but it is the good kind of tired. This is exactly the kind of Sunday I like best and I feel completely ready for it."
+    }
+  ]
+}

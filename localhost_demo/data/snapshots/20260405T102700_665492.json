@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-05T10:27:00.222086+00:00",
+    "day": "2026-04-05"
+  },
+  "source_file": "session_015.wav",
+  "transcript": "I telephoned Brenda today, which I have been meaning to do for months. We were friends all through school, then lost touch for a while, found each other again a few years ago. She is in Cornwall now, has been for years. We talked for over an hour. She told me she and her husband walk every single morning without fail. We made quite a firm plan to visit each other this summer. I felt very warm after hanging up. Some friendships just pick right back up.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 141.644,
+      "articulation_rate_wpm": 149.493,
+      "phonation_to_time_ratio": 0.7574,
+      "mean_pause_duration_sec": 0.529,
+      "word_count": 87,
+      "duration_sec": 36.85
+    },
+    "lexical": {
+      "emotion_score": 0.0022,
+      "self_pronoun_ratio": 0.046,
+      "type_token_ratio": 0.8161
+    },
+    "prosody": {
+      "f0_mean_hz": 190.8805,
+      "jitter_local": 0.024443,
+      "shimmer_local_db": 1.225806
+    },
+    "spectral": {}
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-08T10:30:00.846721+00:00",
+    "day": "2026-04-08"
+  },
+  "source_file": "session_018.wav",
+  "transcript": "Another wretched night. Woke at two and then again at four and could not get back to sleep either time. My mind just will not settle lately. Felt slow and foggy all day and could not concentrate on my book at all. Had a nap after lunch which helped a little. I really do worry when the bad nights cluster together like this. Made a note to mention it to the doctor at the next appointment. Had beans on toast for dinner because I could not face cooking properly.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 132.341,
+      "articulation_rate_wpm": 151.951,
+      "phonation_to_time_ratio": 0.7124,
+      "mean_pause_duration_sec": 0.688,
+      "word_count": 89,
+      "duration_sec": 40.35
+    },
+    "lexical": {
+      "emotion_score": -0.5787,
+      "self_pronoun_ratio": 0.0449,
+      "type_token_ratio": 0.764
+    },
+    "prosody": {
+      "f0_mean_hz": 176.6851,
+      "jitter_local": 0.032497,
+      "shimmer_local_db": 1.205818
+    },
+    "spectral": {}
+  }
+}

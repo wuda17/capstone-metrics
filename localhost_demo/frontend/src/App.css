@@ -12,3 +12,25 @@
   position: relative;
   background: var(--bg);
 }
+
+.app-footer {
+  flex-shrink: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.2px;
+  gap: 10px;
+}
+
+.app-footer-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+}

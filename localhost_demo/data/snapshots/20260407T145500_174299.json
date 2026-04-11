@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-07T14:55:00.346479+00:00",
+    "day": "2026-04-07"
+  },
+  "source_file": "session_017.wav",
+  "transcript": "Sarah brought Tommy round for the afternoon, which was just wonderful. He helped me water the plants in the garden, which mostly meant he soaked himself with the hose. We had tea and I made a Victoria sponge and Tommy ate three slices without any embarrassment at all. He told me he wants to be an astronaut now, which has changed from last month when it was a dinosaur. Sarah looked a bit tired but happy. I felt so full when they left. The good kind of full.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 129.851,
+      "articulation_rate_wpm": 151.921,
+      "phonation_to_time_ratio": 0.7116,
+      "mean_pause_duration_sec": 0.643,
+      "word_count": 88,
+      "duration_sec": 40.66
+    },
+    "lexical": {
+      "emotion_score": 0.2669,
+      "self_pronoun_ratio": 0.0455,
+      "type_token_ratio": 0.7955
+    },
+    "prosody": {
+      "f0_mean_hz": 188.3117,
+      "jitter_local": 0.02388,
+      "shimmer_local_db": 1.20702
+    },
+    "spectral": {}
+  }
+}

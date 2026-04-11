@@ -3,9 +3,10 @@ import { X, Send } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { sendChatMessage } from '../hooks/useApi.js'
 import './ChatBot.css'
+import { PATIENT_NAME } from '../config.js'
 
 const SUGGESTIONS = [
-  'What has Emily been talking about recently?',
+  `What has ${PATIENT_NAME} been talking about recently?`,
   'Give me a weekly summary',
   'Are there any concerning trends?',
 ]
@@ -13,7 +14,7 @@ const SUGGESTIONS = [
 export default function ChatBot({ open, onToggle }) {
   const [messages, setMessages] = useState([{
     role: 'assistant',
-    text: "Hi! I'm Ferb. Ask me anything about Emily — her recent conversations, mood patterns, or weekly summaries.",
+    text: `Hi! I'm Ferb. Ask me anything about ${PATIENT_NAME} — their recent conversations, mood patterns, or weekly summaries.`,
   }])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -69,7 +70,7 @@ export default function ChatBot({ open, onToggle }) {
             />
             <span className="chat-logo chat-logo-fallback">F</span>
             <span className="chat-title">Ferb</span>
-            <span className="chat-subtitle">Ask me about Emily</span>
+            <span className="chat-subtitle">Ask me about {PATIENT_NAME}</span>
             <button className="chat-close" onClick={onToggle}>
               <X size={14} strokeWidth={2} />
             </button>
@@ -133,7 +134,7 @@ export default function ChatBot({ open, onToggle }) {
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && !e.shiftKey && send()}
-              placeholder="Ask about Emily…"
+              placeholder={`Ask about ${PATIENT_NAME}…`}
               disabled={loading}
             />
             <button

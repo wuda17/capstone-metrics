@@ -4,7 +4,6 @@
   flex-shrink: 0;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* Toggle bar — always visible */
@@ -12,14 +11,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 20px;
+  padding: 6px 20px;
   cursor: pointer;
   user-select: none;
   border-bottom: 1px solid var(--border);
   transition: background 0.12s;
+  background: var(--surface);
 }
 .ps-collapsed .ps-toggle-bar { border-bottom: none; }
-.ps-toggle-bar:hover { background: var(--surface); }
+.ps-toggle-bar:hover { background: var(--surface-2); }
 
 .ps-toggle-label {
   font-size: 10px;
@@ -44,29 +44,32 @@
 .ps-status-label { color: var(--text-muted); }
 .ps-status-date  { color: var(--text-dim); }
 
-.ps-toggle-icon {
-  font-size: 11px;
-  color: var(--text-dim);
-}
+.ps-toggle-icon { font-size: 11px; color: var(--text-dim); }
 
 /* ── Cards grid ─────────────────────────────────────────────────────────── */
 
 .profile-strip {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 170px 210px;
-  background: var(--surface);
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--bg);
 }
 
-/* Base card */
+/* Base card — tile style */
 .ps-card {
-  padding: 14px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
   gap: 7px;
   overflow: hidden;
-  border-right: 1px solid var(--border);
+  box-shadow: 0 1px 8px rgba(15,25,35,0.05);
+  transition: box-shadow 0.15s;
 }
-.ps-card:last-child { border-right: none; }
+.ps-card:hover { box-shadow: 0 3px 14px rgba(15,25,35,0.09); }
 
 /* Section label */
 .ps-label {
@@ -132,3 +135,12 @@
   flex-shrink: 0;
 }
 .ps-empty { font-size: 13px; color: var(--text-dim); font-style: italic; margin: 0; }
+
+.ps-new-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: ps-pulse 1.4s ease-in-out infinite;
+}

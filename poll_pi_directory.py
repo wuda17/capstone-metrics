@@ -197,12 +197,17 @@ class PiDirectoryPoller:
     def already_downloaded(self, rel_path: str, remote_file: RemoteFile) -> bool:
         record = self.downloaded.get(rel_path)
         if record:
+            # Trust the persisted record regardless of whether the local file still
+            # exists — the pipeline may have moved or deleted it after processing.
             if int(record.get("size", -1)) == remote_file.size and abs(
                 float(record.get("mtime", -1.0)) - remote_file.mtime
-            ) < 0.001 and self.local_matches_remote(rel_path, remote_file):
+            ) < 0.001:
                 return True
+        # File not in state — check if it is already present locally (e.g. from a
+        # previous run that didn't save state) and record it if so.
         if self.local_matches_remote(rel_path, remote_file):
             self.downloaded[rel_path] = {"size": remote_file.size, "mtime": remote_file.mtime}
+            self._save_state()
             return True
         return False
 

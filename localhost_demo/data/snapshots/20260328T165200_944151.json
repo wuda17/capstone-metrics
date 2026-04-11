@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-28T16:52:00.033659+00:00",
+    "day": "2026-03-28"
+  },
+  "source_file": "session_007.wav",
+  "transcript": "Tommy's school play this afternoon. I could not be more proud if I tried. He stood up on that little stage and said every single line perfectly and loudly. When he spotted me in the audience he gave a tiny wave and I genuinely thought my heart might burst. Sarah and I took him for ice cream afterwards and he had two scoops of chocolate. He told us all about the backstage nerves on the way home. What a wonderful afternoon.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 146.106,
+      "articulation_rate_wpm": 165.618,
+      "phonation_to_time_ratio": 0.7974,
+      "mean_pause_duration_sec": 0.636,
+      "word_count": 81,
+      "duration_sec": 33.26
+    },
+    "lexical": {
+      "emotion_score": 0.2825,
+      "self_pronoun_ratio": 0.0741,
+      "type_token_ratio": 0.8025
+    },
+    "prosody": {
+      "f0_mean_hz": 202.9597,
+      "jitter_local": 0.022172,
+      "shimmer_local_db": 1.005056
+    },
+    "spectral": {}
+  }
+}

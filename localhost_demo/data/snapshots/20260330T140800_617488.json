@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-30T14:08:00.534277+00:00",
+    "day": "2026-03-30"
+  },
+  "source_file": "session_009.wav",
+  "transcript": "I finally went through the spare room today. John's things have been sitting in boxes in there since we cleared his study. I did not expect it to take all afternoon but it did. Found his bird-watching notebook, all his lists in his handwriting. I sat down on the floor and just held it for quite a long time. Kept some things, put some in bags for the charity shop. I feel wrung out and emotional but also, strangely, just a tiny bit lighter.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 149.568,
+      "articulation_rate_wpm": 162.84,
+      "phonation_to_time_ratio": 0.8125,
+      "mean_pause_duration_sec": 0.565,
+      "word_count": 84,
+      "duration_sec": 33.7
+    },
+    "lexical": {
+      "emotion_score": -0.3309,
+      "self_pronoun_ratio": 0.0476,
+      "type_token_ratio": 0.7619
+    },
+    "prosody": {
+      "f0_mean_hz": 200.1895,
+      "jitter_local": 0.020967,
+      "shimmer_local_db": 1.122271
+    },
+    "spectral": {}
+  }
+}

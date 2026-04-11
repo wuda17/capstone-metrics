@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-04-06T09:15:00.235612+00:00",
+    "day": "2026-04-06"
+  },
+  "source_file": "session_016.wav",
+  "transcript": "A quiet day at home mostly, pottered about and did some ironing. In the evening I watched a wonderful programme about Patagonia, all about the wildlife. The condors were extraordinary, these enormous birds just riding the thermals for hours. Made me think about the red kite I saw the other week. I would love to travel again, even somewhere in Britain I have never been. Had a cup of chamomile and went to bed feeling quite content.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 133.808,
+      "articulation_rate_wpm": 160.377,
+      "phonation_to_time_ratio": 0.7592,
+      "mean_pause_duration_sec": 0.643,
+      "word_count": 77,
+      "duration_sec": 34.53
+    },
+    "lexical": {
+      "emotion_score": 0.1466,
+      "self_pronoun_ratio": 0.0649,
+      "type_token_ratio": 0.7922
+    },
+    "prosody": {
+      "f0_mean_hz": 202.9951,
+      "jitter_local": 0.030328,
+      "shimmer_local_db": 1.230421
+    },
+    "spectral": {}
+  }
+}

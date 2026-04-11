@@ -1,0 +1,29 @@
+{
+  "event": {
+    "time": "2026-03-24T11:22:00.633052+00:00",
+    "day": "2026-03-24"
+  },
+  "source_file": "session_003.wav",
+  "transcript": "Doctor's appointment first thing. He says my cholesterol is a little on the high side and wants to keep an eye on it. Suggested I cut back on butter and cheese, which I am not at all happy about if I am honest. On the better side he said my blood pressure has actually improved since last time, which was encouraging. Picked up my prescription and walked home. Had soup for lunch and watched the afternoon news. Fairly ordinary rest of the day.",
+  "metrics": {
+    "temporal": {
+      "speech_rate_wpm": 151.41,
+      "articulation_rate_wpm": 154.427,
+      "phonation_to_time_ratio": 0.7014,
+      "mean_pause_duration_sec": 0.49,
+      "word_count": 83,
+      "duration_sec": 32.89
+    },
+    "lexical": {
+      "emotion_score": 0.0113,
+      "self_pronoun_ratio": 0.0723,
+      "type_token_ratio": 0.7952
+    },
+    "prosody": {
+      "f0_mean_hz": 190.6735,
+      "jitter_local": 0.026628,
+      "shimmer_local_db": 1.103141
+    },
+    "spectral": {}
+  }
+}

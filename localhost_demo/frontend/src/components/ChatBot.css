@@ -6,39 +6,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 58px;
+  height: 58px;
   padding: 0;
-  border-radius: 50%;
-  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border);
   background: var(--surface);
-  color: var(--text);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 0 1px var(--accent-dim);
+  color: var(--accent);
+  box-shadow: 0 4px 20px rgba(15, 25, 35, 0.14);
   z-index: 1000;
-  transition: background 0.15s, box-shadow 0.15s;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
 }
 
 .ferb-fab:hover {
   background: var(--surface-2);
-  box-shadow: 0 4px 24px var(--accent-glow), 0 0 0 1px var(--accent);
+  box-shadow: 0 6px 28px rgba(15, 25, 35, 0.20);
+  transform: translateY(-2px);
 }
 
 
-.ferb-fab-icon { color: var(--accent); display: flex; align-items: center; justify-content: center; }
+.ferb-fab-icon { color: #ffffff; display: flex; align-items: center; justify-content: center; }
 .ferb-fab-fallback { font-size: 22px; display: none; }
-.ferb-fab-img { width: 32px; height: 32px; object-fit: contain; border-radius: 4px; }
+.ferb-fab-img { width: 36px; height: 36px; object-fit: contain; border-radius: 4px; }
 
 /* Chat panel */
 .chat-panel {
   position: fixed;
-  bottom: 80px;
+  bottom: 86px;
   right: 24px;
   width: 360px;
   height: 520px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 16px 48px rgba(15,25,35,0.18);
   display: flex;
   flex-direction: column;
   z-index: 999;
@@ -55,7 +56,7 @@
 }
 
 .chat-logo { font-size: 18px; color: var(--accent); }
-.chat-logo-img { width: 22px; height: 22px; object-fit: contain; border-radius: 4px; }
+.chat-logo-img { width: 26px; height: 26px; object-fit: contain; border-radius: 4px; }
 .chat-logo-fallback { display: none; }
 .chat-title { font-weight: 700; font-size: 14px; }
 .chat-subtitle { font-size: 11px; color: var(--text-muted); flex: 1; }
@@ -94,8 +95,8 @@
 .chat-msg.user { flex-direction: row-reverse; }
 
 .msg-avatar {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   font-size: 16px;
   color: var(--accent);
   flex-shrink: 0;
@@ -109,8 +110,8 @@
 
 .msg-bubble {
   max-width: 80%;
-  padding: 10px 13px;
-  border-radius: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-xl);
   font-size: 13px;
   line-height: 1.55;
 }
@@ -164,7 +165,7 @@
 .suggestion-chip {
   background: var(--surface-2);
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: var(--radius-full);
   color: var(--text-muted);
   font-size: 12px;
   padding: 6px 14px;
@@ -201,9 +202,9 @@
   flex: 1;
   background: var(--surface-2);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-xl);
   color: var(--text);
-  padding: 8px 12px;
+  padding: 8px 14px;
   outline: none;
   font-size: 13px;
   transition: border-color 0.12s;
@@ -215,7 +216,7 @@
 .chat-send {
   width: 36px;
   height: 36px;
-  border-radius: 8px;
+  border-radius: var(--radius-full);
   border: none;
   background: var(--accent);
   color: white;

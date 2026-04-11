@@ -1,0 +1,116 @@
+.activity-strip {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px;
+  flex-shrink: 0;
+}
+
+/* ── Identity ── */
+.as-identity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.as-patient-name {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.as-live-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+  animation: as-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes as-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(224, 53, 53, 0.5); }
+  50%  { box-shadow: 0 0 0 6px rgba(224, 53, 53, 0);   }
+  100% { box-shadow: 0 0 0 0   rgba(224, 53, 53, 0);   }
+}
+
+/* ── Divider ── */
+.as-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* ── Minutes stat ── */
+.as-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.as-stat-icon {
+  color: var(--text-dim);
+  align-self: center;
+}
+
+.as-stat-value {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+
+.as-stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* ── Mini charts ── */
+.as-chart {
+  flex: 1;
+  min-width: 80px;
+  max-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.as-chart-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+}
+
+/* ── CTA ── */
+.as-cta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+
+.as-cta:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
